@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+
+/* // globals.css (add for smooth scroll/fonts) */
+html {
+  scroll-behavior: smooth;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+
+@theme inline {
+  --color-brand-primary: #FA8520;
+  --color-brand-dark: #121212;
+  --color-brand-secondary: #322720;
+
+  --animate-fade-in-up: fade-in-up 0.5s ease-out;
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hero Circuit Board Animations */
+  @keyframes flow {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes chipPulse {
+
+    0%,
+    100% {
+      filter: drop-shadow(0 0 12px #FA8520);
+    }
+
+    50% {
+      filter: drop-shadow(0 0 35px #FA8520);
+    }
+  }
+
+  @keyframes waveExpand {
+    0% {
+      r: 40;
+      opacity: 0.8;
+    }
+
+    100% {
+      r: 160;
+      opacity: 0;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      opacity: 0.4;
+    }
+
+    50% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0.4;
+    }
+  }
+
+  /* Button Animations */
+  @keyframes ripple {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  @keyframes glitch {
+    0% {
+      transform: translate(0);
+    }
+
+    20% {
+      transform: translate(-2px, 2px);
+    }
+
+    40% {
+      transform: translate(-2px, -2px);
+    }
+
+    60% {
+      transform: translate(2px, 2px);
+    }
+
+    80% {
+      transform: translate(2px, -2px);
+    }
+
+    100% {
+      transform: translate(0);
+    }
+  }
+
+  @keyframes spin-reverse {
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+
+  @keyframes scan {
+
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 1;
+    }
+
+    90% {
+      opacity: 1;
+    }
+
+    50% {
+      transform: translateY(100%);
+    }
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FA8520;
+  border-radius: 3px;
+}
