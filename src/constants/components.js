@@ -1,10 +1,17 @@
+import { INPUT_COMPONENTS } from './inputcomponent';
+import { DASHBOARDS, DASHBOARD_CATEGORIES } from './dashboards';
+import { EMAIL_TEMPLATES, EMAIL_CATEGORIES } from './emailTemplates';
+
 export const CATEGORIES = [
   { id: 'all', name: 'All Components' },
   { id: 'button', name: 'Buttons' },
   { id: 'card', name: 'Cards' },
   { id: 'badge', name: 'Badges' },
   { id: 'input', name: 'Inputs' },
+  { id: 'animated-input', name: 'Animated Inputs' },
   { id: 'navigation', name: 'Navigation' },
+  ...DASHBOARD_CATEGORIES.filter(c => c.id !== 'all'),
+  ...EMAIL_CATEGORIES.filter(c => c.id !== 'all'),
 ];
 
 export const COMPONENTS = [
@@ -20,11 +27,19 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 flex items-center justify-center bg-[#FA8520] hover:bg-[#d66e15] text-white font-bold rounded-lg transition-colors shadow-lg hover:shadow-orange-500/30">
   <i class="fas fa-check mr-2"></i> Click Me
 </button>`,
-      react: `const Button = () => (
-  <button className="w-64 h-14 flex items-center justify-center bg-brand-primary hover:bg-orange-700 text-white font-bold rounded-lg transition-colors shadow-lg hover:shadow-orange-500/30">
-    <i className="fas fa-check mr-2"></i> Click Me
-  </button>
-);`,
+      react: `import React from 'react';
+
+const Button = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center bg-brand-primary hover:bg-orange-700 text-white font-bold rounded-lg transition-colors shadow-lg hover:shadow-orange-500/30">
+        <i className="fas fa-check mr-2"></i> Click Me
+      </button>
+    </>
+  );
+};
+
+export default Button;`,
       tailwind: `<button class="w-64 h-14 flex items-center justify-center bg-brand-primary hover:bg-brand-primary/80 text-white font-bold rounded-lg transition-colors shadow-lg hover:shadow-brand-primary/30">
   <i class="fas fa-check mr-2"></i> Click Me
 </button>`
@@ -45,12 +60,20 @@ export const COMPONENTS = [
   <h3 class="text-xl font-bold text-white mb-2">Card Title</h3>
   <p class="text-gray-400">This is a simple card component used for displaying content.</p>
 </div>`,
-      react: `const Card = () => (
-  <div className="bg-brand-secondary border border-white/10 rounded-xl p-6 max-w-sm">
-    <h3 className="text-xl font-bold text-white mb-2">Card Title</h3>
-    <p className="text-gray-400">This is a simple card component used for displaying content.</p>
-  </div>
-);`,
+      react: `import React from 'react';
+
+const Card = () => {
+  return (
+    <>
+      <div className="bg-brand-secondary border border-white/10 rounded-xl p-6 max-w-sm">
+        <h3 className="text-xl font-bold text-white mb-2">Card Title</h3>
+        <p className="text-gray-400">This is a simple card component used for displaying content.</p>
+      </div>
+    </>
+  );
+};
+
+export default Card;`,
       tailwind: `<div class="bg-brand-secondary border border-white/10 rounded-xl p-6 max-w-sm">
   <h3 class="text-xl font-bold text-white mb-2">Card Title</h3>
   <p class="text-gray-400">This is a simple card component used for displaying content.</p>
@@ -70,11 +93,19 @@ export const COMPONENTS = [
       html: `<span class="bg-[#FA8520]/20 text-[#FA8520] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide border border-[#FA8520]/30">
   Active
 </span>`,
-      react: `const Badge = ({ children }) => (
-  <span className="bg-brand-primary/20 text-brand-primary px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide border border-brand-primary/30">
-    {children}
-  </span>
-);`,
+      react: `import React from 'react';
+
+const Badge = ({ children }) => {
+  return (
+    <>
+      <span className="bg-brand-primary/20 text-brand-primary px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide border border-brand-primary/30">
+        {children}
+      </span>
+    </>
+  );
+};
+
+export default Badge;`,
       tailwind: `<span class="bg-brand-primary/20 text-brand-primary px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide border border-brand-primary/30">
   Active
 </span>`
@@ -92,11 +123,19 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-lg shadow-lg transition-all duration-300 hover:shadow-cyan-500/50 hover:shadow-2xl hover:scale-105">
   <i class="fas fa-bolt mr-2"></i> Add to Cart
 </button>`,
-      react: `const GlowingPulseButton = () => (
-  <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-lg shadow-lg transition-all duration-300 hover:shadow-cyan-500/50 hover:shadow-2xl hover:scale-105">
-    <i className="fas fa-bolt mr-2"></i> Add to Cart
-  </button>
-);`
+      react: `import React from 'react';
+
+const GlowingPulseButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-lg shadow-lg transition-all duration-300 hover:shadow-cyan-500/50 hover:shadow-2xl hover:scale-105">
+        <i className="fas fa-bolt mr-2"></i> Add to Cart
+      </button>
+    </>
+  );
+};
+
+export default GlowingPulseButton;`
     }
   },
   {
@@ -110,11 +149,19 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 flex items-center justify-center rounded-lg bg-gray-900 text-white font-bold text-lg border-2 border-transparent transition-all duration-300 hover:border-purple-500 hover:shadow-[0_0_20px_#a855f7] hover:bg-gray-800">
   <i class="fas fa-star mr-2"></i> Premium
 </button>`,
-      react: `const NeonBorderButton = () => (
-  <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gray-900 text-white font-bold text-lg border-2 border-transparent transition-all duration-300 hover:border-purple-500 hover:shadow-[0_0_20px_#a855f7] hover:bg-gray-800">
-    <i className="fas fa-star mr-2"></i> Premium
-  </button>
-);`
+      react: `import React from 'react';
+
+const NeonBorderButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gray-900 text-white font-bold text-lg border-2 border-transparent transition-all duration-300 hover:border-purple-500 hover:shadow-[0_0_20px_#a855f7] hover:bg-gray-800">
+        <i className="fas fa-star mr-2"></i> Premium
+      </button>
+    </>
+  );
+};
+
+export default NeonBorderButton;`
     }
   },
   {
@@ -132,12 +179,20 @@ export const COMPONENTS = [
   <span class="relative z-10"><i class="fas fa-fill-drip mr-2"></i> Liquid Effect</span>
   <div class="absolute inset-0 bg-emerald-500 opacity-0 transition-opacity duration-500 hover:opacity-30"></div>
 </button>`,
-      react: `const LiquidFillButton = () => (
-  <button className="relative w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-emerald-700 to-emerald-800 text-white font-bold text-lg overflow-hidden transition-all duration-500 hover:from-emerald-600 hover:to-emerald-700 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]">
-    <span className="relative z-10"><i className="fas fa-fill-drip mr-2"></i> Liquid Effect</span>
-    <div className="absolute inset-0 bg-emerald-500 opacity-0 transition-opacity duration-500 hover:opacity-30"></div>
-  </button>
-);`
+      react: `import React from 'react';
+
+const LiquidFillButton = () => {
+  return (
+    <>
+      <button className="relative w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-emerald-700 to-emerald-800 text-white font-bold text-lg overflow-hidden transition-all duration-500 hover:from-emerald-600 hover:to-emerald-700 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+        <span className="relative z-10"><i className="fas fa-fill-drip mr-2"></i> Liquid Effect</span>
+        <div className="absolute inset-0 bg-emerald-500 opacity-0 transition-opacity duration-500 hover:opacity-30"></div>
+      </button>
+    </>
+  );
+};
+
+export default LiquidFillButton;`
     }
   },
   {
@@ -151,11 +206,19 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-red-600 to-pink-600 text-white font-bold text-lg transition-all duration-300 hover:-translate-x-1 hover:translate-y-1 hover:shadow-xl hover:shadow-red-500/30">
   <i class="fas fa-heart mr-2"></i> Favorite
 </button>`,
-      react: `const ShakeButton = () => (
-  <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-red-600 to-pink-600 text-white font-bold text-lg transition-all duration-300 hover:-translate-x-1 hover:translate-y-1 hover:shadow-xl hover:shadow-red-500/30">
-    <i className="fas fa-heart mr-2"></i> Favorite
-  </button>
-);`
+      react: `import React from 'react';
+
+const ShakeButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-red-600 to-pink-600 text-white font-bold text-lg transition-all duration-300 hover:-translate-x-1 hover:translate-y-1 hover:shadow-xl hover:shadow-red-500/30">
+        <i className="fas fa-heart mr-2"></i> Favorite
+      </button>
+    </>
+  );
+};
+
+export default ShakeButton;`
     }
   },
   {
@@ -169,11 +232,19 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-b from-orange-500 to-orange-700 text-white font-bold text-lg shadow-[0_6px_0_rgb(194,65,12)] transition-all duration-150 hover:translate-y-1 hover:shadow-[0_2px_0_rgb(194,65,12)] active:translate-y-2 active:shadow-none">
   <i class="fas fa-cube mr-2"></i> 3D Button
 </button>`,
-      react: `const PressButton = () => (
-  <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-b from-orange-500 to-orange-700 text-white font-bold text-lg shadow-[0_6px_0_rgb(194,65,12)] transition-all duration-150 hover:translate-y-1 hover:shadow-[0_2px_0_rgb(194,65,12)] active:translate-y-2 active:shadow-none">
-    <i className="fas fa-cube mr-2"></i> 3D Button
-  </button>
-);`
+      react: `import React from 'react';
+
+const PressButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-b from-orange-500 to-orange-700 text-white font-bold text-lg shadow-[0_6px_0_rgb(194,65,12)] transition-all duration-150 hover:translate-y-1 hover:shadow-[0_2px_0_rgb(194,65,12)] active:translate-y-2 active:shadow-none">
+        <i className="fas fa-cube mr-2"></i> 3D Button
+      </button>
+    </>
+  );
+};
+
+export default PressButton;`
     }
   },
   {
@@ -187,11 +258,19 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 hover:w-72 flex items-center justify-center rounded-lg bg-gradient-to-r from-yellow-500 to-amber-600 text-gray-900 font-bold text-lg transition-all duration-500 shadow-lg hover:shadow-yellow-500/50">
   <i class="fas fa-expand-alt mr-2"></i> Expand
 </button>`,
-      react: `const ExpandButton = () => (
-  <button className="w-64 h-14 hover:w-72 flex items-center justify-center rounded-lg bg-gradient-to-r from-yellow-500 to-amber-600 text-gray-900 font-bold text-lg transition-all duration-500 shadow-lg hover:shadow-yellow-500/50">
-    <i className="fas fa-expand-alt mr-2"></i> Expand
-  </button>
-);`
+      react: `import React from 'react';
+
+const ExpandButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 hover:w-72 flex items-center justify-center rounded-lg bg-gradient-to-r from-yellow-500 to-amber-600 text-gray-900 font-bold text-lg transition-all duration-500 shadow-lg hover:shadow-yellow-500/50">
+        <i className="fas fa-expand-alt mr-2"></i> Expand
+      </button>
+    </>
+  );
+};
+
+export default ExpandButton;`
     }
   },
   {
@@ -205,11 +284,19 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 flex items-center justify-center rounded-lg backdrop-blur-md bg-white/10 border border-white/20 text-white font-bold text-lg transition-all duration-300 hover:bg-white/20 hover:border-white/40 hover:backdrop-blur-xl hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
   <i class="fas fa-glass-cheers mr-2"></i> Glass Effect
 </button>`,
-      react: `const GlassButton = () => (
-  <button className="w-64 h-14 flex items-center justify-center rounded-lg backdrop-blur-md bg-white/10 border border-white/20 text-white font-bold text-lg transition-all duration-300 hover:bg-white/20 hover:border-white/40 hover:backdrop-blur-xl hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-    <i className="fas fa-glass-cheers mr-2"></i> Glass Effect
-  </button>
-);`
+      react: `import React from 'react';
+
+const GlassButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center rounded-lg backdrop-blur-md bg-white/10 border border-white/20 text-white font-bold text-lg transition-all duration-300 hover:bg-white/20 hover:border-white/40 hover:backdrop-blur-xl hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+        <i className="fas fa-glass-cheers mr-2"></i> Glass Effect
+      </button>
+    </>
+  );
+};
+
+export default GlassButton;`
     }
   },
   {
@@ -223,11 +310,19 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-indigo-600 to-purple-700 text-white font-bold text-lg transition-all duration-300 hover:shadow-indigo-500/50 hover:shadow-2xl hover:scale-105 group">
   <i class="fas fa-sync-alt mr-2 group-hover:rotate-180 transition-transform duration-500"></i> Refresh
 </button>`,
-      react: `const IconSpinButton = () => (
-  <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-indigo-600 to-purple-700 text-white font-bold text-lg transition-all duration-300 hover:shadow-indigo-500/50 hover:shadow-2xl hover:scale-105 group">
-    <i className="fas fa-sync-alt mr-2 group-hover:rotate-180 transition-transform duration-500"></i> Refresh
-  </button>
-);`
+      react: `import React from 'react';
+
+const IconSpinButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-indigo-600 to-purple-700 text-white font-bold text-lg transition-all duration-300 hover:shadow-indigo-500/50 hover:shadow-2xl hover:scale-105 group">
+        <i className="fas fa-sync-alt mr-2 group-hover:rotate-180 transition-transform duration-500"></i> Refresh
+      </button>
+    </>
+  );
+};
+
+export default IconSpinButton;`
     }
   },
   {
@@ -245,12 +340,20 @@ export const COMPONENTS = [
   <span class="transition-all duration-500 group-hover:translate-x-2 flex items-center"><i class="fas fa-eye mr-2"></i> Reveal Text</span>
   <span class="absolute right-6 opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:right-8">→</span>
 </button>`,
-      react: `const TextRevealButton = () => (
-  <button className="relative w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-teal-600 to-cyan-700 text-white font-bold text-lg overflow-hidden transition-all duration-500 group">
-    <span className="transition-all duration-500 group-hover:translate-x-2 flex items-center"><i className="fas fa-eye mr-2"></i> Reveal Text</span>
-    <span className="absolute right-6 opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:right-8">→</span>
-  </button>
-);`
+      react: `import React from 'react';
+
+const TextRevealButton = () => {
+  return (
+    <>
+      <button className="relative w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-teal-600 to-cyan-700 text-white font-bold text-lg overflow-hidden transition-all duration-500 group">
+        <span className="transition-all duration-500 group-hover:translate-x-2 flex items-center"><i className="fas fa-eye mr-2"></i> Reveal Text</span>
+        <span className="absolute right-6 opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:right-8">→</span>
+      </button>
+    </>
+  );
+};
+
+export default TextRevealButton;`
     }
   },
   {
@@ -264,11 +367,19 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-rose-700 to-pink-700 text-white font-bold text-lg shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-rose-500/50 hover:-translate-y-1">
   <i class="fas fa-cloud mr-2"></i> Shadow Effect
 </button>`,
-      react: `const ShadowGrowButton = () => (
-  <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-rose-700 to-pink-700 text-white font-bold text-lg shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-rose-500/50 hover:-translate-y-1">
-    <i className="fas fa-cloud mr-2"></i> Shadow Effect
-  </button>
-);`
+      react: `import React from 'react';
+
+const ShadowGrowButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-rose-700 to-pink-700 text-white font-bold text-lg shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-rose-500/50 hover:-translate-y-1">
+        <i className="fas fa-cloud mr-2"></i> Shadow Effect
+      </button>
+    </>
+  );
+};
+
+export default ShadowGrowButton;`
     }
   },
   {
@@ -282,11 +393,19 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-lime-600 to-green-600 text-white font-bold text-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-lime-500/30">
   <i class="fas fa-arrow-up mr-2"></i> Bounce Up
 </button>`,
-      react: `const BounceButton = () => (
-  <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-lime-600 to-green-600 text-white font-bold text-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-lime-500/30">
-    <i className="fas fa-arrow-up mr-2"></i> Bounce Up
-  </button>
-);`
+      react: `import React from 'react';
+
+const BounceButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-lime-600 to-green-600 text-white font-bold text-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-lime-500/30">
+        <i className="fas fa-arrow-up mr-2"></i> Bounce Up
+      </button>
+    </>
+  );
+};
+
+export default BounceButton;`
     }
   },
   {
@@ -300,11 +419,19 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-violet-600 to-purple-700 text-white font-bold text-lg transition-all duration-500 hover:rotate-1 hover:skew-x-2 hover:shadow-violet-500/50 hover:shadow-lg">
   <i class="fas fa-retweet mr-2"></i> Flip Card
 </button>`,
-      react: `const FlipButton = () => (
-  <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-violet-600 to-purple-700 text-white font-bold text-lg transition-all duration-500 hover:rotate-1 hover:skew-x-2 hover:shadow-violet-500/50 hover:shadow-lg">
-    <i className="fas fa-retweet mr-2"></i> Flip Card
-  </button>
-);`
+      react: `import React from 'react';
+
+const FlipButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-violet-600 to-purple-700 text-white font-bold text-lg transition-all duration-500 hover:rotate-1 hover:skew-x-2 hover:shadow-violet-500/50 hover:shadow-lg">
+        <i className="fas fa-retweet mr-2"></i> Flip Card
+      </button>
+    </>
+  );
+};
+
+export default FlipButton;`
     }
   },
   {
@@ -318,11 +445,19 @@ export const COMPONENTS = [
       html: `<button class="relative w-64 h-14 flex items-center justify-center rounded-lg bg-gray-900 text-white font-bold text-lg border-2 border-transparent transition-all duration-700 hover:border-amber-500 hover:shadow-[0_0_15px_#f59e0b]">
   <span><i class="fas fa-pencil-alt mr-2"></i> Draw Border</span>
 </button>`,
-      react: `const BorderDrawButton = () => (
-  <button className="relative w-64 h-14 flex items-center justify-center rounded-lg bg-gray-900 text-white font-bold text-lg border-2 border-transparent transition-all duration-700 hover:border-amber-500 hover:shadow-[0_0_15px_#f59e0b]">
-    <span><i className="fas fa-pencil-alt mr-2"></i> Draw Border</span>
-  </button>
-);`
+      react: `import React from 'react';
+
+const BorderDrawButton = () => {
+  return (
+    <>
+      <button className="relative w-64 h-14 flex items-center justify-center rounded-lg bg-gray-900 text-white font-bold text-lg border-2 border-transparent transition-all duration-700 hover:border-amber-500 hover:shadow-[0_0_15px_#f59e0b]">
+        <span><i className="fas fa-pencil-alt mr-2"></i> Draw Border</span>
+      </button>
+    </>
+  );
+};
+
+export default BorderDrawButton;`
     }
   },
   {
@@ -337,12 +472,20 @@ export const COMPONENTS = [
   <span class="relative z-10"><i class="fas fa-fire mr-2"></i> Particles</span>
   <div class="absolute inset-0 bg-white/0 group-hover:bg-white/20 transition-all duration-500"></div>
 </button>`,
-      react: `const ParticleButton = () => (
-  <button className="relative w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-sky-600 to-cyan-600 text-white font-bold text-lg overflow-hidden transition-all duration-300 hover:bg-sky-700 group shadow-lg hover:shadow-sky-500/50">
-    <span className="relative z-10"><i className="fas fa-fire mr-2"></i> Particles</span>
-    <div className="absolute inset-0 bg-white/0 group-hover:bg-white/20 transition-all duration-500"></div>
-  </button>
-);`
+      react: `import React from 'react';
+
+const ParticleButton = () => {
+  return (
+    <>
+      <button className="relative w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-sky-600 to-cyan-600 text-white font-bold text-lg overflow-hidden transition-all duration-300 hover:bg-sky-700 group shadow-lg hover:shadow-sky-500/50">
+        <span className="relative z-10"><i className="fas fa-fire mr-2"></i> Particles</span>
+        <div className="absolute inset-0 bg-white/0 group-hover:bg-white/20 transition-all duration-500"></div>
+      </button>
+    </>
+  );
+};
+
+export default ParticleButton;`
     }
   },
   {
@@ -356,11 +499,19 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 flex items-center justify-center rounded-lg bg-white text-gray-900 font-bold text-lg transition-all duration-300 hover:bg-gray-900 hover:text-white hover:border hover:border-white shadow-lg">
   <i class="fas fa-adjust mr-2"></i> Invert Colors
 </button>`,
-      react: `const InvertButton = () => (
-  <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-white text-gray-900 font-bold text-lg transition-all duration-300 hover:bg-gray-900 hover:text-white hover:border hover:border-white shadow-lg">
-    <i className="fas fa-adjust mr-2"></i> Invert Colors
-  </button>
-);`
+      react: `import React from 'react';
+
+const InvertButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-white text-gray-900 font-bold text-lg transition-all duration-300 hover:bg-gray-900 hover:text-white hover:border hover:border-white shadow-lg">
+        <i className="fas fa-adjust mr-2"></i> Invert Colors
+      </button>
+    </>
+  );
+};
+
+export default InvertButton;`
     }
   },
   {
@@ -377,14 +528,22 @@ export const COMPONENTS = [
     <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
   </span>
 </button>`,
-      react: `const UnderlineButton = () => (
-  <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-emerald-700 to-green-800 text-white font-bold text-lg transition-all duration-300 hover:bg-gradient-to-r hover:from-emerald-600 hover:to-green-700 group shadow-lg">
-    <span className="relative">
-      <i className="fas fa-underline mr-2"></i> Underline
-      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-    </span>
-  </button>
-);`
+      react: `import React from 'react';
+
+const UnderlineButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-emerald-700 to-green-800 text-white font-bold text-lg transition-all duration-300 hover:bg-gradient-to-r hover:from-emerald-600 hover:to-green-700 group shadow-lg">
+        <span className="relative">
+          <i className="fas fa-underline mr-2"></i> Underline
+          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+        </span>
+      </button>
+    </>
+  );
+};
+
+export default UnderlineButton;`
     }
   },
   {
@@ -398,11 +557,19 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-b from-gray-300 via-gray-200 to-gray-400 text-gray-900 font-bold text-lg shadow-inner transition-all duration-300 hover:brightness-110 hover:from-gray-200 hover:via-gray-100 hover:to-gray-300 hover:shadow-lg">
   <i class="fas fa-cog mr-2"></i> Metallic
 </button>`,
-      react: `const MetallicButton = () => (
-  <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-b from-gray-300 via-gray-200 to-gray-400 text-gray-900 font-bold text-lg shadow-inner transition-all duration-300 hover:brightness-110 hover:from-gray-200 hover:via-gray-100 hover:to-gray-300 hover:shadow-lg">
-    <i className="fas fa-cog mr-2"></i> Metallic
-  </button>
-);`
+      react: `import React from 'react';
+
+const MetallicButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-b from-gray-300 via-gray-200 to-gray-400 text-gray-900 font-bold text-lg shadow-inner transition-all duration-300 hover:brightness-110 hover:from-gray-200 hover:via-gray-100 hover:to-gray-300 hover:shadow-lg">
+        <i className="fas fa-cog mr-2"></i> Metallic
+      </button>
+    </>
+  );
+};
+
+export default MetallicButton;`
     }
   },
   {
@@ -416,11 +583,19 @@ export const COMPONENTS = [
       html: `<button class="relative w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-fuchsia-600 to-purple-700 text-white font-bold text-lg transition-all duration-300 hover:shadow-fuchsia-500/50 hover:shadow-xl">
   <span class="relative z-10"><i class="fas fa-circle-notch mr-2"></i> Pulse Ring</span>
 </button>`,
-      react: `const PulseRingButton = () => (
-  <button className="relative w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-fuchsia-600 to-purple-700 text-white font-bold text-lg transition-all duration-300 hover:shadow-fuchsia-500/50 hover:shadow-xl">
-    <span className="relative z-10"><i className="fas fa-circle-notch mr-2"></i> Pulse Ring</span>
-  </button>
-);`
+      react: `import React from 'react';
+
+const PulseRingButton = () => {
+  return (
+    <>
+      <button className="relative w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-fuchsia-600 to-purple-700 text-white font-bold text-lg transition-all duration-300 hover:shadow-fuchsia-500/50 hover:shadow-xl">
+        <span className="relative z-10"><i className="fas fa-circle-notch mr-2"></i> Pulse Ring</span>
+      </button>
+    </>
+  );
+};
+
+export default PulseRingButton;`
     }
   },
   {
@@ -434,14 +609,175 @@ export const COMPONENTS = [
       html: `<button class="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-700 to-blue-800 text-white font-bold text-lg transition-all duration-100 hover:skew-x-3 hover:-skew-y-1 hover:shadow-cyan-500/30 hover:shadow-lg">
   <i class="fas fa-bug mr-2"></i> Glitch Effect
 </button>`,
-      react: `const GlitchButton = () => (
-  <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-700 to-blue-800 text-white font-bold text-lg transition-all duration-100 hover:skew-x-3 hover:-skew-y-1 hover:shadow-cyan-500/30 hover:shadow-lg">
-    <i className="fas fa-bug mr-2"></i> Glitch Effect
-  </button>
-);`
+      react: `import React from 'react';
+
+const GlitchButton = () => {
+  return (
+    <>
+      <button className="w-64 h-14 flex items-center justify-center rounded-lg bg-gradient-to-r from-cyan-700 to-blue-800 text-white font-bold text-lg transition-all duration-100 hover:skew-x-3 hover:-skew-y-1 hover:shadow-cyan-500/30 hover:shadow-lg">
+        <i className="fas fa-bug mr-2"></i> Glitch Effect
+      </button>
+    </>
+  );
+};
+
+export default GlitchButton;`
     }
   },
   // --- Shopping Cart Component ---
+  {
+    id: 'ecommerce–cart-overlay',
+    name: 'Shopping Cart Overlay',
+    category: 'card',
+    description: 'Slide-over shopping cart with product list and total calculation.',
+    tags: ['ecommerce', 'cart', 'overlay', 'ui'],
+    preview: `<div className="w-full max-w-md bg-[#1a1a1a] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
+      <div className="p-4 border-b border-white/10 flex justify-between items-center">
+        <h2 className="text-lg font-bold text-white">Shopping Cart (3)</h2>
+        <button className="text-gray-400 hover:text-white transition-colors"><i className="fas fa-times"></i></button>
+      </div>
+      <div className="p-4 space-y-4">
+        {/* Item 1 */}
+        <div className="flex gap-4">
+          <div className="w-20 h-20 bg-gray-800 rounded-lg flex items-center justify-center text-2xl">👟</div>
+          <div className="flex-1">
+             <h3 className="text-white font-medium">Urban Sneakers</h3>
+             <p className="text-gray-400 text-sm">Size: 10 | Color: Black</p>
+             <div className="flex justify-between items-center mt-2">
+                <div className="flex items-center gap-3 bg-gray-800 rounded-lg px-2 py-1">
+                   <button className="text-gray-400 hover:text-white">-</button>
+                   <span className="text-white text-sm">1</span>
+                   <button className="text-gray-400 hover:text-white">+</button>
+                </div>
+                <span className="text-white font-bold">$129.00</span>
+             </div>
+          </div>
+        </div>
+        
+         {/* Item 2 */}
+        <div className="flex gap-4">
+          <div className="w-20 h-20 bg-gray-800 rounded-lg flex items-center justify-center text-2xl">🎧</div>
+          <div className="flex-1">
+             <h3 className="text-white font-medium">Pro Headphones</h3>
+             <p className="text-gray-400 text-sm">Noise Cancelling</p>
+             <div className="flex justify-between items-center mt-2">
+                <div className="flex items-center gap-3 bg-gray-800 rounded-lg px-2 py-1">
+                   <button className="text-gray-400 hover:text-white">-</button>
+                   <span className="text-white text-sm">1</span>
+                   <button className="text-gray-400 hover:text-white">+</button>
+                </div>
+                <span className="text-white font-bold">$249.00</span>
+             </div>
+          </div>
+        </div>
+      </div>
+      <div className="p-4 bg-black/20 border-t border-white/10">
+         <div className="flex justify-between items-center mb-4">
+            <span className="text-gray-400">Subtotal</span>
+            <span className="text-white font-bold text-xl">$378.00</span>
+         </div>
+         <button className="w-full bg-[#FA8520] hover:bg-[#d66e15] text-black font-bold py-3 rounded-xl transition-colors">Checkout Now</button>
+      </div>
+    </div>`,
+    code: {
+      html: `<!-- Interactive Cart Component HTML -->
+<div class="cart-container">...</div>`,
+      react: `import React, { useState } from 'react';
+import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
+
+const ShoppingCart = () => {
+    const [items, setItems] = useState([
+        { id: 1, name: "Urban Sneakers", price: 129.00, quantity: 1, image: "👟", size: "10", color: "Black" },
+        { id: 2, name: "Pro Headphones", price: 249.00, quantity: 1, image: "🎧", variant: "Noise Cancelling" }
+    ]);
+
+    const updateQuantity = (id, change) => {
+        setItems(prev => prev.map(item => {
+            if (item.id === id) {
+                const newQty = Math.max(1, item.quantity + change);
+                return { ...item, quantity: newQty };
+            }
+            return item;
+        }));
+    };
+
+    const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+    return (
+        <div className="w-full max-w-md bg-gray-900 rounded-xl border border-gray-800 overflow-hidden shadow-2xl font-sans">
+            <div className="p-4 border-b border-gray-800 flex justify-between items-center bg-gray-900/50 backdrop-blur-md sticky top-0 z-10">
+                <div className="flex items-center gap-2">
+                    <ShoppingBag className="text-orange-500" size={20} />
+                    <h2 className="text-lg font-bold text-white">Shopping Cart ({items.length})</h2>
+                </div>
+                <button className="text-gray-400 hover:text-white transition-colors hover:bg-white/10 p-2 rounded-full">
+                    <X size={20} />
+                </button>
+            </div>
+            
+            <div className="p-4 space-y-4 max-h-[400px] overflow-y-auto custom-scrollbar">
+                {items.map(item => (
+                    <div key={item.id} className="flex gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors group">
+                        <div className="w-20 h-20 bg-gray-800 rounded-lg flex items-center justify-center text-3xl shadow-inner relative overflow-hidden">
+                             <span className="relative z-10">{item.image}</span>
+                             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                        <div className="flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 className="text-white font-medium leading-tight">{item.name}</h3>
+                                <p className="text-gray-400 text-xs mt-1">
+                                    {item.size ? \`Size: \${item.size} | Color: \${item.color}\` : item.variant}
+                                </p>
+                            </div>
+                            <div className="flex justify-between items-end mt-2">
+                                <div className="flex items-center gap-3 bg-black/40 rounded-lg px-2 py-1 border border-white/5">
+                                    <button 
+                                        onClick={() => updateQuantity(item.id, -1)}
+                                        className="text-gray-400 hover:text-white hover:bg-white/10 p-1 rounded transition-colors"
+                                    >
+                                        <Minus size={14} />
+                                    </button>
+                                    <span className="text-white text-sm font-medium w-4 text-center">{item.quantity}</span>
+                                    <button 
+                                        onClick={() => updateQuantity(item.id, 1)}
+                                        className="text-gray-400 hover:text-white hover:bg-white/10 p-1 rounded transition-colors"
+                                    >
+                                        <Plus size={14} />
+                                    </button>
+                                </div>
+                                <span className="text-white font-bold tracking-wide">$\{(item.price * item.quantity).toFixed(2)}</span>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <div className="p-5 bg-black/40 border-t border-white/10 backdrop-blur-sm">
+                <div className="space-y-2 mb-4">
+                    <div className="flex justify-between items-center text-sm">
+                        <span className="text-gray-400">Subtotal</span>
+                        <span className="text-white font-medium">$\${subtotal.toFixed(2)}</span>
+                    </div>
+                     <div className="flex justify-between items-center text-sm">
+                        <span className="text-gray-400">Shipping</span>
+                        <span className="text-green-400">Free</span>
+                    </div>
+                     <div className="flex justify-between items-center text-lg pt-2 border-t border-white/5 mt-2">
+                        <span className="text-white font-bold">Total</span>
+                        <span className="text-orange-500 font-bold">$\${subtotal.toFixed(2)}</span>
+                    </div>
+                </div>
+                <button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-black font-bold py-3.5 rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-orange-500/20 flex items-center justify-center gap-2">
+                    Checkout Now <span className="text-xs bg-black/20 px-2 py-0.5 rounded text-black/60">→</span>
+                </button>
+            </div>
+        </div>
+    );
+};
+
+export default ShoppingCart;`
+    }
+  },
   {
     id: 'card-shopping-cart',
     name: 'Glassmorphism Cart',
@@ -545,5 +881,14 @@ const ShoppingCart = () => {
 
 export default ShoppingCart;`
     }
-  }
+  },
+  ...INPUT_COMPONENTS,
+  ...DASHBOARDS.map(d => ({
+    ...d,
+    // Map previewHTML to preview
+    preview: d.previewHTML,
+    // Map previewCode to code, ensure object structure
+    code: d.previewCode || d.code
+  })),
+  ...EMAIL_TEMPLATES,
 ];

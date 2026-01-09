@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import Logo from "../assets/NewLogo.png";
 
-/* ---------------- Animations ---------------- */
+/* ---------------- Animationsw ---------------- */
 
 const mobileMenuVariants = {
     closed: { x: "-100%", transition: { duration: 0.3, ease: "easeInOut" } },
@@ -66,9 +66,9 @@ const MobileSidebar = ({ isOpen, onClose }) => (
                         <nav className="space-y-2">
                             {[
                                 { label: "Components", to: "/components", icon: Layers },
-                                { label: "Docs", to: "/coming-soon", icon: FileCode },
-                                { label: "Examples", to: "/coming-soon", icon: Layout },
-                                { label: "Pricing", to: "/coming-soon", icon: Star },
+                                { label: "Docs", to: "/documentation", icon: FileCode },
+                                { label: "Templates", to: "/coming-soon", icon: Layout },
+                                // { label: "Pricing", to: "/coming-soon", icon: Star },
                                 { label: "Contact", to: "/coming-soon", icon: Mail },
                             ].map((item) => (
                                 <Link
@@ -156,9 +156,9 @@ const Navbar = () => {
                     <nav className="flex items-center gap-8 text-sm font-medium">
                         {[
                             { label: "Components", to: "/components" },
-                            { label: "Docs", to: "/coming-soon" },
-                            { label: "Examples", to: "/coming-soon" },
-                            { label: "Pricing", to: "/coming-soon" },
+                            { label: "Docs", to: "/documentation" },
+                            { label: "Templates", to: "/coming-soon" },
+                            // { label: "Pricing", to: "/coming-soon" },
                         ].map((item) => (
                             <NavLink
                                 key={item.label}

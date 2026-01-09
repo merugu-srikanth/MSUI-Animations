@@ -9,7 +9,8 @@ import {
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MainLayout from '../layouts/MainLayout';
-import Logo from '../assets/NewLogo.png';
+
+import BrunoUIChipLoader from '../components/BrunoUIChip/BrunoUIChipLoader';
 
 // --- Animation Variants ---
 const containerVariants = {
@@ -200,7 +201,7 @@ const Home = () => {
                     ref={heroRef}
                     className="relative flex items-center min-h-scree
              px-0 py-6  md:px-10 lg:px-6
-              md:py-16 "
+              md:py-20 "
                 >
                     <div className="max-w-7xl mx-auto w-full grid
                 grid-cols-1 lg:grid-cols-2
@@ -212,7 +213,7 @@ const Home = () => {
                             variants={containerVariants}
                             className="text-left relative z-10"
                         >
-                            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-sm font-semibold mb-6 md:mb-8">
+                            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-sm font-semibold mb-6 md:mb-4">
                                 <Sparkles size={16} />
                                 <span>Version 2.0 Released</span>
                             </motion.div>
@@ -270,7 +271,7 @@ const Home = () => {
                bg-white/5 border border-white/10
                text-white font-semibold rounded-full
                hover:bg-white/10 transition-colors
-               backdrop-blur-md
+               backdrop-blur-md hover:scale-105
                text-sm md:text-base"
                                 >
                                     <Github size={18} className="md:size-[20px]" />
@@ -281,107 +282,7 @@ const Home = () => {
                         </motion.div>
 
                         {/* Interactive Hero Visual - Circuit Waves */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 1, delay: 0.2 }}
-                            className="relative hidden lg:flex
-           items-center justify-center
-           pointer-events-none
-           max-w-full xl:max-w-[720px]
-           drop-shadow-2xl shadow-2xl shadow-amber-500 rounded-3xl"
-                        >
-                            <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary/10 to-purple-500/10 rounded-full blur-[100px] animate-pulse" />
-
-                            {/* Circuit SVG Animation */}
-                            <svg viewBox="0 0 800 450" className="w-full h-full drop-shadow-2xl overflow-visible">
-                                {/* <defs>
-                                    <linearGradient id="scanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" stopColor="rgba(250, 133, 32, 0)" />
-                                        <stop offset="50%" stopColor="rgba(250, 133, 32, 0.5)" />
-                                        <stop offset="100%" stopColor="rgba(250, 133, 32, 0)" />
-                                    </linearGradient>
-                                </defs> */}
-
-                                {/* Rotating Rings */}
-                                <g className="origin-center animate-[spin_10s_linear_infinite]">
-                                    <circle cx="400" cy="235" r="130" className="fill-none stroke-white/10 stroke-1 [stroke-dasharray:20_10]" />
-                                </g>
-                                <g className="origin-center animate-[spin-reverse_15s_linear_infinite]">
-                                    <circle cx="400" cy="235" r="115" className="fill-none stroke-brand-primary/20 stroke-1 [stroke-dasharray:10_10] [stroke-dashoffset:10]" />
-                                </g>
-
-                                {/* Traces - Left */}
-                                <path d="M100 90 H230 V200 H330" className="fill-none stroke-brand-primary stroke-2 [stroke-dasharray:80_420] [stroke-dashoffset:500] animate-[flow_3s_linear_infinite] drop-shadow-[0_0_10px_currentColor]" />
-                                <circle cx="100" cy="90" r="7" className="fill-brand-primary animate-pulse" />
-
-                                <path d="M100 180 H200 V240 H330" className="fill-none stroke-white stroke-2 [stroke-dasharray:80_420] [stroke-dashoffset:500] animate-[flow_3s_linear_infinite] drop-shadow-[0_0_10px_currentColor]" />
-                                <circle cx="100" cy="180" r="7" className="fill-white animate-pulse" />
-
-                                <path d="M100 270 H220 V260 H330" className="fill-none stroke-brand-primary stroke-2 [stroke-dasharray:80_420] [stroke-dashoffset:500] animate-[flow_3s_linear_infinite] drop-shadow-[0_0_10px_currentColor]" />
-                                <circle cx="100" cy="270" r="7" className="fill-brand-primary animate-pulse" />
-
-                                {/* Traces - Right */}
-                                <path d="M700 90 H570 V200 H470" className="fill-none stroke-brand-primary stroke-2 [stroke-dasharray:80_420] [stroke-dashoffset:500] animate-[flow_3s_linear_infinite] drop-shadow-[0_0_10px_currentColor]" />
-                                <circle cx="700" cy="90" r="7" className="fill-brand-primary animate-pulse" />
-
-                                <path d="M700 180 H580 V240 H470" className="fill-none stroke-white stroke-2 [stroke-dasharray:80_420] [stroke-dashoffset:500] animate-[flow_3s_linear_infinite] drop-shadow-[0_0_10px_currentColor]" />
-                                <circle cx="700" cy="180" r="7" className="fill-white animate-pulse" />
-
-                                <path d="M700 270 H560 V260 H470" className="fill-none stroke-brand-primary stroke-2 [stroke-dasharray:80_420] [stroke-dashoffset:500] animate-[flow_3s_linear_infinite] drop-shadow-[0_0_10px_currentColor]" />
-                                <circle cx="700" cy="270" r="7" className="fill-brand-primary animate-pulse" />
-
-                                {/* Scanning Beam */}
-                                <rect x="330" y="190" width="140" height="90" fill="url(#scanGradient)" className="animate-[scan_3s_ease-in-out_infinite] blend-overlay pointer-events-none" />
-
-                                {/* Rounded Waves */}
-                                <circle cx="400" cy="235" className="fill-none stroke-brand-primary stroke-2 opacity-0 animate-[waveExpand_3.2s_ease-out_infinite]" />
-                                <circle cx="400" cy="235" className="fill-none stroke-brand-primary stroke-2 opacity-0 animate-[waveExpand_3.2s_ease-out_infinite] [animation-delay:1.2s]" />
-                                <circle cx="400" cy="235" className="fill-none stroke-brand-primary stroke-2 opacity-0 animate-[waveExpand_3.2s_ease-out_infinite] [animation-delay:2.4s]" />
-
-                                {/* Center Chip / Logo Container */}
-                                <rect
-                                    x="330"
-                                    y="190"
-                                    width="140"
-                                    height="90"
-                                    rx="22"
-                                    fill="#111"
-                                    stroke="#FA8520"
-                                    strokeWidth="1.5"
-                                    className="animate-[chipPulse_2.6s_ease-in-out_infinite]"
-                                />
-
-                                {/* Pins */}
-                                <g fill="#FA8520" className=''>
-                                    <rect x="322" y="210" width="8" height="12" rx="3" />
-                                    <rect x="322" y="235" width="8" height="12" rx="3" />
-                                    <rect x="322" y="260" width="8" height="12" rx="3" />
-
-                                    <rect x="470" y="210" width="8" height="12" rx="3" />
-                                    <rect x="470" y="235" width="8" height="12" rx="3" />
-                                    <rect x="470" y="260" width="8" height="12" rx="3" />
-                                </g>
-
-                                {/* Logo in Center */}
-                                <foreignObject x="345" y="205" width="110" height="60">
-                                    <div className="w-full h-full flex items-center justify-center">
-                                        <img src={Logo} alt="MS Logo" className="max-w-full max-h-full object-contain drop-shadow-lg animate-[shimmer_1.6s_ease-in-out_infinite]" />
-                                    </div>
-                                </foreignObject>
-                            </svg>
-
-                            {/* Floating Interactables (kept for extra flair) */}
-                            <div className='pointer-events-auto'>
-                                <FloatingChip
-                                    icon={Rocket}
-                                    label="XMS UI"
-                                    code="npm i xms-ui"
-                                    className="-right-4 top-1"
-                                    delay={0}
-                                />
-                            </div>
-                        </motion.div>
+                        <BrunoUIChipLoader />
                     </div>
                 </section>
 

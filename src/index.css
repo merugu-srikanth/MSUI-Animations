@@ -1,137 +1,130 @@
 @import "tailwindcss";
 
 
-/* // globals.css (add for smooth scroll/fonts) */
+/* // globals.css */
 html {
   scroll-behavior: smooth;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Poppins', sans-serif, -apple-system;
 }
 
+a , button {
+  cursor: pointer !important;
+}
 
-@theme inline {
+:root {
+  /* Existing Brand Colors */
   --color-brand-primary: #FA8520;
+  /* Orange */
   --color-brand-dark: #121212;
   --color-brand-secondary: #322720;
 
-  --animate-fade-in-up: fade-in-up 0.5s ease-out;
+  /* Mapped Design Variables (Using Brand Colors) */
+  --primary: var(--color-brand-primary);
+  --primary-dark: #D96D10;
+  /* Darker Orange */
+  --secondary: var(--color-brand-secondary);
+  --accent: #f72585;
+  /* Keeping accent for now or can map to orange */
+  --dark: var(--color-brand-dark);
+  --darker: #0a0a0a;
+  --light: #f8f9fa;
+  --gray: #9ca3af;
+  --success: #4cc9f0;
+  --card-bg: #1e1e1e;
+  --sidebar-width: 280px;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.3);
+  --border-radius: 12px;
+  --border-radius-sm: 8px;
+  --color-sidebar-badge: #4361ee;
+}
 
-  @keyframes fade-in-up {
-    0% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
 
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%);
+  animation: shimmerAnimate 1.5s infinite;
+}
+
+body {
+  background: var(--color-brand-dark);
+  color: var(--light);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
 
-  /* Hero Circuit Board Animations */
-  @keyframes flow {
-    to {
-      stroke-dashoffset: 0;
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(250, 133, 32, 0.7);
   }
 
-  @keyframes chipPulse {
-
-    0%,
-    100% {
-      filter: drop-shadow(0 0 12px #FA8520);
-    }
-
-    50% {
-      filter: drop-shadow(0 0 35px #FA8520);
-    }
+  70% {
+    box-shadow: 0 0 0 15px rgba(250, 133, 32, 0);
   }
 
-  @keyframes waveExpand {
-    0% {
-      r: 40;
-      opacity: 0.8;
-    }
-
-    100% {
-      r: 160;
-      opacity: 0;
-    }
+  100% {
+    box-shadow: 0 0 0 0 rgba(250, 133, 32, 0);
   }
+}
 
-  @keyframes shimmer {
-    0% {
-      opacity: 0.4;
-    }
-
-    50% {
-      opacity: 1;
-    }
-
-    100% {
-      opacity: 0.4;
-    }
+@keyframes shimmerAnimate {
+  100% {
+    transform: translateX(100%);
   }
+}
 
-  /* Button Animations */
-  @keyframes ripple {
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
-  }
+/* Utility Classes matching Design */
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  @keyframes glitch {
-    0% {
-      transform: translate(0);
-    }
+.component-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  animation: fadeIn 0.5s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
 
-    20% {
-      transform: translate(-2px, 2px);
-    }
-
-    40% {
-      transform: translate(-2px, -2px);
-    }
-
-    60% {
-      transform: translate(2px, 2px);
-    }
-
-    80% {
-      transform: translate(2px, -2px);
-    }
-
-    100% {
-      transform: translate(0);
-    }
-  }
-
-  @keyframes spin-reverse {
-    to {
-      transform: rotate(-360deg);
-    }
-  }
-
-  @keyframes scan {
-
-    0%,
-    100% {
-      transform: translateY(0);
-      opacity: 0;
-    }
-
-    10% {
-      opacity: 1;
-    }
-
-    90% {
-      opacity: 1;
-    }
-
-    50% {
-      transform: translateY(100%);
-    }
-  }
+.component-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary);
 }
 
 /* Custom Scrollbar */
@@ -145,6 +138,46 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FA8520;
+  background: var(--primary);
   border-radius: 3px;
+}
+
+@theme inline {
+  --color-brand-primary: #FA8520;
+  --color-brand-dark: #121212;
+  --color-brand-secondary: #322720;
+}
+
+
+
+
+
+/* ===============================
+   BRUNOUI CodeViewer Scroll Fix
+   =============================== */
+
+/* Parent scroll */
+.brunoui-codeviewer {
+  position: relative;
+}
+
+/* Kill horizontal scrollbar on pre */
+.brunoui-codeviewer pre {
+  overflow-x: auto !important;     /* allow horizontal scroll */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+/* Chrome / Edge / Safari */
+.brunoui-codeviewer pre::-webkit-scrollbar {
+  height: 0 !important;
+}
+
+/* Keep vertical scroll working */
+.brunoui-codeviewer pre::-webkit-scrollbar-vertical {
+  width: 8px;
+}
+
+/* Prevent code clipping */
+.brunoui-codeviewer code {
+  white-space: pre !important;
 }
