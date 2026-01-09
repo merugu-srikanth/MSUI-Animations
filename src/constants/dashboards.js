@@ -1,18 +1,18 @@
 export const DASHBOARD_CATEGORIES = [
-    { id: 'all', name: 'All Dashboards' },
-    { id: 'saas', name: 'SaaS Admin' },
-    { id: 'analytics', name: 'Analytics' },
-    { id: 'finance', name: 'Finance' },
+   { id: 'all', name: 'All Dashboards' },
+   { id: 'saas', name: 'SaaS Admin' },
+   { id: 'analytics', name: 'Analytics' },
+   { id: 'finance', name: 'Finance' },
 ];
 
 export const DASHBOARDS = [
-    {
-        id: 'saas-admin',
-        name: 'SaaS Overview',
-        category: 'saas',
-        description: 'Comprehensive admin dashboard with sidebar, stats, and recent activity.',
-        tags: ['admin', 'saas', 'sidebar'],
-        previewHTML: `
+   {
+      id: 'saas-admin',
+      name: 'SaaS Overview',
+      category: 'saas',
+      description: 'Comprehensive admin dashboard with sidebar, stats, and recent activity.',
+      tags: ['admin', 'saas', 'sidebar'],
+      preview: `
 <div class="flex bg-black min-h-screen font-sans text-white">
   <!-- Sidebar -->
   <div class="w-64 bg-black h-screen border-r border-white/10 p-4 flex flex-col hidden md:flex">
@@ -67,8 +67,8 @@ export const DASHBOARDS = [
   </div>
 </div>
 `,
-        previewCode: {
-            react: `
+      code: {
+         react: `
 import React from 'react';
 import { Home, Users, Settings, BarChart2 } from 'lucide-react';
 
@@ -129,15 +129,15 @@ const Dashboard = () => {
 
 export default Dashboard;
 `
-        }
-    },
-    {
-        id: 'analytics-dashboard',
-        name: 'Dark Analytics',
-        category: 'analytics',
-        description: 'Data-heavy dashboard layout with dark theme specifics.',
-        tags: ['analytics', 'dark', 'charts'],
-        previewHTML: `
+      }
+   },
+   {
+      id: 'analytics-dashboard',
+      name: 'Dark Analytics',
+      category: 'analytics',
+      description: 'Data-heavy dashboard layout with dark theme specifics.',
+      tags: ['analytics', 'dark', 'charts'],
+      preview: `
 <div class="min-h-screen bg-black text-white p-8">
   <div class="grid grid-cols-12 gap-6">
       <!-- Main Chart Area -->
@@ -186,8 +186,8 @@ export default Dashboard;
   </div>
 </div>
 `,
-        previewCode: {
-            react: `
+      code: {
+         react: `
 import React from 'react';
 import { Activity, CreditCard, DollarSign } from 'lucide-react';
 
@@ -243,6 +243,6 @@ const Dashboard = () => (
 
 export default Dashboard;
 `
-        }
-    }
+      }
+   }
 ];

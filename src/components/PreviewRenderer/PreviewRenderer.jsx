@@ -1,6 +1,9 @@
 import React, { useMemo } from 'react';
 
-const PreviewRenderer = ({ code }) => {
+const PreviewRenderer = ({ code, htmlCode }) => {
+
+    // Allow either prop name
+    const finalCode = code || htmlCode || '';
 
     // We construct a full HTML document for the iframe
     // ensuring we load Tailwind via CDN for the arbitrary values to work
@@ -12,6 +15,59 @@ const PreviewRenderer = ({ code }) => {
                     <meta charset="utf-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1">
                     <script src="https://cdn.tailwindcss.com"></script>
+                    <script>
+                        tailwind.config = {
+                            theme: {
+                                extend: {
+                                    colors: {
+                                        brand: {
+                                            primary: '#FA8520',
+                                            dark: '#121212',
+                                            secondary: '#322720'
+                                        }
+                                    },
+                                    animation: {
+                                        'glow': 'glow 2s ease-in-out infinite',
+                                        'float': 'float 3s ease-in-out infinite',
+                                        'pulse-soft': 'pulse-soft 1.5s ease-in-out infinite',
+                                        'shimmer': 'shimmer 2s linear infinite',
+                                        'wave': 'wave 1.5s linear infinite',
+                                        'border-flow': 'borderFlow 3s linear infinite',
+                                    },
+                                    keyframes: {
+                                        'glow': {
+                                            '0%, 100%': { 'box-shadow': '0 0 10px rgba(139, 92, 246, 0.3), 0 0 20px rgba(139, 92, 246, 0.2)' },
+                                            '50%': { 'box-shadow': '0 0 20px rgba(139, 92, 246, 0.5), 0 0 40px rgba(139, 92, 246, 0.3)' }
+                                        },
+                                        'float': {
+                                            '0%, 100%': { transform: 'translateY(0)' },
+                                            '50%': { transform: 'translateY(-5px)' }
+                                        },
+                                        'pulse-soft': {
+                                            '0%, 100%': { opacity: 1 },
+                                            '50%': { opacity: 0.7 }
+                                        },
+                                        'shimmer': {
+                                            '0%': { backgroundPosition: '-200px 0' },
+                                            '100%': { backgroundPosition: 'calc(200px + 100%) 0' }
+                                        },
+                                        'wave': {
+                                            '0%': { transform: 'translateX(-100%)' },
+                                            '100%': { transform: 'translateX(100%)' }
+                                        },
+                                        'borderFlow': {
+                                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                                            '50%': { backgroundPosition: '100% 50%' }
+                                        }
+                                    },
+                                    backgroundImage: {
+                                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                                        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+                                    }
+                                }
+                            }
+                        }
+                    </script>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
                     <style>
                         body {
@@ -23,7 +79,7 @@ const PreviewRenderer = ({ code }) => {
                             min-height: 100vh;
                             color: white;
                             font-family: sans-serif;
-                            padding: 20px;
+                            padding: 0;
                         }
                         .input-border-animation {
                             background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
@@ -68,11 +124,11 @@ const PreviewRenderer = ({ code }) => {
                     </style>
                 </head>
                 <body>
-                    ${code}
+            ${finalCode}
                 </body>
             </html>
         `;
-    }, [code]);
+    }, [finalCode]);
 
     return (
         <iframe

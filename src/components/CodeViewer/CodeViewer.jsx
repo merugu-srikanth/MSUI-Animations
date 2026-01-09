@@ -36,7 +36,7 @@ const CodeViewer = ({ code, language = 'jsx' }) => {
     };
 
     return (
-<div className="relative group rounded-lg overflow-hidden border border-white/10 h-full bg-[#282c34] brunoui-codeviewer">
+        <div className="relative group rounded-lg overflow-hidden border border-white/10 h-full bg-[#282c34] brunoui-codeviewer">
             <button
                 onClick={handleCopy}
                 className="absolute top-2 right-2 p-2 rounded-md bg-white/10 hover:bg-white/20 text-gray-300 transition-colors opacity-0 group-hover:opacity-100"
@@ -46,19 +46,19 @@ const CodeViewer = ({ code, language = 'jsx' }) => {
             </button>
             <div className="h-full overflow-y-auto hide-horizontal-scroll custom-scrollbar">
                 <SyntaxHighlighter
-  language={language}
-  style={oneDark}
-  customStyle={{
-    margin: 0,
-    padding: '1.5rem',
-    background: 'transparent',
-    fontSize: '0.9rem',
-    overflow: 'visible',
-  }}
->
-  {code}
-</SyntaxHighlighter>
-  
+                    language={language}
+                    style={oneDark}
+                    customStyle={{
+                        margin: 0,
+                        padding: '1.5rem',
+                        background: 'transparent',
+                        fontSize: '0.9rem',
+                        overflow: 'visible',
+                    }}
+                >
+                    {code}
+                </SyntaxHighlighter>
+
             </div>
         </div>
     );

@@ -7,7 +7,8 @@ html {
   font-family: 'Poppins', sans-serif, -apple-system;
 }
 
-a , button {
+a,
+button {
   cursor: pointer !important;
 }
 
@@ -97,6 +98,93 @@ body {
   }
 }
 
+/* Custom Animations for Premium Cards */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    box-shadow: 0 0 20px currentColor;
+  }
+
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 40px currentColor;
+  }
+}
+
+@keyframes wave {
+
+  0%,
+  100% {
+    transform: translateY(0) scaleX(1);
+  }
+
+  50% {
+    transform: translateY(-10px) scaleX(1.05);
+  }
+}
+
+@keyframes sand-fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(600px) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes bubble {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-100px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-wave {
+  animation: wave 4s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmerAnimate 3s linear infinite;
+}
+
 /* Utility Classes matching Design */
 .btn {
   padding: 12px 24px;
@@ -163,8 +251,10 @@ body {
 
 /* Kill horizontal scrollbar on pre */
 .brunoui-codeviewer pre {
-  overflow-x: auto !important;     /* allow horizontal scroll */
-  scrollbar-width: none !important; /* Firefox */
+  overflow-x: auto !important;
+  /* allow horizontal scroll */
+  scrollbar-width: none !important;
+  /* Firefox */
 }
 
 /* Chrome / Edge / Safari */
@@ -178,6 +268,10 @@ body {
 }
 
 /* Prevent code clipping */
-.brunoui-codeviewer code {
-  white-space: pre !important;
+
+/* Custom Utilities */
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
