@@ -1,5 +1,4 @@
-<img width="1913" height="873" alt="image" src="https://github.com/user-attachments/assets/48919343-2e7e-40f0-b052-ea50a0090fba" />
-# 🧡🚀 BRUNOUI
+# 🧡 BRUNOUI
 
 BRUNOUI is a premium collection of free, copy-paste UI components built with
 React, Tailwind CSS, and Framer Motion.
