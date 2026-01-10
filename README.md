@@ -1,4 +1,4 @@
-
+<img width="1913" height="873" alt="image" src="https://github.com/user-attachments/assets/48919343-2e7e-40f0-b052-ea50a0090fba" />
 # 🧡🚀 BRUNOUI
 
 BRUNOUI is a premium collection of free, copy-paste UI components built with
@@ -210,7 +210,7 @@ https://tailwindcss.com/docs/installation
 Then start copying components from brunoui.in.
 
 📸 Screenshots
-<img width="1919" height="824" alt="Screenshot 2026-01-09 231241" src="https://github.com/user-attachments/assets/9db419f4-cef4-4d59-b52c-82364ac8eb2d" />
+<img width="1913" height="873" alt="Screenshot 2026-01-10 180220" src="https://github.com/user-attachments/assets/60fd5a0e-64b9-4da7-8864-48b508e60d51" />
 
 
 🗺️ Roadmap
