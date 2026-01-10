@@ -275,3 +275,30 @@ body {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
+
+
+
+
+
+
+
+
+
+/* ===== GLOBAL SCROLLBAR HIDE (SCROLL STILL WORKS) ===== */
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 0px !important;
+  height: 0px !important;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: none !important;
+}
+
+/* IE / old Edge */
+* {
+  -ms-overflow-style: none !important;
+}

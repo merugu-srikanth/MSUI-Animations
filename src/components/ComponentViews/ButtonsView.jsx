@@ -31,20 +31,20 @@ const ButtonsView = ({ searchQuery }) => {
                 {filteredComponents.map((component) => (
                     <div
                         key={component.id}
-                        className="group relative bg-[#0a0a0a] rounded-2xl border border-white/5 overflow-hidden hover:border-brand-primary/50 transition-all duration-500 hover:shadow-2xl shadow-brand-dark hover:shadow-brand-primary/10 flex flex-col"
+                        className="group relative bg-[#0a0a0a] rounded-2xl border border-brand-primary/30 overflow-hidden hover:border-brand-primary/80 transition-all duration-500 hover:shadow-2xl shadow-brand-dark hover:shadow-brand-primary/10 flex flex-col"
                     >
                         {/* Preview Area */}
                         <div className="relative h-48 bg-brand-dark overflow-hidden">
                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.03),transparent_70%)]" />
 
                             {/* Top Right Code Icon */}
-                            <div className="absolute top-3 right-3 z-10">
+                            <div className="absolute top-1 right-2 z-10">
                                 <button
                                     onClick={() => setSelectedComponent(component)}
-                                    className="p-2 hover:bg-black/50 bg-brand-primary/20 hover:text-gray-400 text-brand-primary rounded-lg backdrop-blur-md border border-white/5 transition-colors"
+                                    className="p-1 flex text-sm items-center justify-center gap-2 hover:bg-black/50 bg-brand-primary/20 hover:text-gray-400 text-brand-primary rounded-lg backdrop-blur-md border border-white/5 transition-colors"
                                     title="View Code"
                                 >
-                                    <Code2 size={16} />
+                                    <Code2 size={16} /> Code
                                 </button>
                             </div>
 
@@ -55,12 +55,12 @@ const ButtonsView = ({ searchQuery }) => {
 
                         {/* Info Area */}
                         <div className="p-5 border-t border-white/5 bg-[#0a0a0a] flex-1 flex flex-col">
-                            <div className="flex justify-between items-start mb-2">
-                                <h3 className="font-bold text-white text-sm tracking-tight group-hover:text-brand-primary transition-colors">
+                            <div className="flex justify-between items-start">
+                                <h5 className="font-bold text-white text-sm tracking-tight group-hover:text-brand-primary transition-colors">
                                     {component.name}
-                                </h3>
+                                </h5>
                                 <div className="flex gap-2">
-                                    {component.tags?.slice(0, 2).map((tag, i) => (
+                                    {component.tags?.slice(1, 2).map((tag, i) => (
                                         <span key={i} className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-md bg-white/5 text-gray-400 border border-white/5">
                                             {tag}
                                         </span>
