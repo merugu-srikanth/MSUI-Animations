@@ -12,7 +12,7 @@ export const NAVBARS = [
           <div class="flex items-center gap-3 group cursor-pointer">
             <div class="relative w-full h-10">
               <div class="absolute inset-0 bg-violet-500 blur-lg opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <img src=${Logo} alt="Logo" class="relative w-full h-full object-cover z-10" />
+              <img src="${Logo}" alt="Logo" class="relative w-full h-full object-cover z-10" />
             </div>
           </div>
           
@@ -33,12 +33,12 @@ export const NAVBARS = [
 
           <div class="flex items-center gap-4">
             <button class="p-2 text-gray-400 hover:text-white transition-colors relative group">
-              <i class="fas fa-search"></i>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
               <span class="absolute inset-0 bg-white/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
             </button>
-            <button class="px-6 py-2 bg-linear-to-r from-violet-600 to-fuchsia-600 text-white rounded-lg relative overflow-hidden group">
+            <button class="px-6 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-lg relative overflow-hidden group">
               <span class="relative z-10 font-medium">Login</span>
-              <div class="absolute inset-0 bg-linear-to-r from-fuchsia-600 to-violet-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="absolute inset-0 bg-gradient-to-r from-fuchsia-600 to-violet-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div class="absolute inset-0 ring-2 ring-white/20 rounded-lg"></div>
             </button>
           </div>
@@ -73,12 +73,12 @@ export const NAVBARS = [
 
         <div class="flex items-center gap-4">
             <button class="p-2 text-gray-400 hover:text-white transition-colors relative group">
-                <i class="fas fa-search"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 <span class="absolute inset-0 bg-white/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
             </button>
-            <button class="px-6 py-2 bg-linear-to-r from-violet-600 to-fuchsia-600 text-white rounded-lg relative overflow-hidden group">
+            <button class="px-6 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-lg relative overflow-hidden group">
                 <span class="relative z-10 font-medium">Login</span>
-                <div class="absolute inset-0 bg-linear-to-r from-fuchsia-600 to-violet-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-fuchsia-600 to-violet-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 ring-2 ring-white/20 rounded-lg"></div>
             </button>
         </div>
@@ -86,6 +86,7 @@ export const NAVBARS = [
 </nav>`,
             react: `import React from 'react';
 import Logo from '../assets/NewLogo.png';
+import { Search } from 'lucide-react';
 
 const NeonNavbar = () => {
     return (
@@ -109,12 +110,12 @@ const NeonNavbar = () => {
 
                 <div className="flex items-center gap-4">
                     <button className="p-2 text-gray-400 hover:text-white transition-colors relative group">
-                        <i className="fas fa-search"></i>
+                        <Search className="w-5 h-5" />
                         <span className="absolute inset-0 bg-white/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
                     </button>
-                    <button className="px-6 py-2 bg-linear-to-r from-violet-600 to-fuchsia-600 text-white rounded-lg relative overflow-hidden group">
+                    <button className="px-6 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-lg relative overflow-hidden group">
                         <span className="relative z-10 font-medium">Login</span>
-                        <div className="absolute inset-0 bg-linear-to-r from-fuchsia-600 to-violet-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-600 to-violet-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <div className="absolute inset-0 ring-2 ring-white/20 rounded-lg"></div>
                     </button>
                 </div>
@@ -137,7 +138,7 @@ export default NeonNavbar;`
         <nav class="bg-white/80 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.1)] flex items-center gap-8 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.15)] hover:-translate-y-1">
           <a href="javascript:void(0)" class="flex items-center gap-2">
             <div class="relative w-full h-10">
-                <img src=${Logo} alt="Logo" class="relative w-full h-full object-cover z-10" />
+                <img src="${Logo}" alt="Logo" class="relative w-full h-full object-cover z-10" />
             </div>
           </a>
           
@@ -176,6 +177,7 @@ export default NeonNavbar;`
 </div>`,
             react: `import React from 'react';
 import Logo from '../assets/NewLogo.png';
+import { Search } from 'lucide-react';
 
 const FloatingNavbar = () => {
     return (
@@ -183,7 +185,7 @@ const FloatingNavbar = () => {
             <nav className="bg-white/80 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.1)] flex items-center gap-8 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.15)] hover:-translate-y-1">
                 <a href="javascript:void(0)" className="flex items-center gap-2">
                     <div className="relative w-full h-10">
-                        <img src=${Logo} alt="Logo" className="relative w-full h-full object-cover z-10" />
+                        <img src="${Logo}" alt="Logo" className="relative w-full h-full object-cover z-10" />
                     </div>
                 </a>
                 
@@ -232,7 +234,7 @@ export default FloatingNavbar;`
               <div class="flex items-center gap-8">
                 <a href="javascript:void(0)" class="shrink-0 flex items-center gap-3">
                   <div class="relative w-full h-10">
-                    <img src=${Logo} alt="Logo" class="relative w-full h-full object-cover z-10" />
+                    <img src="${Logo}" alt="Logo" class="relative w-full h-full object-cover z-10" />
                   </div>
                 </a>
                 <div class="hidden md:flex gap-1 h-full items-center">
@@ -298,6 +300,7 @@ export default FloatingNavbar;`
 </div>`,
             react: `import React from 'react';
 import Logo from '../assets/NewLogo.png';
+import { Search } from 'lucide-react';
 
 const CorporateNavbar = () => {
     return (
@@ -320,7 +323,7 @@ const CorporateNavbar = () => {
                         <div className="flex items-center gap-8">
                             <a href="javascript:void(0)" className="shrink-0 flex items-center gap-3">
                                 <div className="relative w-full h-10">
-                                    <img src=${Logo} alt="Logo" className="relative w-full h-full object-cover z-10" />
+                                    <img src="${Logo}" alt="Logo" className="relative w-full h-full object-cover z-10" />
                                 </div>
                             </a>
                             <div className="hidden md:flex gap-1 h-full items-center">
@@ -357,10 +360,10 @@ export default CorporateNavbar;`
       <nav class="w-full bg-black text-white p-6">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
           <a href="javascript:void(0)" class="group relative">
-            <div class="absolute -inset-2 bg-linear-to-r from-pink-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 blur transition-all duration-500"></div>
+            <div class="absolute -inset-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 blur transition-all duration-500"></div>
             <div class="relative flex items-center gap-3 bg-black rounded-lg p-2">
                 <div class="relative w-full h-10">
-                    <img src=${Logo} alt="Logo" class="relative w-full h-full object-cover z-10" />
+                    <img src="${Logo}" alt="Logo" class="relative w-full h-full object-cover z-10" />
                 </div>
             </div>
           </a>
@@ -383,7 +386,7 @@ export default CorporateNavbar;`
 <nav class="w-full bg-black text-white p-6">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
         <a href="javascript:void(0)" class="group relative">
-        <div class="absolute -inset-2 bg-linear-to-r from-pink-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 blur transition-all duration-500"></div>
+        <div class="absolute -inset-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 blur transition-all duration-500"></div>
         <div class="relative flex items-center gap-3 bg-black rounded-lg p-2">
             <div class="relative w-full h-10">
                 <img src="assets/NewLogo.png" alt="Logo" class="relative w-full h-full object-cover z-10" />
@@ -405,16 +408,17 @@ export default CorporateNavbar;`
 </nav>`,
             react: `import React from 'react';
 import Logo from '../assets/NewLogo.png';
+import { Search } from 'lucide-react';
 
 const CreativeNavbar = () => {
     return (
         <nav className="w-full bg-black text-white p-6">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <a href="javascript:void(0)" className="group relative">
-                    <div className="absolute -inset-2 bg-linear-to-r from-pink-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 blur transition-all duration-500"></div>
+                    <div className="absolute -inset-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 blur transition-all duration-500"></div>
                     <div className="relative flex items-center gap-3 bg-black rounded-lg p-2">
                          <div className="relative w-full h-10">
-                            <img src=${Logo} alt="Logo" className="relative w-full h-full object-cover z-10" />
+                            <img src="${Logo}" alt="Logo" className="relative w-full h-full object-cover z-10" />
                         </div>
                     </div>
                 </a>
@@ -454,19 +458,19 @@ export default CreativeNavbar;`
              </button>
              <a href="javascript:void(0)" class="flex items-center gap-2">
                 <div class="relative w-full h-10">
-                    <img src=${Logo} alt="Logo" class="relative w-full h-full object-cover z-10" />
+                    <img src="${Logo}" alt="Logo" class="relative w-full h-full object-cover z-10" />
                 </div>
              </a>
           </div>
           
           <div class="flex items-center gap-4">
              <button class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300">
-               <i class="fas fa-search"></i>
+               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
              </button>
              <button class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300">
                <i class="far fa-bell"></i>
              </button>
-             <div class="w-10 h-10 rounded-full bg-linear-to-br from-blue-500 to-cyan-500 p-0.5 cursor-pointer hover:scale-105 transition-transform">
+             <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 p-0.5 cursor-pointer hover:scale-105 transition-transform">
                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" class="w-full h-full rounded-full bg-white" />
              </div>
           </div>
@@ -526,9 +530,9 @@ export default CreativeNavbar;`
         
         <div class="flex items-center gap-4">
              <button class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300">
-               <i class="fas fa-search"></i>
+               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
              </button>
-             <div class="w-10 h-10 rounded-full bg-linear-to-br from-blue-500 to-cyan-500 p-0.5 cursor-pointer hover:scale-105 transition-transform">
+             <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 p-0.5 cursor-pointer hover:scale-105 transition-transform">
                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" class="w-full h-full rounded-full bg-white" />
              </div>
         </div>
@@ -536,6 +540,7 @@ export default CreativeNavbar;`
 </nav>`,
             react: `import React, { useState } from 'react';
 import Logo from '../assets/NewLogo.png';
+import { Search } from 'lucide-react';
 
 const DrawerNavbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -552,16 +557,16 @@ const DrawerNavbar = () => {
                     </button>
                     <a href="javascript:void(0)" className="flex items-center gap-2">
                         <div className="relative w-full h-10">
-                            <img src=${Logo} alt="Logo" className="relative w-full h-full object-cover z-10" />
+                            <img src="${Logo}" alt="Logo" className="relative w-full h-full object-cover z-10" />
                         </div>
                     </a>
                 </div>
                 
                 <div className="flex items-center gap-4">
                      <button className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300">
-                       <i className="fas fa-search"></i>
+                       <Search className="w-5 h-5" />
                      </button>
-                     <div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-500 to-cyan-500 p-0.5 cursor-pointer hover:scale-105 transition-transform">
+                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 p-0.5 cursor-pointer hover:scale-105 transition-transform">
                         <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" className="w-full h-full rounded-full bg-white" />
                      </div>
                 </div>
@@ -610,9 +615,9 @@ export default DrawerNavbar;`
 
           <a href="javascript:void(0)" class="flex flex-col items-center gap-2 group order-1 md:order-2">
             <div class="relative w-full h-12">
-                <div class="absolute inset-0 bg-linear-to-tr from-pink-500 to-orange-500 rounded-full blur opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                <div class="absolute inset-0 bg-gradient-to-tr from-pink-500 to-orange-500 rounded-full blur opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
                 <div class="relative w-full h-10">
-                    <img src=${Logo} alt="Logo" class="relative w-full h-full object-cover z-10" />
+                    <img src="${Logo}" alt="Logo" class="relative w-full h-full object-cover z-10" />
                 </div>
             </div>
           </a>
@@ -643,7 +648,7 @@ export default DrawerNavbar;`
 
         <a href="javascript:void(0)" class="flex flex-col items-center gap-2 group order-1 md:order-2">
             <div class="relative w-12 h-12">
-                <div class="absolute inset-0 bg-linear-to-tr from-pink-500 to-orange-500 rounded-full blur opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                <div class="absolute inset-0 bg-gradient-to-tr from-pink-500 to-orange-500 rounded-full blur opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
                 <div class="relative w-full h-10">
                     <img src="assets/NewLogo.png" alt="Logo" class="relative w-full h-full object-cover z-10" />
                 </div>
@@ -665,6 +670,7 @@ export default DrawerNavbar;`
 </nav>`,
             react: `import React from 'react';
 import Logo from '../assets/NewLogo.png';
+import { Search } from 'lucide-react';
 
 const SocialNavbar = () => {
     return (
@@ -678,9 +684,9 @@ const SocialNavbar = () => {
 
                 <a href="javascript:void(0)" className="flex flex-col items-center gap-2 group order-1 md:order-2">
                     <div className="relative w-12 h-12">
-                        <div className="absolute inset-0 bg-linear-to-tr from-pink-500 to-orange-500 rounded-full blur opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                        <div className="absolute inset-0 bg-gradient-to-tr from-pink-500 to-orange-500 rounded-full blur opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
                         <div className="relative w-full h-10">
-                             <img src=${Logo} alt="Logo" className="relative w-full h-full object-cover z-10" />
+                             <img src="${Logo}" alt="Logo" className="relative w-full h-full object-cover z-10" />
                         </div>
                     </div>
                 </a>
@@ -717,7 +723,7 @@ export default SocialNavbar;`
           <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-8">
              <a href="javascript:void(0)" class="flex items-center gap-2 shrink-0">
                 <div class="relative w-full h-10">
-                    <img src=${Logo} alt="Logo" class="relative w-full h-full object-cover z-10" />
+                    <img src="${Logo}" alt="Logo" class="relative w-full h-full object-cover z-10" />
                 </div>
              </a>
 
@@ -725,7 +731,7 @@ export default SocialNavbar;`
                 <div class="relative group">
                    <input type="text" placeholder="Search for products..." class="w-full bg-gray-100 border-none rounded-full py-2.5 px-6 focus:ring-2 focus:ring-black focus:bg-white transition-all duration-300 text-black" />
                    <button class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-500 hover:text-black transition-colors">
-                      <i class="fas fa-search"></i>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                    </button>
                 </div>
              </div>
@@ -774,7 +780,7 @@ export default SocialNavbar;`
             <div class="relative group">
                 <input type="text" placeholder="Search for products..." class="w-full bg-gray-100 border-none rounded-full py-2.5 px-6 focus:ring-2 focus:ring-black focus:bg-white transition-all duration-300" />
                 <button class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-500 hover:text-black transition-colors">
-                    <i class="fas fa-search"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 </button>
             </div>
         </div>
@@ -805,6 +811,7 @@ export default SocialNavbar;`
 </nav>`,
             react: `import React from 'react';
 import Logo from '../assets/NewLogo.png';
+import { Search } from 'lucide-react';
 
 const EcommerceNavbar = () => {
     return (
@@ -815,7 +822,7 @@ const EcommerceNavbar = () => {
             <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-8">
                 <a href="javascript:void(0)" className="flex items-center gap-2 shrink-0">
                     <div className="relative w-full h-10">
-                        <img src=${Logo} alt="Logo" className="relative w-full h-full object-cover z-10" />
+                        <img src="${Logo}" alt="Logo" className="relative w-full h-full object-cover z-10" />
                     </div>
                 </a>
 
@@ -823,7 +830,7 @@ const EcommerceNavbar = () => {
                     <div className="relative group">
                         <input type="text" placeholder="Search for products..." className="w-full bg-gray-100 border-none rounded-full py-2.5 px-6 focus:ring-2 focus:ring-black focus:bg-white transition-all duration-300" />
                         <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-500 hover:text-black transition-colors">
-                            <i className="fas fa-search"></i>
+                            <Search className="w-5 h-5" />
                         </button>
                     </div>
                 </div>
@@ -866,12 +873,12 @@ export default EcommerceNavbar;`
         tags: ['navbar', 'dark', 'gradient', 'modern'],
         preview: `
       <nav class="w-full bg-gray-950 border-b border-gray-800 p-4 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+        <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
         <div class="max-w-7xl mx-auto flex items-center justify-between relative z-10">
            <a href="javascript:void(0)" class="flex items-center gap-3 group">
-              <div class="bg-linear-to-br from-blue-500 to-purple-600 p-1.5 rounded-lg group-hover:rotate-12 transition-transform duration-300">
+              <div class="bg-gradient-to-br from-blue-500 to-purple-600 p-1.5 rounded-lg group-hover:rotate-12 transition-transform duration-300">
                  <div class="relative w-full h-10">
-                    <img src=${Logo} alt="Logo" class="relative w-full h-full object-cover z-10" />
+                    <img src="${Logo}" alt="Logo" class="relative w-full h-full object-cover z-10" />
                 </div>
               </div>
            </a>
@@ -894,10 +901,10 @@ export default EcommerceNavbar;`
         code: {
             html: `<!-- Dark Gradient Navbar -->
 <nav class="w-full bg-gray-950 border-b border-gray-800 p-4 relative overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+    <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
     <div class="max-w-7xl mx-auto flex items-center justify-between relative z-10">
         <a href="javascript:void(0)" class="flex items-center gap-3 group">
-        <div class="bg-linear-to-br from-blue-500 to-purple-600 p-1.5 rounded-lg group-hover:rotate-12 transition-transform duration-300">
+        <div class="bg-gradient-to-br from-blue-500 to-purple-600 p-1.5 rounded-lg group-hover:rotate-12 transition-transform duration-300">
             <div class="relative w-full h-10">
                 <img src="assets/NewLogo.png" alt="Logo" class="relative w-full h-full object-cover z-10" />
             </div>
@@ -920,16 +927,17 @@ export default EcommerceNavbar;`
 </nav>`,
             react: `import React from 'react';
 import Logo from '../assets/NewLogo.png';
+import { Search } from 'lucide-react';
 
 const DarkNavbar = () => {
     return (
         <nav className="w-full bg-gray-950 border-b border-gray-800 p-4 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+            <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
             <div className="max-w-7xl mx-auto flex items-center justify-between relative z-10">
                 <a href="javascript:void(0)" className="flex items-center gap-3 group">
-                    <div className="bg-linear-to-br from-blue-500 to-purple-600 p-1.5 rounded-lg group-hover:rotate-12 transition-transform duration-300">
+                    <div className="bg-gradient-to-br from-blue-500 to-purple-600 p-1.5 rounded-lg group-hover:rotate-12 transition-transform duration-300">
                         <div className="relative w-full h-10">
-                            <img src=${Logo} alt="Logo" className="relative w-full h-full object-cover z-10" />
+                            <img src="${Logo}" alt="Logo" className="relative w-full h-full object-cover z-10" />
                         </div>
                     </div>
                 </a>
@@ -965,7 +973,7 @@ export default DarkNavbar;`
         <div class="max-w-6xl mx-auto flex items-center justify-between">
            <a href="javascript:void(0)" class="font-bold text-2xl tracking-tighter flex items-center gap-2">
                 <div class="relative w-full h-10">
-                    <img src=${Logo} alt="Logo" class="relative w-full h-full object-cover z-10" />
+                    <img src="${Logo}" alt="Logo" class="relative w-full h-full object-cover z-10" />
                 </div>
            </a>
            
@@ -1020,6 +1028,7 @@ export default DarkNavbar;`
 </nav>`,
             react: `import React from 'react';
 import Logo from '../assets/NewLogo.png';
+import { Search } from 'lucide-react';
 
 const MagicNavbar = () => {
     return (
@@ -1065,7 +1074,7 @@ export default MagicNavbar;`
         description: 'Double-decker navigation with glassmorphism for a layered look.',
         tags: ['navbar', 'glass', 'double', 'modern'],
         preview: `
-      <div class="w-full bg-linear-to-br from-indigo-500 to-purple-600 p-8 flex flex-col gap-4">
+      <div class="w-full bg-gradient-to-br from-indigo-500 to-purple-600 p-8 flex flex-col gap-4">
          <nav class="mx-auto w-full max-w-4xl bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 flex justify-between items-center text-white text-sm">
             <div class="px-4 opacity-70">Welcome to our platform</div>
             <div class="flex gap-4 px-4">
@@ -1078,7 +1087,7 @@ export default MagicNavbar;`
             <a href="javascript:void(0)" class="flex items-center gap-3">
                <div class="bg-white p-1.5 rounded-full">
                   <div class="relative w-full h-10">
-                    <img src=${Logo} alt="Logo" class="relative w-full h-full object-cover z-10" />
+                    <img src="${Logo}" alt="Logo" class="relative w-full h-full object-cover z-10" />
                   </div>
                </div>
             </a>
@@ -1098,7 +1107,7 @@ export default MagicNavbar;`
         `,
         code: {
             html: `<!-- Glass Stacked Navbar -->
-<div class="w-full bg-linear-to-br from-indigo-500 to-purple-600 p-8 flex flex-col gap-4">
+<div class="w-full bg-gradient-to-br from-indigo-500 to-purple-600 p-8 flex flex-col gap-4">
     <!-- Top thin bar -->
     <nav class="mx-auto w-full max-w-4xl bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 flex justify-between items-center text-white text-sm">
         <div class="px-4 opacity-70">Welcome to our platform</div>
@@ -1131,10 +1140,11 @@ export default MagicNavbar;`
 </div>`,
             react: `import React from 'react';
 import Logo from '../assets/NewLogo.png';
+import { Search } from 'lucide-react';
 
 const GlassStackedNavbar = () => {
     return (
-        <div className="w-full bg-linear-to-br from-indigo-500 to-purple-600 p-8 flex flex-col gap-4">
+        <div className="w-full bg-gradient-to-br from-indigo-500 to-purple-600 p-8 flex flex-col gap-4">
             <nav className="mx-auto w-full max-w-4xl bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 flex justify-between items-center text-white text-sm">
                 <div className="px-4 opacity-70">Welcome to our platform</div>
                 <div className="flex gap-4 px-4">

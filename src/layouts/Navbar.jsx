@@ -69,7 +69,7 @@ const MobileSidebar = ({ isOpen, onClose }) => (
                                 { label: "Docs", to: "/documentation", icon: FileCode },
                                 { label: "Templates", to: "/coming-soon", icon: Layout },
                                 // { label: "Pricing", to: "/coming-soon", icon: Star },
-                                { label: "Contact", to: "/coming-soon", icon: Mail },
+                                // { label: "Contact", to: "/coming-soon", icon: Mail },
                                 // { label: "UiSamples", to: "/ui-samples", icon: Mail },
                                 { label: "ColorPicker", to: "/color-picker", icon: Mail },
                                 { label: "Blogs", to: "/blogs", icon: Mail },
