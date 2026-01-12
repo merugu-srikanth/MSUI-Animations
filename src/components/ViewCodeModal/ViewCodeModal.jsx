@@ -484,27 +484,27 @@ const ViewCodeModal = ({ isOpen, onClose, code }) => {
               </button>
             </div>
 
-             <div className="md:hidden block">
-                <button
-                  onClick={handleCopy}
-                  className="flex items-center gap-2 px-2 py-2
+            <div className="md:hidden block">
+              <button
+                onClick={handleCopy}
+                className="flex items-center gap-2 px-2 py-2
                            bg-gradient-to-r from-brand-primary/90 to-red-600/90
                            hover:from-brand-primary hover:to-red-600
                            rounded-xl border border-white/20
                            backdrop-blur-xl text-sm text-white font-medium
                            shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
-                >
-                  {copied ? (
-                    <>
-                      <Check size={16} className="text-green-300" /> Copied!
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={16} /> Copy
-                    </>
-                  )}
-                </button>
-              </div>
+              >
+                {copied ? (
+                  <>
+                    <Check size={16} className="text-green-300" /> Copied!
+                  </>
+                ) : (
+                  <>
+                    <Copy size={16} /> Copy
+                  </>
+                )}
+              </button>
+            </div>
             {/* <span className="text-xs text-gray-500">•</span>
             <span className="text-xs text-gray-400">
               Last updated: {new Date().toLocaleDateString()}

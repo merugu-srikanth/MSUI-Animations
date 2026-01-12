@@ -27,7 +27,7 @@ const NavbarView = ({ searchQuery }) => {
 
     return (
         <div className="w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
                 {filteredComponents.map((component) => (
                     <div
                         key={component.id}
@@ -48,10 +48,10 @@ const NavbarView = ({ searchQuery }) => {
                             <div className="absolute top-3 right-3 z-10">
                                 <button
                                     onClick={() => setSelectedComponent(component)}
-                                    className="p-2 bg-black/50 hover:bg-brand-primary/20 text-gray-400 hover:text-brand-primary rounded-lg backdrop-blur-md border border-white/5 transition-colors"
+                                    className="p-1 flex text-sm items-center justify-center gap-2 hover:bg-black/50 bg-brand-primary/20 hover:text-gray-400 text-brand-primary rounded-lg backdrop-blur-md border border-white/5 transition-colors"
                                     title="View Code"
                                 >
-                                    <Code2 size={16} />
+                                    <Code2 size={16} /> Code
                                 </button>
                             </div>
 
@@ -65,13 +65,13 @@ const NavbarView = ({ searchQuery }) => {
                             <p className="text-gray-400 text-sm leading-relaxed line-clamp-2 mb-4">
                                 {component.description}
                             </p>
-                            <button
+                            {/* <button
                                 onClick={() => setSelectedComponent(component)}
                                 className="w-full mt-auto py-2.5 flex items-center justify-center gap-2 bg-[#121212] hover:bg-[#1a1a1a] border border-white/10 rounded-xl text-sm font-medium text-gray-300 hover:text-white transition-all group-hover:border-brand-primary/30"
                             >
                                 <Code2 size={16} />
                                 View Code
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 ))}

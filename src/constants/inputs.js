@@ -141,6 +141,26 @@ export default AnimatedBorderInput;`
       </div>
     `,
         code: {
+            html: `
+<div class="w-full max-w-md mx-auto space-y-4">
+    <input type="password" 
+           class="w-full bg-gray-900 border-2 border-gray-700 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-green-500 transition-all duration-300"
+           placeholder="Create a password"
+           oninput="
+              let strength = 0;
+              const val = this.value;
+              if(val.length >= 8) strength += 25;
+              if(/\\d/.test(val)) strength += 25;
+              if(/[A-Z]/.test(val)) strength += 25;
+              if(/[^A-Za-z0-9]/.test(val)) strength += 25;
+              const meter = this.nextElementSibling.firstElementChild;
+              meter.style.width = strength + '%';
+              meter.style.backgroundColor = strength < 50 ? '#ef4444' : strength < 100 ? '#f59e0b' : '#10b981';
+           ">
+    <div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+        <div class="h-full w-0 bg-red-500 transition-all duration-500"></div>
+    </div>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const PasswordStrengthInput = () => {
@@ -197,6 +217,13 @@ export default PasswordStrengthInput;`
       </div>
     `,
         code: {
+            html: `
+<div class="flex justify-center space-x-3">
+    <input type="text" maxlength="1" class="otp-digit w-12 h-12 bg-gray-900 border-2 border-gray-700 rounded-xl text-center text-xl font-bold text-white focus:outline-none focus:border-yellow-500 focus:scale-110 transition-all duration-300" oninput="if(this.value) this.nextElementSibling?.focus()">
+    <input type="text" maxlength="1" class="otp-digit w-12 h-12 bg-gray-900 border-2 border-gray-700 rounded-xl text-center text-xl font-bold text-white focus:outline-none focus:border-yellow-500 focus:scale-110 transition-all duration-300" oninput="if(this.value) this.nextElementSibling?.focus()">
+    <input type="text" maxlength="1" class="otp-digit w-12 h-12 bg-gray-900 border-2 border-gray-700 rounded-xl text-center text-xl font-bold text-white focus:outline-none focus:border-yellow-500 focus:scale-110 transition-all duration-300" oninput="if(this.value) this.nextElementSibling?.focus()">
+    <input type="text" maxlength="1" class="otp-digit w-12 h-12 bg-gray-900 border-2 border-gray-700 rounded-xl text-center text-xl font-bold text-white focus:outline-none focus:border-yellow-500 focus:scale-110 transition-all duration-300">
+</div>`,
             react: `import React, { useRef } from 'react';
 
 const OTPInput = () => {
@@ -251,6 +278,22 @@ export default OTPInput;`
       </div>
     `,
         code: {
+            html: `
+<div class="w-full max-w-md mx-auto space-y-4">
+    <div class="relative">
+        <input type="text" 
+               class="w-full bg-gray-900 border-2 border-gray-700 rounded-xl pl-12 pr-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-all duration-300"
+               placeholder="Search..."
+               oninput="this.parentElement.nextElementSibling.classList.toggle('hidden', !this.value)">
+        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+            <i class="fas fa-search"></i>
+        </div>
+    </div>
+    <div class="hidden space-y-2 animate-slide-up">
+        <div class="bg-gray-800 p-2 rounded-lg text-sm text-gray-300">Result 1</div>
+        <div class="bg-gray-800 p-2 rounded-lg text-sm text-gray-300">Result 2</div>
+    </div>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const SearchInput = () => {
@@ -306,6 +349,22 @@ export default SearchInput;`
       </div>
     `,
         code: {
+            html: `
+<div class="w-full max-w-md mx-auto relative">
+    <input type="text" 
+           class="w-full bg-gray-900 border-2 border-gray-700 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-indigo-500 transition-all duration-300"
+           placeholder="1234 5678 9012 3456"
+           oninput="
+              let val = this.value.replace(/\\s/g, '').replace(/\\D/g, '');
+              let res = '';
+              for (let i = 0; i < val.length; i++) {
+                  if (i > 0 && i % 4 === 0) res += ' ';
+                  res += val[i];
+              }
+              this.value = res.substring(0, 19);
+           ">
+    <div class="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-indigo-400">VISA</div>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const CreditCardInput = () => {
@@ -355,6 +414,15 @@ export default CreditCardInput;`
       </div>
     `,
         code: {
+            html: `
+<div class="w-full max-w-md mx-auto space-y-2">
+    <textarea class="w-full bg-gray-900 border-2 border-gray-700 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-teal-500 transition-all duration-300 h-32" 
+              maxlength="100"
+              oninput="this.nextElementSibling.firstElementChild.textContent = this.value.length"></textarea>
+    <div class="text-right text-xs text-gray-500">
+        <span class="text-teal-400 font-bold">0</span> / 100 characters
+    </div>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const CharCounterInput = () => {
@@ -395,6 +463,16 @@ export default CharCounterInput;`
       </div>
     `,
         code: {
+            html: `
+<div class="w-full max-w-md mx-auto relative">
+    <input type="password" 
+           class="w-full bg-gray-900 border-2 border-gray-700 rounded-xl px-4 py-4 pr-12 text-white focus:outline-none focus:border-orange-500 transition-all duration-300"
+           placeholder="Password">
+    <button class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+            onclick="const input = this.previousElementSibling; input.type = input.type === 'password' ? 'text' : 'password'">
+        <i class="fas fa-eye"></i>
+    </button>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const PasswordToggleInput = () => {
@@ -435,6 +513,13 @@ export default PasswordToggleInput;`
       </div>
     `,
         code: {
+            html: `
+<div class="flex flex-wrap gap-2 p-3 bg-gray-900/50 rounded-xl border-2 border-gray-700 focus-within:border-cyan-500 transition-all duration-300 min-h-16">
+    <div class="flex flex-wrap gap-2">
+        <span class="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm animate-bounce-in">React</span>
+    </div>
+    <input type="text" class="flex-1 bg-transparent border-none outline-none text-white text-sm" placeholder="Add tag...">
+</div>`,
             react: `import React, { useState } from 'react';
 
 const TagInput = () => {
@@ -487,6 +572,15 @@ export default TagInput;`
       </div>
     `,
         code: {
+            html: `
+<div class="w-full max-w-md mx-auto space-y-4">
+    <div class="flex justify-between text-white font-medium">
+        <span>Volume</span>
+        <span class="text-red-400 font-bold">50%</span>
+    </div>
+    <input type="range" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-red-500" 
+           oninput="this.parentElement.firstElementChild.lastElementChild.textContent = this.value + '%'">
+</div>`,
             react: `import React, { useState } from 'react';
 
 const AnimatedSlider = () => {
@@ -529,6 +623,16 @@ export default AnimatedSlider;`
       </div>
     `,
         code: {
+            html: `
+<div class="relative flex items-center bg-gray-900 border-2 border-gray-700 rounded-xl px-4 py-4 focus-within:border-lime-500 transition-all duration-300">
+    <div class="mr-3 text-2xl animate-bounce-in">🇺🇸</div>
+    <select class="bg-transparent text-white outline-none appearance-none w-full" 
+            onchange="this.previousElementSibling.textContent = this.value; this.previousElementSibling.classList.remove('animate-bounce-in'); void this.previousElementSibling.offsetWidth; this.previousElementSibling.classList.add('animate-bounce-in');">
+        <option value="🇺🇸">United States</option>
+        <option value="🇬🇧">United Kingdom</option>
+    </select>
+    <i class="fas fa-chevron-down text-gray-500"></i>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const CountrySelect = () => {
@@ -572,6 +676,17 @@ export default CountrySelect;`
       </div>
     `,
         code: {
+            html: `
+<div class="w-full max-w-md mx-auto space-y-4">
+    <div class="border-2 border-dashed border-gray-700 rounded-xl p-8 text-center hover:border-violet-500 transition-all cursor-pointer"
+         onclick="const p = this.nextElementSibling; p.classList.remove('hidden'); let w=0; const int = setInterval(()=>{w+=5; p.lastElementChild.firstElementChild.style.width=w+'%'; if(w>=100) clearInterval(int)}, 100)">
+        <div class="text-violet-400 text-3xl mb-2"><i class="fas fa-cloud-upload-alt"></i></div>
+        <p class="text-white text-sm">Click to simulate upload</p>
+    </div>
+    <div class="hidden h-2 bg-gray-700 rounded-full overflow-hidden">
+        <div class="h-full w-0 bg-violet-500 transition-all duration-300"></div>
+    </div>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const FileUpload = () => {
@@ -636,6 +751,19 @@ export default FileUpload;`
       </div>
         `,
         code: {
+            html: `
+<div class="group relative w-full max-w-md mx-auto">
+  <label class="text-sm font-medium text-gray-300 mb-2 block">Subscribe with Animation</label>
+  <div class="relative">
+      <input type="email" 
+             placeholder="your@email.com"
+             class="w-full px-4 py-3.5 bg-gradient-to-r from-gray-900/80 to-gray-800/80 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/30 border border-gray-700/50 group-hover:border-violet-500/30 transition-all duration-300">
+      <button class="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-lg hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg shadow-violet-500/20">
+          <i class="fas fa-paper-plane mr-2"></i>Subscribe
+      </button>
+      <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 group-hover:w-full group-focus-within:w-full transition-all duration-500"></div>
+  </div>
+</div>`,
             react: `import React from 'react';
 
 const SubscribeInput = () => {
@@ -696,6 +824,34 @@ export default SubscribeInput;`
       </div>
         `,
         code: {
+            html: `
+<div class="group w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300 mb-2 block">Animated Password Field</label>
+    <div class="relative">
+        <input type="password" 
+               id="password-anim"
+               placeholder="Enter password"
+               class="w-full px-4 py-3.5 bg-gradient-to-r from-gray-900/80 to-gray-800/80 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 border border-gray-700/50 group-hover:border-cyan-500/30 transition-all duration-300 pr-12">
+        <button type="button" 
+                onclick="const i=this.previousElementSibling; i.type=i.type==='password'?'text':'password'; this.firstElementChild.classList.toggle('fa-eye'); this.firstElementChild.classList.toggle('fa-eye-slash');"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-cyan-300 transition-colors duration-300">
+            <i class="fas fa-eye"></i>
+        </button>
+        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 group-hover:w-full group-focus-within:w-full transition-all duration-500"></div>
+        
+        <div class="flex gap-1 mt-2">
+            <div class="h-1 flex-1 bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full w-0 bg-red-500 group-hover:w-1/3 transition-all duration-700"></div>
+            </div>
+            <div class="h-1 flex-1 bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full w-0 bg-yellow-500 group-hover:w-2/3 transition-all duration-700 delay-100"></div>
+            </div>
+            <div class="h-1 flex-1 bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full w-0 bg-green-500 group-hover:w-full transition-all duration-700 delay-200"></div>
+            </div>
+        </div>
+    </div>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const AnimatedPasswordInput = () => {
@@ -761,6 +917,22 @@ export default AnimatedPasswordInput;`
       </div>
         `,
         code: {
+            html: `
+<div class="group w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300 mb-2 block">Animated Textarea</label>
+    <div class="relative">
+        <textarea 
+            placeholder="Type your message here..."
+            rows="4"
+            maxlength="200"
+            class="w-full px-4 py-3.5 bg-gradient-to-r from-gray-900/80 to-gray-800/80 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 border border-gray-700/50 group-hover:border-emerald-500/30 transition-all duration-300 resize-none"
+            oninput="this.nextElementSibling.firstElementChild.textContent = this.value.length"></textarea>
+        <div class="absolute bottom-2 right-3 text-xs text-gray-500">
+            <span class="text-emerald-400">0</span>/200
+        </div>
+        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-500 to-green-500 group-hover:w-full group-focus-within:w-full transition-all duration-500"></div>
+    </div>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const AnimatedTextarea = () => {
@@ -823,6 +995,33 @@ export default AnimatedTextarea;`
       </div>
         `,
         code: {
+            html: `
+<div class="group w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300 mb-2 block">Add to Cart Quantity</label>
+    <div class="flex items-center gap-3">
+        <button class="w-12 h-12 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-gray-400 hover:text-amber-300 hover:scale-105 active:scale-95 transition-all duration-300 border border-gray-700/50 hover:border-amber-500/30 shadow-lg cursor-pointer" onclick="const i=this.nextElementSibling.firstElementChild; if(i.value>1) i.value--">
+            <i class="fas fa-minus text-lg"></i>
+        </button>
+        
+        <div class="relative flex-1">
+            <input type="number" 
+                   value="1"
+                   min="1"
+                   max="99"
+                   class="w-full px-4 py-3.5 bg-gradient-to-r from-gray-900/80 to-gray-800/80 rounded-xl text-white text-center placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-amber-500/30 border border-gray-700/50 group-hover:border-amber-500/30 transition-all duration-300">
+            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-500 to-orange-500 group-hover:w-full group-focus-within:w-full transition-all duration-500"></div>
+        </div>
+        
+        <button class="w-12 h-12 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-gray-400 hover:text-amber-300 hover:scale-105 active:scale-95 transition-all duration-300 border border-gray-700/50 hover:border-amber-500/30 shadow-lg cursor-pointer" onclick="const i=this.previousElementSibling.firstElementChild; i.value++">
+            <i class="fas fa-plus text-lg"></i>
+        </button>
+        
+        <button class="px-6 py-3.5 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-xl hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg shadow-amber-500/20 flex items-center gap-2 cursor-pointer">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Add</span>
+        </button>
+    </div>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const CartQuantity = () => {
@@ -898,6 +1097,27 @@ export default CartQuantity;`
       </div>
         `,
         code: {
+            html: `
+<div class="group w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300 mb-2 block">Advanced Search</label>
+    <div class="relative">
+        <input type="search" 
+               placeholder="Search anything..."
+               class="w-full px-4 py-3.5 bg-gradient-to-r from-gray-900/80 to-gray-800/80 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 border border-gray-700/50 group-hover:border-blue-500/30 transition-all duration-300 pr-32">
+        <div class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
+            <select class="bg-gray-900/80 text-gray-300 text-sm px-3 py-1.5 rounded-lg border border-gray-700/50 focus:outline-none focus:ring-1 focus:ring-blue-500/30 cursor-pointer">
+                <option>All</option>
+                <option>Products</option>
+                <option>Users</option>
+                <option>Posts</option>
+            </select>
+            <button class="px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg cursor-pointer">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 group-hover:w-full group-focus-within:w-full transition-all duration-500"></div>
+    </div>
+</div>`,
             react: `import React from 'react';
 
 const AdvancedSearch = () => {
@@ -959,6 +1179,27 @@ export default AdvancedSearch;`
       </div>
         `,
         code: {
+            html: `
+<div class="group w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300 mb-2 block">Animated File Upload</label>
+    <div class="relative border-2 border-dashed border-gray-700/50 rounded-xl p-8 text-center hover:border-violet-500/50 transition-all duration-300 group-hover:bg-violet-900/10 cursor-pointer">
+        <input type="file" 
+               class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+               onchange="this.nextElementSibling.innerHTML = '<div class=\\'space-y-3\\'><div class=\\'w-16 h-16 mx-auto rounded-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 flex items-center justify-center animate-bounce\\'><i class=\\'fas fa-check text-2xl text-emerald-400\\'></i></div><div><p class=\\'text-white font-medium\\'>' + (this.files[0]?.name || 'File uploaded') + '</p><p class=\\'text-gray-400 text-sm mt-1\\'>Uploaded successfully</p></div></div>'">
+        <div class="space-y-3 pointer-events-none">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-r from-violet-600/20 to-fuchsia-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <i class="fas fa-cloud-upload-alt text-2xl text-violet-400"></i>
+            </div>
+            <div>
+                <p class="text-white font-medium">Drop files here or click to upload</p>
+                <p class="text-gray-400 text-sm mt-1">Max file size: 10MB</p>
+            </div>
+            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                <div class="h-full w-0 bg-gradient-to-r from-violet-500 to-fuchsia-500 group-hover:w-3/4 transition-all duration-1000"></div>
+            </div>
+        </div>
+    </div>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const AnimatedFileUpload = () => {
@@ -1026,6 +1267,19 @@ export default AnimatedFileUpload;`
       </div>
         `,
         code: {
+            html: `
+<div class="group w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300 mb-2 block">Color Picker</label>
+    <div class="relative">
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 group-hover:scale-110 transition-transform duration-300"></div>
+            <input type="color" 
+                   value="#8b5cf6"
+                   class="w-full h-12 px-4 py-3.5 bg-gradient-to-r from-gray-900/80 to-gray-800/80 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/30 border border-gray-700/50 group-hover:border-violet-500/30 transition-all duration-300 cursor-pointer">
+        </div>
+        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 group-hover:w-full transition-all duration-500"></div>
+    </div>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const ColorPicker = () => {
@@ -1077,6 +1331,20 @@ export default ColorPicker;`
       </div>
         `,
         code: {
+            html: `
+<div class="group w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300 mb-2 block">Animated Switch</label>
+    <div class="flex items-center justify-between p-4 bg-gradient-to-r from-gray-900/80 to-gray-800/80 rounded-xl border border-gray-700/50 group-hover:border-emerald-500/30 transition-all duration-300 cursor-pointer"
+         onclick="this.querySelector('.switch-bg').classList.toggle('bg-emerald-900'); this.querySelector('.switch-toggle').classList.toggle('translate-x-6'); this.querySelector('.switch-toggle').classList.toggle('bg-emerald-400'); this.querySelector('.switch-toggle').classList.toggle('bg-gray-400'); this.querySelector('.bell-icon').classList.toggle('text-emerald-400');">
+        <div class="flex items-center gap-3">
+            <div class="switch-bg w-10 h-6 rounded-full bg-gray-700 relative transition-colors duration-300">
+                <div class="switch-toggle absolute top-1 left-1 w-4 h-4 rounded-full bg-gray-400 transition-all duration-300"></div>
+            </div>
+            <span class="text-white">Enable Notifications</span>
+        </div>
+        <i class="bell-icon fas fa-bell text-gray-400 transition-colors duration-300"></i>
+    </div>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const AnimatedSwitch = () => {
@@ -1128,6 +1396,23 @@ export default AnimatedSwitch;`
       </div>
         `,
         code: {
+            html: `
+<div class="group w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300 mb-2 block">Interactive Rating</label>
+    <div class="p-4 bg-gradient-to-r from-gray-900/80 to-gray-800/80 rounded-xl border border-gray-700/50 group-hover:border-amber-500/30 transition-all duration-300">
+        <div class="flex justify-center gap-1 mb-3">
+            <i class="fas fa-star text-2xl text-gray-600 hover:text-amber-400 cursor-pointer transition-all duration-300 hover:scale-110" onclick="this.parentElement.nextElementSibling.firstElementChild.textContent='1.0'"></i>
+            <i class="fas fa-star text-2xl text-gray-600 hover:text-amber-400 cursor-pointer transition-all duration-300 hover:scale-110" onclick="this.parentElement.nextElementSibling.firstElementChild.textContent='2.0'"></i>
+            <i class="fas fa-star text-2xl text-gray-600 hover:text-amber-400 cursor-pointer transition-all duration-300 hover:scale-110" onclick="this.parentElement.nextElementSibling.firstElementChild.textContent='3.0'"></i>
+            <i class="fas fa-star text-2xl text-gray-600 hover:text-amber-400 cursor-pointer transition-all duration-300 hover:scale-110" onclick="this.parentElement.nextElementSibling.firstElementChild.textContent='4.0'"></i>
+            <i class="fas fa-star text-2xl text-gray-600 hover:text-amber-400 cursor-pointer transition-all duration-300 hover:scale-110" onclick="this.parentElement.nextElementSibling.firstElementChild.textContent='5.0'"></i>
+        </div>
+        <div class="text-center">
+            <span class="text-amber-400 font-bold text-xl">0.0</span>
+            <span class="text-gray-400"> / 5.0</span>
+        </div>
+    </div>
+</div>`,
             react: `import React, { useState } from 'react';
 
 const InteractiveRating = () => {
@@ -1184,6 +1469,22 @@ export default InteractiveRating;`
       </div>
         `,
         code: {
+            html: `
+<div class="space-y-3 w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300">Gradient Glow Input</label>
+    <div class="relative">
+        <input type="text" 
+               placeholder="Enter your text"
+               class="w-full px-4 py-3.5 bg-gray-900/50 border-2 border-transparent rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:bg-gray-900/70 transition-all duration-300"
+               style="background-image: linear-gradient(to right, #0f172a, #0f172a), linear-gradient(to right, #8b5cf6, #3b82f6, #10b981);
+                      background-origin: border-box;
+                      background-clip: padding-box, border-box;
+                      box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);">
+        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+            <i class="fas fa-sparkles text-violet-400 text-sm animate-pulse"></i>
+        </div>
+    </div>
+</div>`,
             react: `import React from 'react';
 
 const GradientGlowInput = () => {
@@ -1234,6 +1535,19 @@ export default GradientGlowInput;`
       </div>
         `,
         code: {
+            html: `
+<div class="space-y-3 w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300">Glass Morphism</label>
+    <div class="relative group">
+        <input type="text" 
+               placeholder="Type here..."
+               class="w-full px-4 py-3.5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-0 focus:bg-white/10 focus:border-white/20 transition-all duration-300">
+        <div class="absolute right-3 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-300">
+            <i class="fas fa-fingerprint text-cyan-300"></i>
+        </div>
+        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 group-focus-within:w-full transition-all duration-300"></div>
+    </div>
+</div>`,
             react: `import React from 'react';
 
 const GlassInput = () => {
@@ -1276,6 +1590,16 @@ export default GlassInput;`
       </div>
         `,
         code: {
+            html: `
+<div class="space-y-3 w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300">Animated Border</label>
+    <div class="relative p-0.5 rounded-xl animate-glow overflow-hidden">
+        <input type="text" 
+               placeholder="Your input here"
+               class="w-full px-4 py-3.5 bg-gray-900 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-0 border-0 relative z-10">
+        <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500 opacity-50 blur-sm animate-pulse-soft -z-0"></div>
+    </div>
+</div>`,
             react: `import React from 'react';
 
 const AnimatedBorderInput2 = () => {
@@ -1319,6 +1643,20 @@ export default AnimatedBorderInput2;`
       </div>
         `,
         code: {
+            html: `
+<div class="space-y-3 w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300">Floating Label</label>
+    <div class="relative">
+        <input type="text" 
+               id="floating-input-anim"
+               placeholder=" "
+               class="peer w-full px-4 py-3.5 bg-gray-900/70 border border-gray-700 rounded-xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-violet-500/30 focus:border-violet-500 transition-all duration-300">
+        <label for="floating-input-anim" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 bg-gray-900 px-1 pointer-events-none transition-all duration-300 peer-focus:-top-2 peer-focus:left-3 peer-focus:text-xs peer-focus:text-violet-500 peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:left-3 peer-not-placeholder-shown:text-xs">Enter your name</label>
+        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+            <div class="w-2 h-2 rounded-full bg-green-500 animate-ping"></div>
+        </div>
+    </div>
+</div>`,
             react: `import React from 'react';
 
 const FloatingLabelAnim = () => {
@@ -1370,6 +1708,19 @@ export default FloatingLabelAnim;`
       </div>
         `,
         code: {
+            html: `
+<div class="space-y-3 w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300">Typewriter Style</label>
+    <div class="relative">
+        <input type="text" 
+               placeholder="Start typing..."
+               class="w-full px-4 py-3.5 bg-gradient-to-r from-gray-900 to-gray-800 border-l-4 border-violet-500 rounded-r-xl text-white placeholder-gray-500 focus:outline-none focus:ring-0 transition-all duration-300">
+        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+            <i class="fas fa-keyboard text-amber-400 animate-pulse"></i>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-violet-500 to-transparent animate-wave"></div>
+    </div>
+</div>`,
             react: `import React from 'react';
 
 const TypewriterInput = () => {
@@ -1421,6 +1772,25 @@ export default TypewriterInput;`
       </div>
         `,
         code: {
+            html: `
+<div class="space-y-3 w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300">Particle Field</label>
+    <div class="relative overflow-hidden rounded-xl border border-gray-700">
+        <input type="text" 
+               placeholder="Watch the particles..."
+               class="w-full px-4 py-3.5 bg-gray-900/50 text-white placeholder-gray-500 focus:outline-none focus:ring-0 relative z-10">
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div class="absolute w-1 h-1 bg-violet-500/60 rounded-full animate-float" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="absolute w-1 h-1 bg-violet-500/60 rounded-full animate-float" style="top: 60%; left: 30%; animation-delay: 0.5s;"></div>
+            <div class="absolute w-1 h-1 bg-violet-500/60 rounded-full animate-float" style="top: 40%; left: 70%; animation-delay: 1s;"></div>
+            <div class="absolute w-1 h-1 bg-violet-500/60 rounded-full animate-float" style="top: 80%; left: 50%; animation-delay: 1.5s;"></div>
+            <div class="absolute w-1 h-1 bg-violet-500/60 rounded-full animate-float" style="top: 30%; left: 90%; animation-delay: 2s;"></div>
+        </div>
+        <div class="absolute right-3 top-1/2 transform -translate-y-1/2 z-10">
+            <i class="fas fa-atom text-cyan-400"></i>
+        </div>
+    </div>
+</div>`,
             react: `import React from 'react';
 
 const ParticleInput = () => {
@@ -1473,6 +1843,20 @@ export default ParticleInput;`
       </div>
         `,
         code: {
+            html: `
+<div class="space-y-3 w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300">Neon Cyber</label>
+    <div class="relative group">
+        <div class="absolute -inset-0.5 bg-gradient-to-r from-violet-600 via-pink-600 to-blue-600 rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
+        <input type="text" 
+               placeholder="Cyber text..."
+               class="relative w-full px-4 py-3.5 bg-gray-950 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-0 border border-gray-800 group-hover:border-transparent">
+        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+            <i class="fas fa-terminal text-violet-300 group-hover:text-pink-300 transition-colors duration-300"></i>
+        </div>
+        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-violet-400 to-pink-400 group-hover:w-3/4 transition-all duration-500"></div>
+    </div>
+</div>`,
             react: `import React from 'react';
 
 const NeonInput = () => {
@@ -1519,6 +1903,19 @@ export default NeonInput;`
       </div>
         `,
         code: {
+            html: `
+<div class="space-y-3 w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300">Shimmer Loading</label>
+    <div class="relative overflow-hidden rounded-xl border border-gray-700">
+        <input type="text" 
+               placeholder="Loading effect..."
+               class="w-full px-4 py-3.5 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-0 relative z-10">
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer pointer-events-none"></div>
+        <div class="absolute right-3 top-1/2 transform -translate-y-1/2 z-10">
+            <i class="fas fa-sync-alt text-blue-400 animate-spin" style="animation-duration: 1.5s"></i>
+        </div>
+    </div>
+</div>`,
             react: `import React from 'react';
 
 const ShimmerInput = () => {
@@ -1565,6 +1962,20 @@ export default ShimmerInput;`
       </div>
         `,
         code: {
+            html: `
+<div class="space-y-3 w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300">Morphing Gradient</label>
+    <div class="relative group">
+        <input type="text" 
+               placeholder="Gradient morph..."
+               class="w-full px-4 py-3.5 bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-0 border border-gray-700 group-hover:border-transparent transition-all duration-500">
+        <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-violet-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500 -z-10"></div>
+        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+            <i class="fas fa-palette text-purple-300 group-hover:rotate-180 transition-transform duration-500"></i>
+        </div>
+        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-400 to-pink-400 group-hover:w-full transition-all duration-700"></div>
+    </div>
+</div>`,
             react: `import React from 'react';
 
 const MorphingInput = () => {
@@ -1614,6 +2025,22 @@ export default MorphingInput;`
       </div>
         `,
         code: {
+            html: `
+<div class="space-y-3 w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300">Holographic</label>
+    <div class="relative group">
+        <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
+        <div class="relative bg-gray-900 rounded-xl p-0.5">
+            <input type="text" 
+                   placeholder="Hologram text..."
+                   class="w-full px-4 py-3.5 bg-gray-900 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-0">
+        </div>
+        <div class="absolute right-4 top-1/2 transform -translate-y-1/2">
+            <i class="fas fa-project-diagram text-cyan-300 animate-pulse-soft"></i>
+        </div>
+        <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300"></div>
+    </div>
+</div>`,
             react: `import React from 'react';
 
 const HolographicInput = () => {
@@ -1663,6 +2090,20 @@ export default HolographicInput;`
       </div>
         `,
         code: {
+            html: `
+<div class="space-y-3 w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300">Matrix Rain</label>
+    <div class="relative overflow-hidden rounded-xl border border-emerald-700/50">
+        <input type="text" 
+               placeholder="Enter the matrix..."
+               class="w-full px-4 py-3.5 bg-gray-900/80 text-white placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-emerald-500 relative z-10">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-900/10 to-transparent opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-emerald-400 to-transparent animate-wave opacity-0 group-hover:opacity-100 group-focus-within:opacity-100"></div>
+        <div class="absolute right-3 top-1/2 transform -translate-y-1/2 z-10">
+            <i class="fas fa-code text-emerald-400"></i>
+        </div>
+    </div>
+</div>`,
             react: `import React from 'react';
 
 const MatrixInput = () => {
@@ -1711,6 +2152,21 @@ export default MatrixInput;`
       </div>
         `,
         code: {
+            html: `
+<div class="space-y-3 w-full max-w-md mx-auto">
+    <label class="text-sm font-medium text-gray-300">Liquid Mercury</label>
+    <div class="relative group">
+        <div class="absolute inset-0 bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-600/20 via-gray-600/20 to-slate-600/20 rounded-xl opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-700"></div>
+        <input type="text" 
+               placeholder="Fluid input..."
+               class="relative w-full px-4 py-3.5 bg-transparent rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-0 border border-gray-700/50 group-hover:border-gray-600/70">
+        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+            <i class="fas fa-tint text-slate-300 group-hover:animate-float"></i>
+        </div>
+        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-slate-400 via-gray-400 to-slate-400 group-hover:w-full group-focus-within:w-full transition-all duration-1000"></div>
+    </div>
+</div>`,
             react: `import React from 'react';
 
 const LiquidInput = () => {

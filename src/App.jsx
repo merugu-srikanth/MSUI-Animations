@@ -11,11 +11,15 @@ import './App.css'
 import ComingSoon from './pages/ComingSoon';
 import DocsSection from './pages/DocsSection';
 import ScrollToTop from './ScrollToTop';
+import UiSamples from './pages/UiSamples';
+import ColorPicker from './components/colorpicker/ColorPicker';
+import Blogs from './pages/blogs/Blogs';
+import SingleBlog from './pages/blogs/SingleBlog';
 
 function App() {
   return (
     <>
-      <Router>
+      {/* <Router> */}
         <ScrollToTop/>
         <div id="app-scroll-container" className="h-screen overflow-y-auto">
 
@@ -27,9 +31,14 @@ function App() {
           <Route path="/dashboards" element={<Dashboards />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
+          <Route path="/ui-samples" element={<UiSamples />} />
+          <Route path="/color-picker" element={<ColorPicker />} />
+          <Route path="/blogs" element={<Blogs />} />
+            <Route path="/blog/:id" element={<SingleBlog />} />
+            <Route path="/blog/:id/:slug" element={<SingleBlog />} />
         </Routes>
         </div>
-      </Router>
+      {/* </Router> */}
       <ToastContainer
         position="bottom-center"
         autoClose={2000}

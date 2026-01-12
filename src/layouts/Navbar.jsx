@@ -70,6 +70,9 @@ const MobileSidebar = ({ isOpen, onClose }) => (
                                 { label: "Templates", to: "/coming-soon", icon: Layout },
                                 // { label: "Pricing", to: "/coming-soon", icon: Star },
                                 { label: "Contact", to: "/coming-soon", icon: Mail },
+                                // { label: "UiSamples", to: "/ui-samples", icon: Mail },
+                                { label: "ColorPicker", to: "/color-picker", icon: Mail },
+                                { label: "Blogs", to: "/blogs", icon: Mail },
                             ].map((item) => (
                                 <Link
                                     key={item.label}
@@ -159,6 +162,9 @@ const Navbar = () => {
                             { label: "Docs", to: "/documentation" },
                             { label: "Templates", to: "/coming-soon" },
                             // { label: "Pricing", to: "/coming-soon" },
+                            // { label: "UiSamples", to: "/ui-samples" },
+                            { label: "ColorPicker", to: "/color-picker" },
+                            { label: "Blogs", to: "/blogs" },
                         ].map((item) => (
                             <NavLink
                                 key={item.label}
