@@ -14,7 +14,6 @@ import {
   FiLinkedin,
   FiLink,
 } from "react-icons/fi";
-import { Helmet } from "react-helmet-async";
 import MainLayout from "../../layouts/MainLayout";
 
 // Sample blog data (same as above)
@@ -522,19 +521,7 @@ const SingleBlog = () => {
   return (
     <>
       <MainLayout>
-        {/* <Helmet>
-        <title>{metaTitle} | Audree Insights</title>
-        <meta name="description" content={metaDescription} />
-        <meta property="og:title" content={metaTitle} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={blog.image || defaultBlogImg} />
-        <meta property="og:url" content={currentUrl} />
-        <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={metaTitle} />
-        <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content={blog.image || defaultBlogImg} />
-      </Helmet> */}
+      
 
         <section className="min-h-screen py-6 ">
           {/* Animated background */}
