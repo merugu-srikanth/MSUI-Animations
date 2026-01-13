@@ -1,964 +1,934 @@
-// ColorPicker.jsx - Responsive version
-import React, { useState, useEffect } from 'react';
+// BrunouiColorStudioPro.jsx
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import html2canvas from 'html2canvas';
 import {
-  Palette, Sparkles, Zap, Layers, RefreshCw, Copy, Check,
-  Plus, Minus, Eye, Layout, FormInput, Users,
-  Star, TrendingUp, Search, Bell, User, Mail, Lock, CreditCard
+  RefreshCw, Copy, Check, Plus, Minus, X,
+  Sparkles, Layout, FormInput, CreditCard,
+  Palette, Droplets, Layers, Contrast,
+  Zap, Eye, EyeOff, Save, Upload,
+  ChevronRight, ChevronLeft,
+  Settings, Grid, List, Download,
+  Camera, Share2, BookOpen, Lock, Unlock,
+  TrendingUp, DollarSign, PaintBucket,
+  CheckCircle, AlertCircle, AlertTriangle,
+  Moon, Sun, Layers2, Radiation, GlassWater,
+  Mail, Users, Star, Bell, ArrowRight
 } from 'lucide-react';
-import MainLayout from '../../layouts/MainLayout';
 import {
   ResponsiveContainer,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
+  BarChart, Bar, XAxis, YAxis, Tooltip,
+  PieChart, Pie, Cell,
+  AreaChart, Area
 } from 'recharts';
+import MainLayout from '../../layouts/MainLayout';
 
-const ColorPicker = () => {
-  // 🔹 Color usage explanation (NEW)
-  const colorUsage = {
-    primary: {
-      label: 'Primary Brand',
-      usage: 'Buttons, CTAs, charts, highlights',
-    },
-    accent: {
-      label: 'Accent Color',
-      usage: 'Gradients, icons, secondary actions',
-    },
-    success: {
-      label: 'Success',
-      usage: 'Positive stats, success states',
-    },
-    danger: {
-      label: 'Danger',
-      usage: 'Errors, alerts, negative stats',
-    },
-    dark: {
-      label: 'Dark Background',
-      usage: 'Main app background',
-    },
-    secondary: {
-      label: 'Secondary BG',
-      usage: 'Cards, panels, sections',
-    },
-  };
+const monthlyGrowthData = [
+  { name: 'Jan', value: 65 }, { name: 'Feb', value: 80 }, { name: 'Mar', value: 70 },
+  { name: 'Apr', value: 90 }, { name: 'May', value: 85 }, { name: 'Jun', value: 95 },
+  { name: 'Jul', value: 75 }, { name: 'Aug', value: 88 }, { name: 'Sep', value: 92 },
+  { name: 'Oct', value: 78 }, { name: 'Nov', value: 85 }, { name: 'Dec', value: 90 },
+];
 
+const pieData = [
+  { name: 'Primary', value: 35, color: '#FF6B35' },
+  { name: 'Accent', value: 25, color: '#7C3AED' },
+  { name: 'Success', value: 20, color: '#10B981' },
+  { name: 'Warning', value: 15, color: '#F59E0B' },
+  { name: 'Danger', value: 5, color: '#EF4444' },
+];
 
-  const monthlyGrowthData = [
-    { name: 'W1', value: 65 },
-    { name: 'W2', value: 80 },
-    { name: 'W3', value: 60 },
-    { name: 'W4', value: 90 },
-    { name: 'W5', value: 75 },
-    { name: 'W6', value: 35 },
-    { name: 'W7', value: 85 },
-    { name: 'W8', value: 45 },
-    { name: 'W9', value: 95 },
-    { name: 'W10', value: 65 },
-    { name: 'W11', value: 85 },
-    { name: 'W12', value: 65 },
-  ];
+const previewModes = [
+  { id: 'hero', name: 'Hero', icon: <Sparkles size={18} />, color: 'from-purple-500 to-pink-500' },
+  { id: 'dashboard', name: 'Dashboard', icon: <Layout size={18} />, color: 'from-blue-500 to-cyan-500' },
+  { id: 'forms', name: 'Forms', icon: <FormInput size={18} />, color: 'from-green-500 to-emerald-500' },
+  { id: 'cards', name: 'Cards', icon: <CreditCard size={18} />, color: 'from-orange-500 to-yellow-500' },
+];
 
+const colorInfo = {
+  primary: { label: 'Primary Brand', usage: 'Buttons, CTAs, links', icon: <PaintBucket size={16} /> },
+  accent: { label: 'Accent Color', usage: 'Gradients, highlights', icon: <Radiation size={16} /> },
+  success: { label: 'Success', usage: 'Positive states', icon: <CheckCircle size={16} /> },
+  danger: { label: 'Danger', usage: 'Errors, warnings', icon: <AlertCircle size={16} /> },
+  warning: { label: 'Warning', usage: 'Alerts, caution', icon: <AlertTriangle size={16} /> },
+  dark: { label: 'Dark', usage: 'Backgrounds', icon: <Moon size={16} /> },
+  light: { label: 'Light', usage: 'Text, surfaces', icon: <Sun size={16} /> },
+  secondary: { label: 'Secondary', usage: 'Cards, panels', icon: <Layers2 size={16} /> },
+};
+
+const presetThemes = [
+  { name: 'Sunset', colors: { primary: '#FF6B35', accent: '#FF4081', success: '#4CAF50', danger: '#F44336', warning: '#FF9800', dark: '#1A1A2E', light: '#F5F5F5', secondary: '#2D3047' } },
+  { name: 'Ocean', colors: { primary: '#2196F3', accent: '#00BCD4', success: '#009688', danger: '#E91E63', warning: '#FFC107', dark: '#0D1B2A', light: '#E0F7FA', secondary: '#1B3A4B' } },
+  { name: 'Forest', colors: { primary: '#2E7D32', accent: '#66BB6A', success: '#388E3C', danger: '#D32F2F', warning: '#F57C00', dark: '#1B3D2F', light: '#F1F8E9', secondary: '#2E5D43' } },
+  { name: 'Midnight', colors: { primary: '#7C3AED', accent: '#8B5CF6', success: '#10B981', danger: '#EF4444', warning: '#F59E0B', dark: '#0F172A', light: '#F8FAFC', secondary: '#1E293B' } },
+];
+
+const BrunouiColorStudioPro = () => {
   const [copied, setCopied] = useState(null);
-  const [activeCategory, setActiveCategory] = useState('single');
-  const [previewType, setPreviewType] = useState('hero');
-  const [gradientAngle, setGradientAngle] = useState(135);
+  const [activePreview, setActivePreview] = useState('hero');
+  const [activeTab, setActiveTab] = useState('single');
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [showPresets, setShowPresets] = useState(false);
+  const [savedThemes, setSavedThemes] = useState([]);
+  const [lockColors, setLockColors] = useState({});
+  const [liveOpacity, setLiveOpacity] = useState({});
+
+  const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
+  const previewRef = useRef(null);
+
   const [colors, setColors] = useState({
     primary: '#FF6B35',
     accent: '#7C3AED',
     success: '#10B981',
     danger: '#EF4444',
-    dark: '#1F2937',
-    secondary: '#9CA3AF',
-  });
-  // 🔹 Gradient colors (MISSING STATE)
-  const [gradientColors, setGradientColors] = useState([
-    '#FF6B35',
-    '#7C3AED',
-    '#10B981',
-  ]);
-
-
-  // 🔹 NEW: opacity per color
-  const [colorOpacity, setColorOpacity] = useState({
-    primary: 1,
-    accent: 1,
-    success: 1,
-    danger: 1,
-    dark: 1,
-    secondary: 1,
+    warning: '#F59E0B',
+    dark: '#0F172A',
+    light: '#F8FAFC',
+    secondary: '#334155',
   });
 
-  const [gradientOpacity, setGradientOpacity] = useState(
-    gradientColors.map(() => 1)
-  );
-
-  const [glass, setGlass] = useState({
-    blur: 13,
-    refraction: 0.11,
-    depth: 10,
-    opacity: 0.12,
-    border: 0.18,
+  const [opacity, setOpacity] = useState({
+    primary: 1, accent: 1, success: 1, danger: 1, warning: 1, dark: 1, light: 1, secondary: 1,
   });
 
+  const [gradientColors, setGradientColors] = useState(['#FF6B35', '#7C3AED', '#10B981']);
+  const [gradientOpacity, setGradientOpacity] = useState([1, 1, 1]);
+  const [gradientAngle, setGradientAngle] = useState(135);
+  const [gradientType, setGradientType] = useState('linear');
 
+  const [glass, setGlass] = useState({ blur: 12, opacity: 0.15, border: 0.2, saturation: 100 });
 
-  // Utilities
-  const getContrast = (hex) => {
-    const r = parseInt(hex.slice(1, 3), 16) || 0;
-    const g = parseInt(hex.slice(3, 5), 16) || 0;
-    const b = parseInt(hex.slice(5, 7), 16) || 0;
-    return (r * 299 + g * 587 + b * 114) / 1000 > 128 ? '#000000' : '#ffffff';
+  // Toast notification
+  const showToast = (message, type = 'success') => {
+    setToast({ show: true, message, type });
+    setTimeout(() => setToast({ show: false, message: '', type: 'success' }), 3000);
   };
-
-
-  // 🔹 Convert HEX + opacity → RGBA
-  const withOpacity = (hex, opacity = 1) => {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
-  };
-
-
 
   const randomColor = () => '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
 
   const randomizeAll = () => {
     const newColors = {};
-    Object.keys(colors).forEach(k => newColors[k] = randomColor());
-    setColors(newColors);
-    setGradientColors(Array(3).fill().map(randomColor));
+    Object.keys(colors).forEach(k => {
+      if (!lockColors[k]) newColors[k] = randomColor();
+    });
+    setColors(prev => ({ ...prev, ...newColors }));
+    setGradientColors([randomColor(), randomColor(), randomColor()]);
+    showToast('Colors randomized!', 'success');
   };
 
-  const copyToClipboard = (text, id) => {
-    navigator.clipboard.writeText(text);
-    setCopied(id);
-    setTimeout(() => setCopied(null), 1800);
+  const copyToClipboard = async (text, id) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(id);
+      showToast('Copied to clipboard!', 'success');
+      setTimeout(() => setCopied(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+      showToast('Failed to copy!', 'error');
+    }
   };
 
-  const gradientCSS = `linear-gradient(
-  ${gradientAngle}deg,
-  ${gradientColors
-      .map((c, i) => withOpacity(c, gradientOpacity[i] ?? 1))
-      .join(', ')}
-)`;
+  const withOpacity = (hex, op = 1) => {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${op})`;
+  };
 
-  // CSS Variables
+  const gradientCSS = gradientType === 'linear'
+    ? `linear-gradient(${gradientAngle}deg, ${gradientColors.map((c, i) => withOpacity(c, gradientOpacity[i])).join(', ')})`
+    : `radial-gradient(circle at 50% 50%, ${gradientColors.map((c, i) => withOpacity(c, gradientOpacity[i])).join(', ')})`;
+
+  // Update CSS variables
   useEffect(() => {
     const root = document.documentElement;
-    Object.entries(colors).forEach(([k, v]) => root.style.setProperty(`--color-${k}`, v));
-    root.style.setProperty('--gradient', gradientCSS);
-    root.style.setProperty('--glass-bg', `rgba(255,255,255,${glass.opacity})`);
+    Object.entries(colors).forEach(([k, v]) => {
+      root.style.setProperty(`--color-${k}`, withOpacity(v, opacity[k]));
+    });
+    root.style.setProperty('--gradient-main', gradientCSS);
     root.style.setProperty('--glass-blur', `${glass.blur}px`);
-    root.style.setProperty('--glass-border', `rgba(255,255,255,${glass.border})`);
-  }, [colors, gradientColors, gradientAngle, glass]);
+    root.style.setProperty('--glass-opacity', glass.opacity.toString());
+    root.style.setProperty('--glass-border', glass.border.toString());
+  }, [colors, opacity, gradientCSS, glass]);
 
-  // Config
-  const categories = [
-    { id: 'single', name: 'Single', icon: <Palette size={16} /> },
-    { id: 'gradient', name: 'Gradient', icon: <Zap size={16} /> },
-    { id: 'glass', name: 'Glass', icon: <Layers size={16} /> },
-  ];
-
-  const previewModes = [
-    { id: 'hero', name: 'Hero', icon: <Sparkles size={14} /> },
-    { id: 'dashboard', name: 'Dashboard', icon: <Layout size={14} /> },
-    { id: 'forms', name: 'Forms', icon: <FormInput size={14} /> },
-    { id: 'cards', name: 'Cards', icon: <CreditCard size={14} /> },
-  ];
-
-  // Dynamic background logic
-  const getPreviewBackground = () => {
-    if (activeCategory === 'gradient') return 'var(--gradient)';
-    if (activeCategory === 'glass') return 'var(--glass-bg)';
-    return 'linear-gradient(145deg, var(--color-dark) 0%, var(--color-secondary) 100%)';
+  const getPreviewBg = () => {
+    if (activeTab === 'gradient') return gradientCSS;
+    if (activeTab === 'glass') return `rgba(255, 255, 255, ${glass.opacity})`;
+    return 'linear-gradient(135deg, var(--color-dark) 0%, var(--color-secondary) 100%)';
   };
 
-  const getGlassStyle = () => ({
-    background: activeCategory === 'glass' ? 'var(--glass-bg)' : 'rgba(255,255,255,0.04)',
-    backdropFilter: activeCategory === 'glass' ? 'blur(var(--glass-blur))' : 'none',
-    border: activeCategory === 'glass' ? '1px solid var(--glass-border)' : '1px solid rgba(255,255,255,0.08)',
-  });
+  const glassStyle = {
+    background: `rgba(255, 255, 255, ${glass.opacity})`,
+    backdropFilter: `blur(${glass.blur}px)`,
+    border: `1px solid rgba(255, 255, 255, ${glass.border})`,
+  };
+
+  const applyPreset = (preset) => {
+    setColors(preset.colors);
+    setGradientColors([preset.colors.primary, preset.colors.accent, preset.colors.success]);
+    showToast(`Applied ${preset.name} theme!`, 'success');
+  };
+
+  const saveTheme = () => {
+    const themeName = prompt('Enter theme name:');
+    if (themeName) {
+      const newTheme = { name: themeName, colors, gradientColors, glass };
+      setSavedThemes([...savedThemes, newTheme]);
+      showToast('Theme saved!', 'success');
+    }
+  };
+
+  const captureScreenshot = async () => {
+    if (previewRef.current) {
+      try {
+        const canvas = await html2canvas(previewRef.current, {
+          backgroundColor: null,
+          scale: 2,
+          useCORS: true,
+        });
+        const link = document.createElement('a');
+        link.download = `color-studio-${Date.now()}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast('Screenshot saved!', 'success');
+      } catch (error) {
+        console.error('Failed to capture screenshot:', error);
+        showToast('Failed to capture screenshot!', 'error');
+      }
+    }
+  };
+
+  const exportCSS = () => {
+    const cssVars = Object.entries(colors)
+      .map(([k, v]) => `--color-${k}: ${withOpacity(v, opacity[k])};`)
+      .join('\n  ');
+
+    const css = `:root {\n  ${cssVars}\n  --gradient-main: ${gradientCSS};\n  --glass-blur: ${glass.blur}px;\n  --glass-opacity: ${glass.opacity};\n}`;
+
+    copyToClipboard(css, 'css');
+  };
+
+  const rafRef = useRef(null);
+
+
+  // Color Picker Card Component
+  const ColorPickerCard = ({ colorKey, color, opacityVal }) => (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      whileHover={{ scale: 1.02 }}
+      className="relative bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10"
+    >
+      <div className="flex justify-between items-start mb-3">
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setLockColors(prev => ({ ...prev, [colorKey]: !prev[colorKey] }))}
+            className="p-1 hover:bg-white/10 rounded transition-colors"
+            title={lockColors[colorKey] ? 'Unlock color' : 'Lock color'}
+          >
+            {lockColors[colorKey] ? <Lock size={14} /> : <Unlock size={14} />}
+          </button>
+          <div>
+            <h3 className="font-semibold text-sm flex items-center gap-1.5">
+              {colorInfo[colorKey].icon}
+              {colorInfo[colorKey].label}
+            </h3>
+            <p className="text-xs text-gray-400 mt-0.5">{colorInfo[colorKey].usage}</p>
+          </div>
+        </div>
+        <button
+          onClick={() => copyToClipboard(color, colorKey)}
+          className={`p-1.5 rounded-lg transition-all ${copied === colorKey ? 'bg-green-500/20' : 'hover:bg-white/10'}`}
+          title="Copy hex code"
+        >
+          {copied === colorKey ? <Check size={14} className="text-green-400" /> : <Copy size={14} />}
+        </button>
+      </div>
+
+      <div className="space-y-3">
+        <div className="flex gap-3 items-center">
+          <div className="relative">
+            <input
+              type="color"
+              value={color}
+              onChange={e => setColors(p => ({ ...p, [colorKey]: e.target.value }))}
+              className="w-12 h-12 rounded-lg cursor-pointer border border-white/20 shadow-inner"
+              disabled={lockColors[colorKey]}
+              title="Click to pick color"
+            />
+            {lockColors[colorKey] && (
+              <div className="absolute inset-0 bg-black/50 rounded-lg flex items-center justify-center">
+                <Lock size={14} />
+              </div>
+            )}
+          </div>
+          <div className="flex-1">
+            <input
+              type="text"
+              value={color.toUpperCase()}
+              onChange={e => {
+                const value = e.target.value;
+                if (/^#[0-9A-Fa-f]{0,6}$/.test(value) && !lockColors[colorKey]) {
+                  setColors(p => ({ ...p, [colorKey]: value }));
+                }
+              }}
+              className="w-full px-3 py-2 bg-black/20 rounded-lg text-sm font-mono border border-white/10 focus:outline-none focus:ring-1 focus:ring-white/30"
+              placeholder="#000000"
+              disabled={lockColors[colorKey]}
+            />
+            <div className="flex justify-between mt-1 text-xs text-gray-500">
+              <span>HEX</span>
+              <span>
+                RGB: {parseInt(color.slice(1, 3), 16)}, {parseInt(color.slice(3, 5), 16)}, {parseInt(color.slice(5, 7), 16)}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <div className="flex justify-between text-xs">
+            <span>Opacity</span>
+            <span className="font-mono">{Math.round(opacityVal * 100)}%</span>
+          </div>
+         <input
+  type="range"
+  min="0"
+  max="1"
+  step="0.01"
+  value={liveOpacity[colorKey] ?? opacityVal}
+  onChange={(e) => {
+    const value = +e.target.value;
+
+    // Update slider instantly (smooth like gradient angle)
+    setLiveOpacity(prev => ({ ...prev, [colorKey]: value }));
+
+    cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      setOpacity(prev => ({
+        ...prev,
+        [colorKey]: value
+      }));
+    });
+  }}
+  className="w-full h-1.5 bg-gray-700 rounded-full appearance-none
+    [&::-webkit-slider-thumb]:appearance-none
+    [&::-webkit-slider-thumb]:h-4
+    [&::-webkit-slider-thumb]:w-4
+    [&::-webkit-slider-thumb]:rounded-full
+    [&::-webkit-slider-thumb]:bg-white
+    [&::-webkit-slider-thumb]:shadow-lg"
+/>
+
+
+        </div>
+      </div>
+    </motion.div>
+  );
 
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gradient-to-b from-[#0a0a0f] to-[#0f0f14] text-gray-100 pb-8 px-3 md:py-10 sm:px-4 md:px-6">
-        <style jsx global>{`
-  :root {
-    --color-primary: ${withOpacity(colors.primary, colorOpacity.primary)};
-    --color-accent: ${withOpacity(colors.accent, colorOpacity.accent)};
-    --color-success: ${withOpacity(colors.success, colorOpacity.success)};
-    --color-danger: ${withOpacity(colors.danger, colorOpacity.danger)};
-    --color-dark: ${withOpacity(colors.dark, colorOpacity.dark)};
-    --color-secondary: ${withOpacity(colors.secondary, colorOpacity.secondary)};
-    --gradient: ${gradientCSS};
-    --glass-blur: ${glass.blur}px;
-    --glass-refraction: ${glass.refraction};
-    --glass-depth: ${glass.depth};
-    --glass-border: rgba(255,255,255,${glass.border});
-  }
-`}</style>
-
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-950 text-white">
+        {/* Toast Notification */}
+        <AnimatePresence>
+          {toast.show && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className={`fixed top-4 right-4 z-50 px-4 py-3 rounded-lg shadow-lg ${toast.type === 'success' ? 'bg-green-500/90' : 'bg-red-500/90'}`}
+            >
+              <div className="flex items-center gap-2">
+                <Check size={16} />
+                <span className="text-sm font-medium">{toast.message}</span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Header */}
-        <header className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 pt-6 sm:pt-8 md:pt-10 pb-4">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 sm:gap-6">
+        <div className="backdrop-blur-xl bg-gray-900/80 border-b border-gray-800">
+          <div className="max-w-screen-2xl mx-auto px-4 py-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+                  className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
+                  title={sidebarCollapsed ? 'Expand panel' : 'Collapse panel'}
+                >
+                  {sidebarCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+                </button>
+                <div>
+                  <h1 className="text-xl font-bold bg-gradient-to-r from-orange-500 to-purple-500 bg-clip-text text-transparent">
+                    Color Studio
+                  </h1>
+                  <p className="text-xs text-gray-400">Real-time color customization</p>
+                </div>
+              </div>
 
-            {/* LEFT: Logo + Title */}
-            <div className="flex items-center gap-3 sm:gap-4">
-              {/* <div className="p-3 sm:p-4 rounded-xl glass-panel shrink-0">
-                <Palette size={28} className="text-white sm:hidden" />
-                <Palette size={32} className="text-white hidden sm:block" />
-              </div> */}
-
-              <div>
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold 
-          bg-gradient-to-r from-brand-primary to-orange-500 
-          bg-clip-text text-transparent leading-tight">
-                 Brunoui Color Studio Pro
-                </h1>
-                <p className="mt-1 text-xs sm:text-sm md:text-base text-gray-300">
-                  Single • Gradient • Glassmorphism
-                </p>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={saveTheme}
+                  className="px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors flex items-center gap-1.5 text-sm"
+                >
+                  <Save size={14} />
+                  Save
+                </button>
+                <button
+                  onClick={exportCSS}
+                  className="px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors flex items-center gap-1.5 text-sm"
+                >
+                  <Download size={14} />
+                  Export CSS
+                </button>
+                <button
+                  onClick={randomizeAll}
+                  className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-orange-500 to-purple-600 hover:from-orange-600 hover:to-purple-700 transition-all flex items-center gap-1.5 text-sm shadow-lg"
+                >
+                  <RefreshCw size={14} />
+                  Randomize
+                </button>
               </div>
             </div>
 
-            {/* RIGHT: Button */}
-            <button
-              onClick={randomizeAll}
-              className="
-        w-full md:w-auto
-        flex items-center justify-center gap-2
-        px-4 py-2.5 sm:px-5 sm:py-3
-        bg-gradient-to-r from-brand-primary to-orange-500
-        rounded-xl font-medium text-sm sm:text-base
-        transition-all group
-        hover:opacity-90 active:scale-95
-      "
-            >
-              <RefreshCw
-                size={18}
-                className="group-hover:rotate-180 transition-transform duration-700"
-              />
-              <span className="hidden sm:inline">Randomize Everything</span>
-              <span className="sm:hidden">Randomize</span>
-            </button>
-
-          </div>
-        </header>
-
-
-        <main className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-4 md:gap-6">
-          {/* Controls - LEFT */}
-          <div className='lg:col-span-5 space-y-4 md:space-y-6 order-2 lg:order-1'>
-            <aside className="sticky top-4">
-              {/* Category Tabs */}
-              <div className="glass-panel p-1.5 mb-3 rounded-xl flex gap-1">
-                {categories.map(cat => (
-                  <motion.button
-                    key={cat.id}
-                    whileTap={{ scale: 0.96 }}
-                    onClick={() => setActiveCategory(cat.id)}
-                    className={`flex-1 py-2.5 sm:py-3 rounded-lg text-sm md:font-medium transition-all flex items-center justify-center gap-1.5 sm:gap-0 text-sm sm:text-base ${activeCategory === cat.id
-                      ? 'bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] text-white shadow-lg'
-                      : 'hover:bg-white/8'
+            {/* Tabs */}
+            <div className="mt-4 flex justify-between ">
+              <div className="flex flex-wrap gap-1">
+                {['single', 'gradient', 'glass'].map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    className={`px-4 py-2 rounded-lg font-medium text-sm transition-all ${activeTab === tab
+                      ? 'bg-gradient-to-r from-orange-500 to-orange-600 shadow-md'
+                      : 'bg-gray-800 hover:bg-gray-700'
                       }`}
                   >
-                    {cat.icon}
-                    {cat.name}
-                  </motion.button>
+                    {tab === 'single' && 'Single Colors'}
+                    {tab === 'gradient' && 'Gradient Builder'}
+                    {tab === 'glass' && 'Glassmorphism'}
+                  </button>
                 ))}
+                <button
+                  onClick={randomizeAll}
+                  className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-700 transition-all flex items-center gap-1.5 text-sm shadow-lg"
+                >
+                  <RefreshCw size={14}  className='animate-spin'/>
+                  Randomize
+                </button>
+
+
               </div>
 
-              <AnimatePresence mode="wait">
-                {/* SINGLE COLORS */}
-                {activeCategory === 'single' && (
-                  <motion.div
-                    key="single"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="grid grid-cols-2 sm:grid-cols-3 gap-3"
-                  >
-                    {Object.entries(colors).map(([id, color]) => (
+
+
+              <div className=""> <button
+                onClick={exportCSS}
+                className="px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors flex items-center gap-1.5 text-sm"
+              >
+                <Download size={14} />
+                Export CSS
+              </button></div>
+
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="max-w-screen-2xl  mx-auto px-4 py-4">
+          <div className="flex flex-col sticky top-0 z-40  lg:flex-row gap-4">
+            {/* Side Panel */}
+            <motion.aside
+              animate={{ width: sidebarCollapsed ? '60px' : '320px' }}
+              className={`${sidebarCollapsed ? 'lg:w-16' : 'lg:w-80'} transition-all duration-300`}
+            >
+              <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 p-4 h-full">
+                {!sidebarCollapsed ? (
+                  <div className="space-y-4">
+                    {/* Color Presets */}
+                    {showPresets && (
                       <motion.div
-                        key={id}
-                        whileHover={{ y: -4 }}
-                        className="glass-panel rounded-xl p-2"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="space-y-2"
                       >
-                        <div className="flex justify-between items-center mb-2">
-                          <div>
-                            <span className="font-semibold text-sm">
-                              {colorUsage[id]?.label}
-                            </span>
-                            <p className="text-xs text-gray-400">
-                              {colorUsage[id]?.usage}
-                            </p>
-                          </div>
-                          <button onClick={() => copyToClipboard(color, id)} className="p-1">
-                            {copied === id ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-sm font-semibold">Preset Themes</h3>
+                          <button
+                            onClick={() => setShowPresets(false)}
+                            className="p-1 hover:bg-gray-700 rounded"
+                          >
+                            <X size={14} />
                           </button>
                         </div>
-                        <div
-                          className="h-6 sm:h-8 rounded-lg shadow-xl mb-2 relative"
-                          style={{
-                            background: `rgba(
-      ${parseInt(color.slice(1, 3), 16)},
-      ${parseInt(color.slice(3, 5), 16)},
-      ${parseInt(color.slice(5, 7), 16)},
-      ${colorOpacity[id]}
-    )`
-                          }}
-                        >
-                          <span className="text-white text-xs px-2 absolute inset-0 flex items-center">
-                            {color} • {Math.round(colorOpacity[id] * 100)}%
-                          </span>
+                        <div className="grid grid-cols-2 gap-2">
+                          {presetThemes.map((preset, i) => (
+                            <button
+                              key={i}
+                              onClick={() => applyPreset(preset)}
+                              className="p-2 rounded-lg bg-gray-900/50 hover:bg-gray-900 transition-colors"
+                              title={preset.name}
+                            >
+                              <div className="flex gap-1 mb-1">
+                                {Object.values(preset.colors).slice(0, 3).map((c, j) => (
+                                  <div
+                                    key={j}
+                                    className="w-6 h-6 rounded"
+                                    style={{ backgroundColor: c }}
+                                  />
+                                ))}
+                              </div>
+                              <span className="text-xs">{preset.name}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* Active Tab Content */}
+                    {activeTab === 'single' && (
+                      <div className="space-y-3 ">
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-sm font-semibold">Color Palette</h3>
+                          <button
+                            onClick={() => setShowPresets(!showPresets)}
+                            className="p-1 hover:bg-gray-700 rounded transition-colors"
+                            title="Show presets"
+                          >
+                            <Palette size={16} />
+                          </button>
+                        </div>
+                        <div className="space-y-3 max-h-[500px] overflow-y-auto pr-1">
+                          {Object.entries(colors).map(([key, color]) => (
+                            <ColorPickerCard
+                              key={key}
+                              colorKey={key}
+                              color={color}
+                              opacityVal={opacity[key]}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {activeTab === 'gradient' && (
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-semibold">Gradient Builder</h3>
+
+                        <div className="space-y-3">
+                          {gradientColors.map((color, index) => (
+                            <div key={index} className="flex items-center gap-2 p-2 rounded-lg bg-gray-900/50">
+                              <input
+                                type="color"
+                                value={color}
+                                onChange={e => {
+                                  const newColors = [...gradientColors];
+                                  newColors[index] = e.target.value;
+                                  setGradientColors(newColors);
+                                }}
+                                className="w-8 h-8 rounded cursor-pointer border border-gray-600"
+                              />
+                              <input
+                                type="text"
+                                value={color.toUpperCase()}
+                                onChange={e => {
+                                  const value = e.target.value;
+                                  if (/^#[0-9A-Fa-f]{0,6}$/.test(value)) {
+                                    const newColors = [...gradientColors];
+                                    newColors[index] = value;
+                                    setGradientColors(newColors);
+                                  }
+                                }}
+                                className="flex-1 px-2 py-1 text-xs bg-gray-800 rounded border border-gray-700"
+                              />
+                              <div className="flex items-center gap-1">
+                                <input
+                                  type="range"
+                                  min="0"
+                                  max="1"
+                                  step="0.01"
+                                  value={gradientOpacity[index]}
+                                  onChange={e => {
+                                    const newOp = [...gradientOpacity];
+                                    newOp[index] = +e.target.value;
+                                    setGradientOpacity(newOp);
+                                  }}
+                                  className="w-16"
+                                />
+                                {gradientColors.length > 2 && (
+                                  <button
+                                    onClick={() => {
+                                      setGradientColors(gradientColors.filter((_, i) => i !== index));
+                                      setGradientOpacity(gradientOpacity.filter((_, i) => i !== index));
+                                    }}
+                                    className="p-1 hover:bg-red-500/20 rounded text-red-400"
+                                  >
+                                    <Minus size={12} />
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+
+                          {gradientColors.length < 5 && (
+                            <button
+                              onClick={() => {
+                                setGradientColors([...gradientColors, randomColor()]);
+                                setGradientOpacity([...gradientOpacity, 1]);
+                              }}
+                              className="w-full py-2 text-sm rounded-lg bg-gray-900/50 hover:bg-gray-900 transition-colors flex items-center justify-center gap-1"
+                            >
+                              <Plus size={14} /> Add Color Stop
+                            </button>
+                          )}
                         </div>
 
-                        <input
-                          type="color"
-                          value={color}
-                          onChange={e => setColors(prev => ({ ...prev, [id]: e.target.value }))}
-                          className="w-full h-8 rounded-lg cursor-pointer"
-                        />
-                        {/* Opacity control */}
-                        <div className="mt-2">
-                          <div className="flex justify-between text-xs text-gray-400 mb-1">
-                            <span>Opacity</span>
-                            <span>{Math.round(colorOpacity[id] * 100)}%</span>
+                        <div className="space-y-2">
+                          <div className="flex justify-between text-xs">
+                            <span>Angle: {gradientAngle}°</span>
+                            <button onClick={() => setGradientAngle(135)} className="text-orange-400">
+                              Reset
+                            </button>
                           </div>
                           <input
                             type="range"
                             min="0"
-                            max="1"
-                            step="0.01"
-                            value={colorOpacity[id]}
-                            onChange={(e) =>
-                              setColorOpacity(prev => ({
-                                ...prev,
-                                [id]: Number(e.target.value),
-                              }))
-                            }
-                            className="w-full accent-[var(--color-primary)]"
+                            max="360"
+                            value={gradientAngle}
+                            onChange={e => setGradientAngle(+e.target.value)}
+                            className="w-full"
                           />
                         </div>
 
-                        <div className="flex gap-1 mt-2 flex-wrap">
-                          {id === 'primary' && (
-                            <span className="px-2 py-0.5 rounded-full text-xs glass-panel">
-                              Buttons
-                            </span>
-                          )}
-                          {id === 'primary' && (
-                            <span className="px-2 py-0.5 rounded-full text-xs glass-panel">
-                              Charts
-                            </span>
-                          )}
-                          {id === 'accent' && (
-                            <span className="px-2 py-0.5 rounded-full text-xs glass-panel">
-                              Gradients
-                            </span>
-                          )}
-                          {id === 'dark' && (
-                            <span className="px-2 py-0.5 rounded-full text-xs glass-panel">
-                              App Background
-                            </span>
-                          )}
-                        </div>
-
-                      </motion.div>
-                    ))}
-
-
-                  </motion.div>
-                )}
-
-                {/* GRADIENT */}
-                {activeCategory === 'gradient' && (
-                  <motion.div
-                    key="gradient"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="space-y-4"
-                  >
-                    <div className="flex justify-between items-center">
-                      <h3 className="text-lg font-semibold">Gradient Builder</h3>
-                      <button
-                        onClick={() => gradientColors.length < 6 && setGradientColors([...gradientColors, randomColor()])}
-                        className="flex items-center gap-1.5 px-3 py-1.5 glass-panel rounded-lg hover:bg-white/8 transition-colors text-sm"
-                      >
-                        <Plus size={16} /> Add
-                      </button>
-                    </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                      {gradientColors.map((color, index) => (
-                        <motion.div
-                          key={index}
-                          whileHover={{ y: -4 }}
-                          className="glass-panel p-3 rounded-xl relative"
-                        >
-                          <div className="flex justify-between items-center mb-2">
-                            <span className="font-medium text-sm">Stop {index + 1}</span>
-                            <div className="flex gap-1">
-                              <button onClick={() => copyToClipboard(color, `grad-${index}`)} className="p-1">
-                                {copied === `grad-${index}` ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
-                              </button>
-                              {gradientColors.length > 2 && (
-                                <button onClick={() => setGradientColors(prev => prev.filter((_, i) => i !== index))} className="p-1">
-                                  <Minus size={16} className="text-red-400" />
-                                </button>
-                              )}
-                            </div>
-                          </div>
-                          <div className="h-16 sm:h-20 rounded-lg mb-3 shadow-xl" style={{ background: color }} />
-                          <input
-                            type="color"
-                            value={color}
-                            onChange={e => {
-                              const next = [...gradientColors];
-                              next[index] = e.target.value;
-                              setGradientColors(next);
-                            }}
-                            className="w-full h-8 rounded-lg cursor-pointer"
-                          />
-                          <div className="mt-2">
-                            <div className="flex justify-between text-xs text-gray-400 mb-1">
-                              <span>Opacity</span>
-                              <span>{Math.round((gradientOpacity[index] ?? 1) * 100)}%</span>
-                            </div>
-
-                            <input
-                              type="range"
-                              min="0"
-                              max="1"
-                              step="0.01"
-                              value={gradientOpacity[index] ?? 1}
-                              onChange={(e) => {
-                                const next = [...gradientOpacity];
-                                next[index] = Number(e.target.value);
-                                setGradientOpacity(next);
-                              }}
-                              className="w-full accent-[var(--color-primary)]"
-                            />
-                          </div>
-
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    <div className="glass-panel p-4 rounded-xl space-y-4">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium">Angle: {gradientAngle}°</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="0"
-                        max="360"
-                        step="1"
-                        value={gradientAngle}
-                        onChange={e => setGradientAngle(Number(e.target.value))}
-                        className="w-full accent-[var(--color-primary)]"
-                      />
-
-                      <div className="relative h-28 sm:h-32 rounded-xl overflow-hidden shadow-xl" style={{ background: 'var(--gradient)' }}>
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm">
-                          <span className="text-white/80 font-mono text-xs sm:text-sm px-3 py-1.5 rounded-md bg-black/40">
-                            Gradient Preview
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center justify-between bg-black/30 p-2 rounded-lg font-mono text-xs sm:text-sm">
-                        <span className="text-gray-300 truncate flex-1 mr-2">
-                          {gradientCSS}
-                        </span>
-                        <button
-                          onClick={() => copyToClipboard(gradientCSS, 'gradient-css')}
-                          className="p-1.5 hover:bg-white/10 rounded-md transition-colors"
-                        >
-                          {copied === 'gradient-css' ? (
-                            <Check size={16} className="text-green-400" />
-                          ) : (
-                            <Copy size={16} className="text-gray-400" />
-                          )}
-                        </button>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* GLASSMORPHISM */}
-                {activeCategory === 'glass' && (
-                  <motion.div
-                    key="glass"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="glass-panel p-4 sm:p-6 rounded-xl space-y-6"
-                  >
-                    <h3 className="text-lg font-semibold">Glassmorphism Controls</h3>
-                    {[
-                      { label: 'Opacity', key: 'opacity', min: 0, max: 0.4, step: 0.005, format: v => `${(v * 100).toFixed(0)}%` },
-                      { label: 'Blur', key: 'blur', min: 0, max: 40, step: 1, format: v => `${v}px` },
-                      { label: 'Border', key: 'border', min: 0, max: 0.5, step: 0.005, format: v => `${(v * 100).toFixed(0)}%` },
-                    ].map(item => (
-                      <div key={item.key} className="space-y-2">
-                        <div className="flex justify-between text-sm">
-                          <span>{item.label}</span>
-                          <span>{item.format(glass[item.key])}</span>
-                        </div>
-                        <input
-                          type="range"
-                          min={item.min} max={item.max} step={item.step}
-                          value={glass[item.key]}
-                          onChange={e => setGlass(prev => ({ ...prev, [item.key]: +e.target.value }))}
-                          className="w-full accent-[var(--color-primary)]"
+                        <div
+                          className="h-24 rounded-lg border border-gray-700"
+                          style={{ background: gradientCSS }}
                         />
                       </div>
-                    ))}
+                    )}
 
-                    <div className="h-40 sm:h-48 rounded-xl flex items-center justify-center shadow-xl" style={getGlassStyle()}>
-                      <div className="text-center">
-                        <h4 className="text-lg sm:text-xl font-bold mb-2">Glass Effect Preview</h4>
-                        <p className="text-gray-300 text-sm">Adjust sliders to see changes</p>
+                    {activeTab === 'glass' && (
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-semibold">Glassmorphism</h3>
+                        {[
+                          { label: 'Blur', key: 'blur', min: 0, max: 50, icon: <Droplets size={14} /> },
+                          { label: 'Opacity', key: 'opacity', min: 0, max: 0.5, step: 0.01, icon: <Eye size={14} /> },
+                          { label: 'Border', key: 'border', min: 0, max: 1, step: 0.01, icon: <Layers size={14} /> },
+                        ].map((item) => (
+                          <div key={item.key} className="space-y-2">
+                            <div className="flex items-center justify-between text-xs">
+                              <div className="flex items-center gap-1.5">
+                                {item.icon}
+                                <span>{item.label}</span>
+                              </div>
+                              <span>{item.key === 'blur' ? `${glass[item.key]}px` : `${Math.round(glass[item.key] * 100)}%`}</span>
+                            </div>
+                            <input
+                              type="range"
+                              min={item.min}
+                              max={item.max}
+                              step={item.step || 1}
+                              value={glass[item.key]}
+                              onChange={e => setGlass(p => ({ ...p, [item.key]: +e.target.value }))}
+                              className="w-full"
+                            />
+                          </div>
+                        ))}
                       </div>
-                    </div>
-                  </motion.div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {previewModes.map((mode) => (
+                      <button
+                        key={mode.id}
+                        onClick={() => setActivePreview(mode.id)}
+                        className={`w-full p-2 rounded-lg flex flex-col items-center ${activePreview === mode.id
+                          ? 'bg-gradient-to-b from-white/20 to-transparent'
+                          : 'hover:bg-gray-700/50'
+                          }`}
+                        title={mode.name}
+                      >
+                        {mode.icon}
+                        <span className="text-xs mt-1">{mode.name.charAt(0)}</span>
+                      </button>
+                    ))}
+                  </div>
                 )}
-              </AnimatePresence>
-            </aside>
-          </div>
-
-          {/* PREVIEW AREA - RIGHT */}
-          <section className="lg:col-span-7 space-y-3 order-1 lg:order-2">
-            <div className="glass-panel p-1.5 rounded-xl overflow-x-hidden md:overflow-x-auto">
-              <div className="flex gap-1 min-w-max">
-                {previewModes.map(mode => (
-                  <button
-                    key={mode.id}
-                    onClick={() => setPreviewType(mode.id)}
-                    className={`flex items-center gap-1.5 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg font-medium whitespace-nowrap transition-all text-sm ${previewType === mode.id
-                      ? 'bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] text-white shadow-lg'
-                      : 'hover:bg-white/8'
-                      }`}
-                  >
-                    {mode.icon}
-                    {mode.name}
-                  </button>
-                ))}
               </div>
-            </div>
+            </motion.aside>
 
-            <div className="glass-panel p-2 sm:p-3 md:p-4 rounded-xl min-h-[500px] sm:min-h-[600px]" style={getGlassStyle()}>
-              <div className="flex items-center justify-between mb-2">
-                <h2 className="text-base sm:text-lg font-bold flex items-center gap-2">
-                  <Sparkles className="text-[var(--color-primary)] animate-pulse" size={20} />
-                  {previewModes.find(m => m.id === previewType)?.name} Live Preview
-                </h2>
-                <div className="text-xs sm:text-sm text-gray-400 flex items-center gap-1">
-                  <Eye size={14} /> Live
+            {/* Preview Area */}
+            <div className="flex-1">
+              <div
+                ref={previewRef}
+                className="bg-gray-800/30 backdrop-blur-sm rounded-xl border border-gray-700 overflow-hidden"
+              >
+                {/* Preview Header */}
+                <div className="p-4 border-b border-gray-700 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    {!sidebarCollapsed && (
+                      <div className="flex flex-wrap gap-1">
+                        {previewModes.map((mode) => (
+                          <button
+                            key={mode.id}
+                            onClick={() => setActivePreview(mode.id)}
+                            className={`px-3 py-1.5 rounded-lg text-sm flex items-center gap-1.5 transition-colors ${activePreview === mode.id
+                              ? 'bg-gradient-to-r from-orange-500 to-orange-400'
+                              : 'bg-gray-800 hover:bg-gray-700'
+                              }`}
+                          >
+                            {mode.icon}
+                            {mode.name}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {/* <button
+                      onClick={captureScreenshot}
+                      className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                      title="Capture screenshot"
+                    >
+                      <Camera size={16} />
+                    </button> */}
+                    <button
+                      // onClick={() => copyToClipboard(gradientCSS, 'gradient')}
+                      onClick={exportCSS}
+                      className="p-2 flex items-center gap-1.5 bg-slate-700 hover:bg-gray-700 rounded-lg transition-colors"
+                      title="Copy gradient CSS"
+                    >
+                      <Copy size={16} />  CSS
+                    </button>
+                  </div>
                 </div>
-              </div>
 
-              <div className="rounded-xl overflow-hidden min-h-[350px] sm:min-h-[400px] shadow-xl" style={{ background: getPreviewBackground() }}>
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={previewType}
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4 }}
-                    className="h-full"
-                  >
-                    {/* HERO PREVIEW */}
-                    {previewType === 'hero' && (
-                      <div className="p-4 sm:p-6 md:p-8 h-full flex flex-col items-center justify-center text-center relative overflow-hidden">
-                        <div className="absolute inset-0 overflow-hidden">
-                          {activeCategory === 'gradient' && (
-                            <div className="absolute inset-0" style={{ background: gradientCSS }} />
-                          )}
-                          {activeCategory === 'glass' && (
-                            <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
-                          )}
-                          <div className="absolute top-4 left-4 w-16 h-16 rounded-full" style={{ background: withOpacity(colors.primary, colorOpacity.primary * 0.1) }} />
-                          <div className="absolute bottom-4 right-4 w-20 h-20 rounded-full" style={{ background: withOpacity(colors.accent, colorOpacity.accent * 0.1) }} />
+                {/* Preview Content */}
+                <div
+                  className="p-6 md:p-4 min-h-[400px]"
+                  style={{ background: getPreviewBg() }}
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activePreview}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="h-full"
+                    >
+                      {/* HERO Preview */}
+                      {activePreview === 'hero' && (
+                        <div className="flex items-center justify-center h-full">
+                          <div className="max-w-3xl text-center">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur mb-6">
+                              <Zap size={16} />
+                              <span className="text-sm font-medium">Live Preview</span>
+                            </div>
+                            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+                              <span className="block">Create Amazing</span>
+                              <span className="block bg-gradient-to-r from-[var(--color-primary)] via-[var(--color-accent)] to-[var(--color-success)] bg-clip-text text-transparent">
+                                Color Schemes
+                              </span>
+                            </h1>
+                            <p className="text-gray-300 mb-8 text-lg">
+                              Design beautiful interfaces with real-time color customization
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                              <button
+                                style={{ background: 'var(--gradient-main)' }}
+                                className="px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-shadow"
+                              >
+                                Get Started
+                              </button>
+                              <button
+                                style={{
+                                  background: 'transparent',
+                                  border: '1px solid var(--color-accent)',
+                                  color: 'var(--color-accent)'
+                                }}
+                                className="px-6 py-3 rounded-lg font-semibold hover:bg-white/5 transition-colors"
+                              >
+                                Learn More
+                              </button>
+                            </div>
+                          </div>
                         </div>
+                      )}
 
-                        <div className="relative z-10 max-w-3xl">
-                          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-panel mb-4 text-xs sm:text-sm">
-                            <TrendingUp size={14} />
-                            <span className="font-medium">Version 3.0 Released</span>
+                      {/* DASHBOARD Preview */}
+                      {activePreview === 'dashboard' && (
+                        <div className="space-y-2 ">
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <h2 className="text-2xl font-bold" style={{ color: 'var(--color-primary)' }}>
+                                Dashboard
+                              </h2>
+                              <p className="text-gray-400 text-sm">Overview and analytics</p>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <Bell size={20} />
+                              <div className="w-8 h-8 rounded-full" style={{ background: 'var(--gradient-main)' }} />
+                            </div>
                           </div>
 
-                          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 leading-tight">
-                            <span className="block" style={{ color: activeCategory === 'single' ? colors.primary : '#fff' }}>
-                              Create Stunning
-                            </span>
-                            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] bg-clip-text text-transparent">
-                              Color Experiences
-                            </span>
-                          </h1>
-
-                          <p className="text-sm sm:text-base text-gray-200 mb-6 max-w-xl mx-auto" style={{ opacity: 0.9 }}>
-                            Build beautiful interfaces with our advanced color studio.
-                          </p>
-
-                          <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
-                            <button className="px-4 py-2 sm:px-6 sm:py-2.5 rounded-lg font-semibold text-white shadow-lg transition-all hover:scale-105 active:scale-95 text-sm sm:text-base"
-                              style={{
-                                background: withOpacity(colors.primary, colorOpacity.primary)
-                              }}>
-                              Get Started Free
-                            </button>
-                            <button className="px-4 py-2 sm:px-6 sm:py-2.5 rounded-lg font-semibold border transition-all hover:bg-white/10 text-sm sm:text-base"
-                              style={{ borderColor: colors.accent, color: getContrast(colors.dark) }}>
-                              Watch Demo
-                            </button>
-                          </div>
-
-                          <div className="grid grid-cols-3 gap-3 sm:gap-4 mt-8 max-w-md mx-auto">
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             {[
-                              { label: 'Users', value: '10K+', icon: <Users size={16} /> },
-                              { label: 'Projects', value: '2.4K+', icon: <Layers size={16} /> },
-                              { label: 'Rating', value: '4.9', icon: <Star size={16} /> }
-                            ].map((stat, idx) => (
-                              <div key={idx} className="glass-panel p-2 sm:p-3 rounded-lg text-center">
-                                <div className="flex justify-center mb-1" style={{ color: colors.primary }}>
-                                  {stat.icon}
-                                </div>
-                                <div className="text-lg sm:text-xl font-bold mb-0.5">{stat.value}</div>
-                                <div className="text-xs text-gray-300">{stat.label}</div>
+                              { title: 'Revenue', value: '$24.5K', change: '+12%' },
+                              { title: 'Users', value: '1.2K', change: '+8%' },
+                              { title: 'Growth', value: '+45%', change: '+15%' },
+                              { title: 'Engagement', value: '78%', change: '+5%' },
+                            ].map((card, i) => (
+                              <div
+                                key={i}
+                                className="p-4 rounded-xl backdrop-blur-sm border border-white/10"
+                                style={glassStyle}
+                              >
+                                <p className="text-sm text-gray-400">{card.title}</p>
+                                <p className="text-2xl font-bold mt-1">{card.value}</p>
+                                <p className="text-xs mt-1" style={{ color: 'var(--color-success)' }}>
+                                  {card.change}
+                                </p>
                               </div>
                             ))}
                           </div>
-                        </div>
-                      </div>
-                    )}
 
-                    {/* DASHBOARD PREVIEW */}
-                    {previewType === 'dashboard' && (
-                      <div className="h-full p-3 sm:p-4 bg-gradient-to-br from-gray-900/50 to-black/50">
-                        <div className="flex items-center justify-between mb-4 sm:mb-6">
-                          <div>
-                            <h2 className="text-lg sm:text-xl font-bold" style={{ color: colors.primary }}>Analytics Dashboard</h2>
-                            <p className="text-gray-400 text-xs sm:text-sm">Welcome back, John</p>
-                          </div>
-                          <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="relative">
-                              <Bell size={18} className="text-gray-400" />
-                              <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full" style={{ background: colors.danger }} />
-                            </div>
-                            <div className="flex items-center gap-1.5 glass-panel px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg">
-                              <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full" style={{ background: gradientCSS }} />
-                              <span className="font-medium text-sm">John</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
-                          {[
-                            { title: 'Revenue', value: '$42.8K', change: '+12.5%', color: colors.success },
-                            { title: 'Users', value: '1,248', change: '+8.2%', color: colors.primary },
-                            { title: 'Conversion', value: '4.8%', change: '-1.2%', color: colors.danger },
-                            { title: 'Sessions', value: '8.4K', change: '+5.7%', color: colors.accent }
-                          ].map((card, idx) => (
-<div
-  className="glass-panel p-3 rounded-lg"
-  style={{
-    borderColor: withOpacity(card.color, 0.25),
-    boxShadow: `
-      0 12px 30px ${withOpacity(card.color, 0.15)},
-      inset 0 0 0 1px ${withOpacity('#ffffff', 0.05)}
-    `,
-  }}
->
-                              <div className="flex justify-between items-start mb-2">
-                                <div className="p-1.5 rounded-md" style={{ background: card.color + '20' }}>
-                                  <TrendingUp size={14} style={{ color: card.color }} />
-                                </div>
-                                <span className={`text-xs font-medium ${card.change.startsWith('+') ? 'text-green-400' : 'text-red-400'}`}>
-                                  {card.change}
-                                </span>
-                              </div>
-                              <div className="text-lg font-bold mb-0.5">{card.value}</div>
-                              <div className="text-xs text-gray-400">{card.title}</div>
-                            </div>
-                          ))}
-                        </div>
-
-                        <div className="grid grid-cols-1 gap-4">
-<div
-  className="glass-panel p-3 sm:p-4 rounded-xl"
-  style={{
-    borderColor: withOpacity(colors.accent, 0.22),
-    boxShadow: `
-      0 16px 32px ${withOpacity(colors.accent, 0.14)}
-    `,
-  }}
->
-
-                            <h3 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Monthly Growth</h3>
-                            <div className="h-40 sm:h-48">
-                              <ResponsiveContainer width="100%" height="100%">
-                                <BarChart data={monthlyGrowthData}>
+                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div className="p-4 rounded-xl" style={glassStyle}>
+                              <h3 className="font-semibold mb-4">Monthly Growth</h3>
+                              <ResponsiveContainer width="100%" height={200}>
+                                <AreaChart data={monthlyGrowthData}>
                                   <defs>
-                                    <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
-                                      <stop
-                                        offset="0%"
-                                        stopColor={withOpacity(colors.primary, colorOpacity.primary)}
-                                      />
-                                      <stop
-                                        offset="100%"
-                                        stopColor={withOpacity(colors.accent, colorOpacity.accent)}
-                                      />
-
+                                    <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
+                                      <stop offset="5%" stopColor="var(--color-primary)" stopOpacity={0.8} />
+                                      <stop offset="95%" stopColor="var(--color-primary)" stopOpacity={0} />
                                     </linearGradient>
                                   </defs>
-                                  <XAxis
-                                    dataKey="name"
-                                    tick={{ fill: '#9ca3af', fontSize: 10 }}
-                                    axisLine={false}
-                                    tickLine={false}
-                                  />
-                                  <YAxis
-                                    tick={{ fill: '#9ca3af', fontSize: 10 }}
-                                    axisLine={false}
-                                    tickLine={false}
-                                  />
-                                  <Tooltip
-                                    cursor={{ fill: 'rgba(255,255,255,0.05)' }}
-                                    contentStyle={{
-                                      background: 'rgba(0,0,0,0.8)',
-                                      borderRadius: '8px',
-                                      border: '1px solid rgba(255,255,255,0.1)',
-                                      color: '#fff',
-                                      fontSize: '12px'
-                                    }}
-                                  />
-                                  <Bar
-                                    dataKey="value"
-                                    radius={[8, 8, 0, 0]}
-                                    fill="url(#barGradient)"
-                                  />
-                                </BarChart>
+                                  <XAxis dataKey="name" stroke="var(--color-light)" fontSize={12} />
+                                  <Tooltip />
+                                  <Area type="monotone" dataKey="value" stroke="var(--color-primary)" fill="url(#colorGradient)" />
+                                </AreaChart>
+                              </ResponsiveContainer>
+                            </div>
+
+                            <div className="p-4 rounded-xl" style={glassStyle}>
+                              <h3 className="font-semibold mb-4">Color Usage</h3>
+                              <ResponsiveContainer width="100%" height={200}>
+                                <PieChart>
+                                  <Pie data={pieData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} paddingAngle={5} dataKey="value">
+                                    {pieData.map((entry, index) => (
+                                      <Cell key={`cell-${index}`} fill={entry.color} />
+                                    ))}
+                                  </Pie>
+                                  <Tooltip />
+                                </PieChart>
                               </ResponsiveContainer>
                             </div>
                           </div>
-
-<div
-  className="glass-panel p-3 sm:p-4 rounded-xl"
-  style={{
-    borderColor: withOpacity(colors.accent, 0.22),
-    boxShadow: `
-      0 16px 32px ${withOpacity(colors.accent, 0.14)}
-    `,
-  }}
->
-
-                            <h3 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Recent Activity</h3>
-                            <div className="space-y-2">
-                              {[
-                                { user: 'Alex Johnson', action: 'created project', time: '2m' },
-                                { user: 'Sarah Miller', action: 'updated settings', time: '15m' },
-                                { user: 'Mike Chen', action: 'commented', time: '1h' },
-                                { user: 'You', action: 'changed colors', time: 'Now' }
-                              ].map((activity, idx) => (
-                                <div key={idx} className="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 transition-colors">
-                                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold text-sm"
-                                    style={{ background: gradientColors[idx % gradientColors.length] }}>
-                                    {activity.user.charAt(0)}
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <div className="font-medium text-sm truncate">{activity.user}</div>
-                                    <div className="text-xs text-gray-400 truncate">{activity.action}</div>
-                                  </div>
-                                  <div className="text-xs text-gray-500 whitespace-nowrap">{activity.time}</div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    {/* FORMS PREVIEW */}
-                    {previewType === 'forms' && (
-                      <div className="h-full p-4 sm:p-6">
-                        <div className="max-w-sm mx-auto">
-                          <div className="text-center mb-6">
-                            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl mx-auto mb-4 flex items-center justify-center"
-                              style={{ background: gradientCSS }}>
-                              <Lock size={20} className="text-white" />
-                            </div>
-                            <h2 className="text-xl sm:text-2xl font-bold mb-2">Welcome Back</h2>
-                            <p className="text-gray-400 text-sm">Sign in to continue</p>
-                          </div>
-
-                          <div className="space-y-4 border border-white/10 p-4 rounded-xl">
-                            <div>
-                              <label className="block text-sm font-medium mb-1.5">Email Address</label>
-                              <div className="relative">
-                                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={16} />
-                                <input
-                                  type="email"
-                                  placeholder="you@example.com"
-                                  className="w-full pl-10 pr-3 py-2.5 glass-panel rounded-lg border border-transparent focus:outline-none focus:ring-1 transition-all text-sm"
-                                  style={{
-                                    background: 'rgba(255,255,255,0.07)',
-                                    '--tw-ring-color': colors.primary
-                                  }}
-                                />
-                              </div>
-                            </div>
-
-                            <div>
-                              <label className="block text-sm font-medium mb-1.5">Password</label>
-                              <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={16} />
-                                <input
-                                  type="password"
-                                  placeholder="••••••••"
-                                  className="w-full pl-10 pr-3 py-2.5 glass-panel rounded-lg border border-transparent focus:outline-none focus:ring-1 transition-all text-sm"
-                                  style={{
-                                    background: 'rgba(255,255,255,0.07)'
-                                  }}
-                                />
-                              </div>
-                            </div>
-
-                            <div className="flex items-center justify-between text-sm">
-                              <label className="flex items-center gap-1.5">
-                                <input type="checkbox" className="rounded" style={{ accentColor: colors.primary }} />
-                                <span>Remember me</span>
-                              </label>
-                              <a href="#" className="font-medium hover:underline" style={{ color: colors.primary }}>
-                                Forgot password?
-                              </a>
-                            </div>
-
-                            <button className="w-full py-2.5 rounded-lg font-semibold text-white shadow-lg transition-all hover:opacity-90 active:scale-95 text-sm sm:text-base"
-                              style={{ background: gradientCSS }}>
+                      {/* FORMS Preview */}
+                      {activePreview === 'forms' && (
+                        <div className="flex items-center justify-center h-full">
+                          <div className="max-w-md w-full p-6 rounded-xl" style={glassStyle}>
+                            <h2 className="text-2xl font-bold mb-6 text-center" style={{ color: 'var(--color-primary)' }}>
                               Sign In
-                            </button>
-
-                            <div className="relative my-4">
-                              <div className="absolute inset-0 flex items-center">
-                                <div className="w-full border-t border-gray-700"></div>
+                            </h2>
+                            <form className="space-y-4">
+                              <div>
+                                <label className="block text-sm mb-1.5">Email</label>
+                                <div className="relative">
+                                  <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                  <input
+                                    type="email"
+                                    placeholder="you@example.com"
+                                    className="w-full pl-10 pr-3 py-2.5 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-1 focus:ring-primary"
+                                  />
+                                </div>
                               </div>
-                              <div className="relative flex justify-center text-xs">
-                                <span className="px-3 glass-panel rounded-full">Or continue with</span>
+                              <div>
+                                <label className="block text-sm mb-1.5">Password</label>
+                                <div className="relative">
+                                  <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                  <input
+                                    type="password"
+                                    placeholder="••••••••"
+                                    className="w-full pl-10 pr-10 py-2.5 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-1 focus:ring-primary"
+                                  />
+                                  <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2">
+                                    <Eye size={16} className="text-gray-400" />
+                                  </button>
+                                </div>
                               </div>
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-2">
-                              <button className="py-2.5 rounded-lg glass-panel flex items-center justify-center gap-2 hover:bg-white/5 transition-colors text-sm">
-                                <div className="w-4 h-4 rounded-full bg-blue-500" />
-                                <span>Google</span>
+                              <button
+                                type="submit"
+                                className="w-full py-2.5 rounded-lg font-semibold mt-2"
+                                style={{ background: 'var(--gradient-main)' }}
+                              >
+                                Sign In
                               </button>
-                              <button className="py-2.5 rounded-lg glass-panel flex items-center justify-center gap-2 hover:bg-white/5 transition-colors text-sm">
-                                <div className="w-4 h-4 rounded-full bg-black" />
-                                <span>GitHub</span>
-                              </button>
-                            </div>
-
-                            <p className="text-center text-gray-400 text-xs sm:text-sm mt-4">
-                              Don't have an account?{' '}
-                              <a href="#" className="font-semibold hover:underline" style={{ color: colors.accent }}>
-                                Sign up
-                              </a>
-                            </p>
+                            </form>
                           </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    {/* CARDS PREVIEW */}
-                    {previewType === 'cards' && (
-                      <div className="h-full p-4">
-                        <h3 className="text-lg sm:text-xl font-bold mb-4 text-center" style={{ color: colors.primary }}>
-                          Our Services
-                        </h3>
-
-                        <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                      {/* CARDS Preview */}
+                      {activePreview === 'cards' && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           {[
                             {
-                              title: 'Development Kit',
-                              description: 'React component library with TypeScript.',
-                              price: '$89/mo',
-                              features: ['React Components', 'TypeScript', 'Storybook', 'Support'],
-                              icon: <Zap size={18} />,
+                              title: 'Basic Plan',
+                              price: '$19',
+                              features: ['5 Projects', 'Basic Support', '1GB Storage'],
+                              highlighted: false
                             },
                             {
-                              title: 'Pro Bundle',
-                              description: 'Enterprise projects with premium support.',
-                              price: '$199/mo',
-                              features: ['All Features', 'White-label', 'Training', '24/7 Support'],
-                              icon: <Star size={18} />,
-                            }
-                          ].map((card, idx) => (
-                            <motion.div
-  key={idx}
- whileHover={{
-  y: -6,
-  boxShadow: `
-    0 20px 40px ${withOpacity(colors.primary, 0.28)},
-    inset 0 0 0 1px ${withOpacity('#ffffff', 0.08)}
-  `
-}}
-  className="glass-panel p-4 rounded-xl shadow-2xl relative transition-all"
-  style={{
-    border: `1px solid ${withOpacity(colors.primary, 0.25)}`,
-    boxShadow: `
-      0 12px 30px ${withOpacity(colors.primary, 0.18)},
-      inset 0 0 0 1px ${withOpacity('#ffffff', 0.05)}
-    `
-  }}
->
-
+                              title: 'Pro Plan',
+                              price: '$49',
+                              features: ['Unlimited Projects', 'Priority Support', '100GB Storage', 'Custom Domains'],
+                              highlighted: true
+                            },
+                          ].map((plan, i) => (
+                            <div
+                              key={i}
+                              className={`p-6 rounded-xl ${plan.highlighted ? 'scale-105' : ''}`}
+                              style={glassStyle}
+                            >
+                              <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--color-primary)' }}>
+                                {plan.title}
+                              </h3>
                               <div className="mb-4">
-                                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg mb-3 flex items-center justify-center"
-                                  style={{ background: gradientCSS }}>
-                                  <div style={{ color: '#fff' }}>{card.icon}</div>
-                                </div>
-                                <h4 className="text-base sm:text-lg font-bold mb-1">{card.title}</h4>
-                                <p className="text-gray-400 text-xs sm:text-sm mb-3">{card.description}</p>
+                                <span className="text-3xl font-bold">${plan.price}</span>
+                                <span className="text-gray-400">/month</span>
                               </div>
-
-                              <div className="mb-4">
-                                <div className="text-xl sm:text-2xl font-bold">{card.price}</div>
-                                <div className="text-gray-400 text-xs">per month</div>
-                              </div>
-
-                              <ul className="space-y-2 mb-4">
-                                {card.features.map((feature, fIdx) => (
-                                  <li key={fIdx} className="flex items-center gap-2 text-xs sm:text-sm">
-                                    <Check size={14} className="text-green-400 flex-shrink-0" />
-                                    <span>{feature}</span>
+                              <ul className="space-y-2 mb-6">
+                                {plan.features.map((feature, j) => (
+                                  <li key={j} className="flex items-center gap-2 text-sm">
+                                    <Check size={14} style={{ color: 'var(--color-success)' }} />
+                                    {feature}
                                   </li>
                                 ))}
                               </ul>
-
-                              <button className="w-full py-2.5 rounded-lg font-semibold glass-panel hover:bg-white/5 transition-all text-sm sm:text-base">
+                              <button
+                                className={`w-full py-2.5 rounded-lg font-semibold ${plan.highlighted ? 'shadow-lg' : ''}`}
+                                style={plan.highlighted ? { background: 'var(--gradient-main)' } : { background: 'var(--color-secondary)' }}
+                              >
                                 Get Started
                               </button>
-                            </motion.div>
+                            </div>
                           ))}
                         </div>
-                      </div>
-                    )}
-                  </motion.div>
-                </AnimatePresence>
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
-          </section>
-        </main>
+          </div>
+        </div>
       </div>
     </MainLayout>
   );
 };
 
-export default ColorPicker;
+export default BrunouiColorStudioPro;

@@ -19,7 +19,7 @@ import SingleBlog from './pages/blogs/SingleBlog';
 function App() {
   return (
     <>
-      {/* <Router> */}
+      <Router>
         <ScrollToTop/>
         <div id="app-scroll-container" className="h-screen overflow-y-auto">
 
@@ -38,7 +38,7 @@ function App() {
             <Route path="/blog/:id/:slug" element={<SingleBlog />} />
         </Routes>
         </div>
-      {/* </Router> */}
+      </Router>
       <ToastContainer
         position="bottom-center"
         autoClose={2000}

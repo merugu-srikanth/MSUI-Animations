@@ -7,8 +7,17 @@ html {
   font-family: 'Poppins', sans-serif, -apple-system;
 }
 
+
+
+
+
+button,
 a,
-button {
+input[type="range"],
+input[type="checkbox"],
+input[type="radio"],
+select,
+.cursor-pointer-force {
   cursor: pointer !important;
 }
 
