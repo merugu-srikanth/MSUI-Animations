@@ -6,7 +6,7 @@ const Sidebar = ({ activeCategory, onSelectCategory, searchQuery, setSearchQuery
 
     // Calculate counts
     const getCount = (categoryId) => {
-        if (categoryId === 'all') return COMPONENTS.length;
+
         // Check if category is standard UI component or from Dashboards/Emails
         return COMPONENTS.filter(c => c.category === categoryId).length;
     };

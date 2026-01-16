@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Components from './pages/Components';
+import Templates from './pages/Templates';
+import SingleTemplate from './pages/SingleTemplate';
 import EmailTemplates from './pages/EmailTemplates';
 import Dashboards from './pages/Dashboards';
 import Admin from './pages/Admin';
@@ -15,30 +17,34 @@ import UiSamples from './pages/UiSamples';
 import ColorPicker from './components/colorpicker/ColorPicker';
 import Blogs from './pages/blogs/Blogs';
 import SingleBlog from './pages/blogs/SingleBlog';
+import { PreviewResourceProvider } from './context/PreviewResourceContext';
 
 function App() {
   return (
     <>
-      <Router>
-        <ScrollToTop/>
-        <div id="app-scroll-container" className="h-screen overflow-y-auto">
+      <PreviewResourceProvider>
+        <Router>
+          <ScrollToTop />
+          <div id="app-scroll-container" className="h-screen overflow-y-auto">
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/components" element={<Components />} />
-          <Route path="/documentation" element={<DocsSection />} />
-          <Route path="/templates" element={<EmailTemplates />} />
-          <Route path="/dashboards" element={<Dashboards />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/coming-soon" element={<ComingSoon />} />
-          <Route path="/ui-samples" element={<UiSamples />} />
-          <Route path="/color-picker" element={<ColorPicker />} />
-          <Route path="/blogs" element={<Blogs />} />
-            <Route path="/blog/:id" element={<SingleBlog />} />
-            <Route path="/blog/:id/:slug" element={<SingleBlog />} />
-        </Routes>
-        </div>
-      </Router>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/components" element={<Components />} />
+              <Route path="/documentation" element={<DocsSection />} />
+              <Route path="/templates" element={<Templates />} />
+              <Route path="/templates/:id" element={<SingleTemplate />} />
+              <Route path="/dashboards" element={<Dashboards />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/coming-soon" element={<ComingSoon />} />
+              <Route path="/ui-samples" element={<UiSamples />} />
+              <Route path="/color-picker" element={<ColorPicker />} />
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/blog/:id" element={<SingleBlog />} />
+              <Route path="/blog/:id/:slug" element={<SingleBlog />} />
+            </Routes>
+          </div>
+        </Router>
+      </PreviewResourceProvider>
       <ToastContainer
         position="bottom-center"
         autoClose={2000}

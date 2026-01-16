@@ -9,7 +9,6 @@ import { WEBS } from './web';
 import { EMAIL_TEMPLATES } from './emailTemplates';
 
 export const CATEGORIES = [
-    { id: 'all', name: 'All Components' },
     { id: 'button', name: 'Buttons' },
     { id: 'animated-input', name: 'Inputs' },
     { id: 'card', name: 'Cards' },

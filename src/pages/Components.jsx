@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import AllComponentsView from '../components/AllComponentsView/AllComponentsView';
 
 const Components = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState('button');
   const [searchQuery, setSearchQuery] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -57,11 +57,11 @@ const Components = () => {
 
               {/* 🌈 Animated Moving Border */}
               <div className="absolute inset-0 rounded-2xl sm:rounded-3xl pointer-events-none">
-                <div className="absolute inset-[1px] rounded-2xl sm:rounded-3xl bg-black/60 backdrop-blur-xl" />
+                <div className="absolute inset-px rounded-2xl sm:rounded-3xl bg-black/60 backdrop-blur-xl" />
               </div>
 
               {/* ✨ Shimmer Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700 animate-shimmer" />
+              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700 animate-shimmer" />
 
               {/* ================= CONTENT ================= */}
               <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-6">
@@ -75,7 +75,7 @@ const Components = () => {
             lg:text-2xl 
             font-extrabold 
             tracking-tight 
-            bg-gradient-to-r from-brand-primary via-brand-500 to-orange-500 
+            bg-linear-to-r from-brand-primary via-brand-500 to-orange-500 
             bg-clip-text text-transparent
           ">
                     BRUNOUI
@@ -106,7 +106,7 @@ const Components = () => {
                       className="relative group"
                     >
                       {/* 🔥 Animated Border */}
-                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500 opacity-0 group-hover:opacity-100 blur-md transition duration-500" />
+                      <div className="absolute inset-0 rounded-xl bg-linear-to-r from-blue-500 via-purple-500 to-orange-500 opacity-0 group-hover:opacity-100 blur-md transition duration-500" />
 
                       <div className="
                 relative 

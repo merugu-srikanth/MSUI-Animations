@@ -17,35 +17,6 @@ const AllComponentsView = ({ category, searchQuery }) => {
 
     const renderView = () => {
         switch (category) {
-            case 'all':
-                return (
-                    <div className="space-y-16">
-                        <section className="space-y-6">
-                            <h2 className="text-2xl font-bold text-white border-l-4 border-brand-primary pl-4">Buttons</h2>
-                            <ButtonsView searchQuery={searchQuery} />
-                        </section>
-                        <section className="space-y-6">
-                            <h2 className="text-2xl font-bold text-white border-l-4 border-cyan-500 pl-4">Cards</h2>
-                            <CardsView searchQuery={searchQuery} />
-                        </section>
-                        <section className="space-y-6">
-                            <h2 className="text-2xl font-bold text-white border-l-4 border-purple-500 pl-4">Inputs</h2>
-                            <InputsView searchQuery={searchQuery} />
-                        </section>
-                        <section className="space-y-6">
-                            <h2 className="text-2xl font-bold text-white border-l-4 border-pink-500 pl-4">Badges</h2>
-                            <BadgeView searchQuery={searchQuery} />
-                        </section>
-                        <section className="space-y-6">
-                            <h2 className="text-2xl font-bold text-white border-l-4 border-green-500 pl-4">Navigation</h2>
-                            <NavbarView searchQuery={searchQuery} />
-                        </section>
-                        <section className="space-y-6">
-                            <h2 className="text-2xl font-bold text-white border-l-4 border-orange-500 pl-4">Dashboards</h2>
-                            <DashboardView searchQuery={searchQuery} />
-                        </section>
-                    </div>
-                );
             case 'button':
                 return <ButtonsView searchQuery={searchQuery} />;
             case 'card':

@@ -1,6 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
+import { PreviewResourceContext } from '../../context/PreviewResourceContext';
 
 const PreviewRenderer = ({ code, htmlCode }) => {
+    const { tailwindUrl, fontAwesomeUrl, loading } = useContext(PreviewResourceContext);
 
     // Allow either prop name
     const finalCode = code || htmlCode || '';
@@ -8,13 +10,25 @@ const PreviewRenderer = ({ code, htmlCode }) => {
     // We construct a full HTML document for the iframe
     // ensuring we load Tailwind via CDN for the arbitrary values to work
     const srcDoc = useMemo(() => {
+        // If resources are still loading, maybe show a loader or just wait?
+        // But for smoothness, we can just use the URLs if available, or fallback if needed.
+        // If tailwindUrl is null (failed fetch), we fallback to CDN to be safe.
+
+        const tailwindScript = tailwindUrl
+            ? `<script src="${tailwindUrl}"></script>`
+            : `<script src="https://cdn.tailwindcss.com"></script>`;
+
+        const fontAwesomeLink = fontAwesomeUrl
+            ? `<link rel="stylesheet" href="${fontAwesomeUrl}">`
+            : `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">`;
+
         return `
             <!DOCTYPE html>
             <html>
                 <head>
                     <meta charset="utf-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <script src="https://cdn.tailwindcss.com"></script>
+                    ${tailwindScript}
                     <script>
                         tailwind.config = {
                             theme: {
@@ -68,7 +82,7 @@ const PreviewRenderer = ({ code, htmlCode }) => {
                             }
                         }
                     </script>
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+                    ${fontAwesomeLink}
                     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
                     <style>
                         body {
@@ -193,7 +207,10 @@ const PreviewRenderer = ({ code, htmlCode }) => {
                 </body>
             </html>
         `;
-    }, [finalCode]);
+    }, [finalCode, tailwindUrl, fontAwesomeUrl]);
+
+    // Optional: Avoid rendering iframe until resources are ready?
+    // Or just render. It's safe to render even if loading (fallback to CDN).
 
     return (
         <iframe

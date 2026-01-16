@@ -724,10 +724,10 @@ const ComingSoon = () => {
             />
 
             {/* Scroll Progress Bar */}
-            <motion.div
+            {/* <motion.div
                 className="fixed top-16 left-0 right-0 h-1 bg-gradient-to-r from-brand-primary via-orange-500 to-yellow-500 origin-left z-40"
                 style={{ scaleX }}
-            />
+            /> */}
 
             <BackgroundEffects />
 
