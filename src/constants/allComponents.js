@@ -7,10 +7,12 @@ import { NAVBARS } from './navbar';
 import { HEROES } from './hero';
 import { WEBS } from './web';
 import { EMAIL_TEMPLATES } from './emailTemplates';
+import { LOADERS } from './loaders';
 
 export const CATEGORIES = [
     { id: 'button', name: 'Buttons' },
     { id: 'animated-input', name: 'Inputs' },
+    { id: 'loader', name: 'Loaders' },
     { id: 'card', name: 'Cards' },
     { id: 'badge', name: 'Badges' },
     { id: 'dashboard', name: 'Dashboard' },
@@ -22,6 +24,7 @@ export const CATEGORIES = [
 export const COMPONENTS = [
     ...BUTTONS,
     ...INPUTS,
+    ...LOADERS,
     ...CARDS,
     ...BADGES,
     ...DASHBOARDS,

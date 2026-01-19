@@ -194,19 +194,34 @@ const SpecStyleTemplate = () => {
           .btn-orange {
             background: linear-gradient(90deg, #FF6B35 0%, #FF9A3D 100%);
             color: white;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(255, 107, 53, 0.5);
           }
           .btn-orange:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.3);
+            border-color: #FF9A3D;
+          }
+          .btn-orange::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+          }
+          .btn-orange:hover::before {
+            left: 100%;
           }
           
           .nav-glass {
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
           }
         `}</style>
 

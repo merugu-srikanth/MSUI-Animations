@@ -49,12 +49,12 @@ const Templates = () => {
                                 />
 
                                 {/* Overlay Action */}
-                                <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 gap-4">
+                                <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 gap-4 bg-black/40 backdrop-blur-sm">
                                     <Link
                                         to={`/templates/${template.id}`}
-                                        className="flex items-center gap-2 px-5 py-2.5 bg-orange-500/90 hover:bg-orange-500 text-white rounded-full backdrop-blur-sm font-medium transform translate-y-4 group-hover:translate-y-0 transition-all duration-300"
+                                        className="flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold transform scale-90 group-hover:scale-100 transition-all duration-300 shadow-xl"
                                     >
-                                        <Eye size={18} /> Preview
+                                        <Eye size={20} /> Preview Template
                                     </Link>
                                 </div>
                             </div>

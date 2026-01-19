@@ -67,7 +67,7 @@ const MobileSidebar = ({ isOpen, onClose }) => (
                             {[
                                 { label: "Components", to: "/components", icon: Layers },
                                 { label: "Docs", to: "/documentation", icon: FileCode },
-                                { label: "Templates", to: "/coming-soon", icon: Layout },
+                                { label: "Templates", to: "/templates", icon: Layout },
                                 // { label: "Pricing", to: "/coming-soon", icon: Star },
                                 // { label: "Contact", to: "/coming-soon", icon: Mail },
                                 // { label: "UiSamples", to: "/ui-samples", icon: Mail },
@@ -160,7 +160,7 @@ const Navbar = () => {
                         {[
                             { label: "Components", to: "/components" },
                             { label: "Docs", to: "/documentation" },
-                            { label: "Templates", to: "/coming-soon" },
+                            { label: "Templates", to: "/templates" },
                             // { label: "Pricing", to: "/coming-soon" },
                             // { label: "UiSamples", to: "/ui-samples" },
                             { label: "ColorPicker", to: "/color-picker" },

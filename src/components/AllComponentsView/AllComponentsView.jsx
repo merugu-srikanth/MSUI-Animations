@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import ButtonsView from '../ComponentViews/ButtonsView';
+import LoadersView from '../ComponentViews/LoadersView';
 import CardsView from '../ComponentViews/CardsView';
 import InputsView from '../ComponentViews/InputsView';
 import DashboardView from '../ComponentViews/DashboardView';
@@ -21,6 +22,8 @@ const AllComponentsView = ({ category, searchQuery }) => {
                 return <ButtonsView searchQuery={searchQuery} />;
             case 'card':
                 return <CardsView searchQuery={searchQuery} />;
+            case 'loader':
+                return <LoadersView searchQuery={searchQuery} />;
             case 'animated-input':
                 return <InputsView searchQuery={searchQuery} />;
 

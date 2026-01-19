@@ -3,9 +3,19 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Code, Download, Copy, Check, Eye } from 'lucide-react';
 import { TEMPLATES } from '../constants/templates';
 import SpecStyleTemplate from '../components/templates/SpecStyleTemplate';
+import CodeToUIHero from '../components/templates/CodeToUIHero';
+import GlassMotionHero from '../components/templates/GlassMotionHero';
+import NeonGridHero from '../components/templates/NeonGridHero';
+import WorkflowHero from '../components/templates/WorkflowHero';
+import BrandRevealHero from '../components/templates/BrandRevealHero';
 
 const TEMPLATE_COMPONENTS = {
-    'SpecStyleTemplate': SpecStyleTemplate
+    'SpecStyleTemplate': SpecStyleTemplate,
+    'CodeToUIHero': CodeToUIHero,
+    'GlassMotionHero': GlassMotionHero,
+    'NeonGridHero': NeonGridHero,
+    'WorkflowHero': WorkflowHero,
+    'BrandRevealHero': BrandRevealHero
 };
 
 const SingleTemplate = () => {

@@ -860,4 +860,821 @@ export default AuroraButton;`
       };
     }
   }
+  ,
+  {
+    id: 'btn-v2-neon-border',
+    name: 'Neon Border Pulse',
+    category: 'button',
+    description: 'Neon border that travels around the button',
+    tags: ['button', 'neon', 'border', 'animated'],
+    bgConfig: 'bg-black',
+    get preview() {
+      return `<button class="relative inline-flex overflow-hidden rounded-lg p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+  <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"></span>
+  <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-8 py-3 text-sm font-medium text-white backdrop-blur-3xl">
+    Neon Pulse
+  </span>
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="relative inline-flex overflow-hidden rounded-lg p-[1px]">
+  <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"></span>
+  <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-8 py-3 text-sm font-medium text-white backdrop-blur-3xl">
+    Neon Pulse
+  </span>
+</button>`,
+        react: `import React from 'react';
+
+const NeonBorderButton = () => {
+  return (
+    <button className="relative inline-flex overflow-hidden rounded-lg p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+      <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+      <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-8 py-3 text-sm font-medium text-white backdrop-blur-3xl">
+        Neon Pulse
+      </span>
+    </button>
+  );
+};
+export default NeonBorderButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-glitch-shift',
+    name: 'Glitch Text Shift',
+    category: 'button',
+    description: 'Text splits into RGB channels on hover',
+    tags: ['button', 'glitch', 'rgb', 'hover'],
+    bgConfig: 'bg-zinc-900',
+    get preview() {
+      return `<button class="group relative px-8 py-4 bg-zinc-900 text-white font-bold rounded-md overflow-hidden">
+  <div class="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+  <span class="relative block group-hover:-translate-y-1 group-hover:-translate-x-1 group-hover:text-red-500 transition-transform duration-100">GLITCH</span>
+  <span class="absolute inset-0 flex items-center justify-center text-blue-500 opacity-0 group-hover:opacity-100 group-hover:translate-y-1 group-hover:translate-x-1 transition-all duration-100 pointer-events-none font-bold">GLITCH</span>
+  <span class="absolute inset-0 flex items-center justify-center text-green-500 opacity-0 group-hover:opacity-100 group-hover:translate-y-0.5 group-hover:-translate-x-0.5 transition-all duration-100 pointer-events-none font-bold mix-blend-screen">GLITCH</span>
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="group relative px-8 py-4 bg-zinc-900 text-white font-bold rounded-md overflow-hidden">
+  <span class="relative block group-hover:-translate-y-0.5 group-hover:-translate-x-0.5 group-hover:text-red-500 transition-transform">GLITCH</span>
+  <span class="absolute inset-0 flex items-center justify-center text-blue-500 opacity-0 group-hover:opacity-100 group-hover:translate-y-0.5 group-hover:translate-x-0.5 transition-all font-bold">GLITCH</span>
+</button>`,
+        react: `import React from 'react';
+
+const GlitchTextButton = () => {
+  return (
+    <button className="group relative px-8 py-4 bg-zinc-900 text-white font-bold rounded-md overflow-hidden">
+      <div className="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+      <span className="relative block group-hover:-translate-y-1 group-hover:-translate-x-1 group-hover:text-red-500 transition-transform duration-100">GLITCH</span>
+      <span className="absolute inset-0 flex items-center justify-center text-blue-500 opacity-0 group-hover:opacity-100 group-hover:translate-y-1 group-hover:translate-x-1 transition-all duration-100 pointer-events-none font-bold">GLITCH</span>
+      <span className="absolute inset-0 flex items-center justify-center text-green-500 opacity-0 group-hover:opacity-100 group-hover:translate-y-0.5 group-hover:-translate-x-0.5 transition-all duration-100 pointer-events-none font-bold mix-blend-screen">GLITCH</span>
+    </button>
+  );
+};
+export default GlitchTextButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-velocity',
+    name: 'Speed Velocity',
+    category: 'button',
+    description: 'Text flies out top, new text flies in from bottom',
+    tags: ['button', 'hover', 'text-effect', 'velocity'],
+    bgConfig: 'bg-emerald-600',
+    get preview() {
+      return `<button class="group relative px-8 py-3 bg-emerald-600 rounded-full overflow-hidden text-white font-semibold transition-all hover:bg-emerald-700">
+         <span class="inline-block transition-transform duration-300 group-hover:-translate-y-12">Add to Cart</span>
+         <span class="absolute left-0 right-0 inline-block transition-transform duration-300 translate-y-12 group-hover:-translate-y-1/2 top-1/2">Checkout Now</span>
+       </button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="group relative px-8 py-3 bg-emerald-600 rounded-full overflow-hidden text-white font-semibold hover:bg-emerald-700">
+  <span class="inline-block transition-transform duration-300 group-hover:-translate-y-12">Add to Cart</span>
+  <span class="absolute left-0 right-0 inline-block transition-transform duration-300 translate-y-12 group-hover:-translate-y-1/2 top-1/2">Checkout Now</span>
+</button>`,
+        react: `import React from 'react';
+
+const VelocityButton = () => {
+  return (
+    <button className="group relative px-8 py-3 bg-emerald-600 rounded-full overflow-hidden text-white font-semibold transition-all hover:bg-emerald-700">
+      <span className="inline-block transition-transform duration-300 group-hover:-translate-y-12">Add to Cart</span>
+      <span className="absolute left-0 right-0 inline-block transition-transform duration-300 translate-y-12 group-hover:-translate-y-1/2 top-1/2 text-center w-full">Checkout Now</span>
+    </button>
+  );
+};
+export default VelocityButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-iridescent',
+    name: 'Iridescent Sheen',
+    category: 'button',
+    description: 'Pearl-like iridescent gradient hover effect',
+    tags: ['button', 'gradient', 'iridescent', 'shiny'],
+    bgConfig: 'bg-white',
+    get preview() {
+      return `<button class="relative px-8 py-3 rounded-xl bg-white text-zinc-800 font-bold border border-zinc-200 overflow-hidden group shadow-sm hover:shadow-lg transition-all duration-300">
+        <div class="absolute inset-0 bg-gradient-to-r from-pink-300/30 via-purple-300/30 to-indigo-300/30 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+        <span class="relative z-10 flex items-center gap-2">Explore <span class="group-hover:translate-x-1 transition-transform">→</span></span>
+      </button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="relative px-8 py-3 rounded-xl bg-white text-zinc-800 font-bold border border-zinc-200 overflow-hidden group shadow-sm hover:shadow-lg transition-all">
+  <div class="absolute inset-0 bg-gradient-to-r from-pink-300/30 via-purple-300/30 to-indigo-300/30 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+  <span class="relative z-10 flex items-center gap-2">Explore <span class="group-hover:translate-x-1 transition-transform">→</span></span>
+</button>`,
+        react: `import React from 'react';
+import { ArrowRight } from 'lucide-react';
+
+const IridescentButton = () => {
+  return (
+    <button className="relative px-8 py-3 rounded-xl bg-white text-zinc-800 font-bold border border-zinc-200 overflow-hidden group shadow-sm hover:shadow-lg transition-all duration-300">
+      <div className="absolute inset-0 bg-gradient-to-r from-pink-300/30 via-purple-300/30 to-indigo-300/30 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+      <span className="relative z-10 flex items-center gap-2">
+        Explore <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+      </span>
+    </button>
+  );
+};
+export default IridescentButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-laser-sweep',
+    name: 'Laser Sweep',
+    category: 'button',
+    description: 'High tech laser beam sweep',
+    tags: ['button', 'laser', 'tech', 'sweep'],
+    bgConfig: 'bg-slate-900',
+    get preview() {
+      return `<button class="relative px-10 py-3 bg-slate-900 rounded-lg text-red-500 font-mono font-bold tracking-widest overflow-hidden group border border-red-900/50 hover:border-red-500 hover:shadow-[0_0_20px_rgba(239,68,68,0.5)] transition-all duration-300">
+        <span class="relative z-10">TERMINATE</span>
+        <div class="absolute inset-0 bg-red-600/10 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300"></div>
+        <div class="absolute top-0 left-0 w-full h-[2px] bg-red-500 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-[1s] delay-75"></div>
+        <div class="absolute bottom-0 right-0 w-full h-[2px] bg-red-500 translate-x-[100%] group-hover:translate-x-[-100%] transition-transform duration-[1s] delay-75"></div>
+      </button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="relative px-10 py-3 bg-slate-900 rounded-lg text-red-500 font-mono font-bold tracking-widest overflow-hidden group border border-red-900/50 hover:border-red-500 hover:shadow-[0_0_20px_rgba(239,68,68,0.5)] transition-all">
+  <span class="relative z-10">TERMINATE</span>
+  <div class="absolute inset-0 bg-red-600/10 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300"></div>
+  <div class="absolute top-0 left-0 w-full h-[2px] bg-red-500 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-[1s]"></div>
+</button>`,
+        react: `import React from 'react';
+
+const LaserButton = () => {
+  return (
+    <button className="relative px-10 py-3 bg-slate-900 rounded-lg text-red-500 font-mono font-bold tracking-widest overflow-hidden group border border-red-900/50 hover:border-red-500 hover:shadow-[0_0_20px_rgba(239,68,68,0.5)] transition-all duration-300">
+      <span className="relative z-10">TERMINATE</span>
+      <div className="absolute inset-0 bg-red-600/10 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300"></div>
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-red-500 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-[1s] delay-75"></div>
+      <div className="absolute bottom-0 right-0 w-full h-[2px] bg-red-500 translate-x-[100%] group-hover:translate-x-[-100%] transition-transform duration-[1s] delay-75"></div>
+    </button>
+  );
+};
+export default LaserButton;`
+      };
+    }
+  }
+  ,
+  {
+    id: 'btn-v2-add-cart-liquid',
+    name: 'Liquid Add to Cart',
+    category: 'button',
+    description: 'Button fills with liquid animation on click/hover',
+    tags: ['button', 'ecommerce', 'cart', 'liquid'],
+    bgConfig: 'bg-white',
+    get preview() {
+      return `<button class="group relative overflow-hidden rounded-full bg-white px-8 py-3 text-slate-950 shadow-md transition-all hover:bg-slate-50 hover:shadow-lg active:scale-95">
+  <span class="relative z-10 flex items-center gap-2 font-bold group-hover:text-white transition-colors duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+    Add to Cart
+  </span>
+  <div class="absolute inset-0 h-full w-full scale-0 rounded-full bg-blue-600 transition-all duration-300 group-hover:scale-100 group-active:bg-blue-700"></div>
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="group relative overflow-hidden rounded-full bg-white px-8 py-3 text-slate-950 shadow-md transition-all hover:bg-slate-50 hover:shadow-lg active:scale-95">
+  <span class="relative z-10 flex items-center gap-2 font-bold group-hover:text-white transition-colors duration-300">
+    <!-- Icon SVG here -->
+    Add to Cart
+  </span>
+  <div class="absolute inset-0 h-full w-full scale-0 rounded-full bg-blue-600 transition-all duration-300 group-hover:scale-100"></div>
+</button>`,
+        react: `import React from 'react';
+import { ShoppingCart } from 'lucide-react';
+
+const LiquidCartButton = () => {
+  return (
+    <button className="group relative overflow-hidden rounded-full bg-white px-8 py-3 text-slate-950 shadow-md transition-all hover:bg-slate-50 hover:shadow-lg active:scale-95">
+      <span className="relative z-10 flex items-center gap-2 font-bold group-hover:text-white transition-colors duration-300">
+        <ShoppingCart size={20} />
+        Add to Cart
+      </span>
+      <div className="absolute inset-0 h-full w-full scale-0 rounded-full bg-blue-600 transition-all duration-300 group-hover:scale-100 group-active:bg-blue-700" />
+    </button>
+  );
+};
+export default LiquidCartButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-payment-success',
+    name: 'Payment Process',
+    category: 'button',
+    description: 'Morphs from Pay Now to loading to Success',
+    tags: ['button', 'payment', 'animated', 'morph'],
+    bgConfig: 'bg-indigo-600',
+    get preview() {
+      return `<button class="relative flex items-center justify-center rounded-lg bg-indigo-600 px-8 py-3 text-white transition-all hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 group">
+  <span class="flex items-center gap-2 font-semibold">
+    Pay Now $99
+  </span>
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<!-- Requires JS state for full effect, simple CSS version below -->
+<button class="relative flex items-center justify-center rounded-lg bg-indigo-600 px-8 py-3 text-white transition-all hover:bg-indigo-700">
+  <span class="font-semibold">Pay Now</span>
+</button>`,
+        react: `import React, { useState } from 'react';
+import { Check, Loader2, CreditCard } from 'lucide-react';
+
+const PaymentButton = () => {
+  const [status, setStatus] = useState('idle'); // idle, loading, success
+
+  const handleClick = () => {
+    if (status !== 'idle') return;
+    setStatus('loading');
+    setTimeout(() => {
+      setStatus('success');
+      setTimeout(() => setStatus('idle'), 2000);
+    }, 1500);
+  };
+
+  return (
+    <button
+      onClick={handleClick}
+      className={\`relative flex items-center justify-center rounded-lg px-8 py-3 text-white transition-all duration-300 \${
+        status === 'success' ? 'bg-green-500 hover:bg-green-600' : 'bg-indigo-600 hover:bg-indigo-700'
+      } \${status === 'loading' ? 'cursor-wait' : ''}\`}
+    >
+      <span className={\`flex items-center gap-2 font-semibold transition-all duration-300 \${
+        status !== 'idle' ? 'opacity-0 scale-50 absolute' : 'opacity-100 scale-100'
+      }\`}>
+        <CreditCard size={18} /> Pay Now
+      </span>
+
+      <span className={\`absolute transition-all duration-300 \${
+        status === 'loading' ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+      }\`}>
+        <Loader2 className="animate-spin" />
+      </span>
+
+      <span className={\`flex items-center gap-2 font-semibold transition-all duration-300 \${
+        status === 'success' ? 'opacity-100 scale-100' : 'opacity-0 scale-50 absolute'
+      }\`}>
+        <Check size={18} /> Paid
+      </span>
+    </button>
+  );
+};
+export default PaymentButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-download-progress',
+    name: 'Download Progress',
+    category: 'button',
+    description: 'Button turns into progress bar',
+    tags: ['button', 'download', 'progress', 'interaction'],
+    bgConfig: 'bg-slate-900',
+    get preview() {
+      return `<button class="relative overflow-hidden rounded-md bg-slate-900 px-6 py-2.5 text-white shadow-md transition-all">
+  <span class="relative z-10 flex items-center gap-2 font-medium">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+    Download
+  </span>
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="relative overflow-hidden rounded-md bg-slate-900 px-6 py-2.5 text-white">
+  <span class="relative z-10 flex items-center gap-2 font-medium">Download</span>
+</button>`,
+        react: `import React, { useState } from 'react';
+import { Download, Check } from 'lucide-react';
+
+const DownloadButton = () => {
+  const [downloading, setDownloading] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const startDownload = () => {
+    if (downloading) return;
+    setDownloading(true);
+    let p = 0;
+    const interval = setInterval(() => {
+      p += 2; // speed
+      setProgress(p);
+      if (p >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          setDownloading(false);
+          setProgress(0);
+        }, 1000);
+      }
+    }, 30);
+  };
+
+  return (
+    <button
+      onClick={startDownload}
+      className="relative overflow-hidden rounded-md bg-slate-900 px-6 py-2.5 text-white shadow-md transition-all active:scale-95"
+    >
+      <div 
+        className="absolute bottom-0 left-0 top-0 bg-blue-600 transition-all duration-100 ease-linear"
+        style={{ width: \`\${progress}%\` }}
+      />
+      <span className="relative z-10 flex items-center gap-2 font-medium">
+        {progress === 100 ? (
+          <>
+            <Check size={18} /> Done
+          </>
+        ) : (
+          <>
+            <Download size={18} className={downloading ? 'animate-bounce' : ''} />
+            {downloading ? 'Downloading...' : 'Download'}
+          </>
+        )}
+      </span>
+    </button>
+  );
+};
+export default DownloadButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-delete-shake',
+    name: 'Delete Shake',
+    category: 'button',
+    description: 'Shakes violently on hover to warn user',
+    tags: ['button', 'danger', 'delete', 'shake'],
+    bgConfig: 'bg-red-500',
+    get preview() {
+      return `<button class="group relative rounded-lg bg-red-500 px-6 py-2.5 text-white font-semibold transition-all hover:bg-red-600 hover:animate-[shake_0.5s_ease-in-out_infinite]">
+  <div class="flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+    Delete Item
+  </div>
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="rounded-lg bg-red-500 px-6 py-2.5 text-white font-semibold hover:bg-red-600 hover:animate-ping">
+      <!-- Standard shake animation needs custom keyframes or an arbitrary utility like animate-[shake_0.5s_infinite] defined in tailwind config or arbitrary values if supported -->
+  Delete
+</button>`,
+        react: `import React from 'react';
+import { Trash2 } from 'lucide-react';
+
+const DeleteButton = () => {
+  return (
+    <button className="group relative rounded-lg bg-red-500 px-6 py-2.5 text-white font-semibold transition-all hover:bg-red-600 hover:animate-[shake_0.5s_ease-in-out_infinite]">
+      <div className="flex items-center gap-2">
+        <Trash2 className="group-hover:rotate-12 transition-transform" size={18} />
+        Delete Item
+      </div>
+    </button>
+  );
+};
+export default DeleteButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-subscribe-bell',
+    name: 'Subscribe Bell',
+    category: 'button',
+    description: 'Subscribe text with ringing bell animation',
+    tags: ['button', 'social', 'subscribe', 'bell'],
+    bgConfig: 'bg-red-600',
+    get preview() {
+      return `<button class="group flex items-center justify-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-red-700 hover:shadow-md active:scale-95">
+  <span class="group-hover:animate-[wiggle_1s_ease-in-out_infinite]"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>
+  SUBSCRIBE
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="group flex items-center justify-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-red-700 transition-all">
+  <span class="group-hover:animate-bounce">🔔</span>
+  SUBSCRIBE
+</button>`,
+        react: `import React from 'react';
+import { Bell } from 'lucide-react';
+
+const SubscribeButton = () => {
+  return (
+    <button className="group flex items-center justify-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-red-700 hover:shadow-md active:scale-95">
+      <Bell className="group-hover:animate-[wiggle_1s_ease-in-out_infinite] fill-transparent group-hover:fill-white/30 transition-colors" size={18} />
+      SUBSCRIBE
+    </button>
+  );
+};
+export default SubscribeButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-neumorphic-press',
+    name: 'Neumorphic Press',
+    category: 'button',
+    description: 'Soft UI button with realistic pressed state',
+    tags: ['button', 'neumorphism', 'soft-ui', 'pressed'],
+    bgConfig: 'bg-[#e0e5ec]',
+    get preview() {
+      return `<button class="rounded-xl bg-[#e0e5ec] px-8 py-3 font-bold text-slate-700 shadow-[6px_6px_12px_#b8b9be,-6px_-6px_12px_#ffffff] transition-all hover:text-blue-600 active:shadow-[inset_6px_6px_12px_#b8b9be,inset_-6px_-6px_12px_#ffffff] active:scale-95">
+  Soft Press
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="rounded-xl bg-[#e0e5ec] px-8 py-3 font-bold text-slate-700 shadow-[6px_6px_12px_#b8b9be,-6px_-6px_12px_#ffffff] transition-all hover:text-blue-600 active:shadow-[inset_6px_6px_12px_#b8b9be,inset_-6px_-6px_12px_#ffffff] active:scale-95">
+  Soft Press
+</button>`,
+        react: `import React from 'react';
+
+const NeumorphicButton = () => {
+  return (
+    <button className="rounded-xl bg-[#e0e5ec] px-8 py-3 font-bold text-slate-700 shadow-[6px_6px_12px_#b8b9be,-6px_-6px_12px_#ffffff] transition-all hover:text-blue-600 active:shadow-[inset_6px_6px_12px_#b8b9be,inset_-6px_-6px_12px_#ffffff] active:scale-95">
+      Soft Press
+    </button>
+  );
+};
+export default NeumorphicButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-glassmorphism-shine',
+    name: 'Glass Reflection',
+    category: 'button',
+    description: 'Glassy button with sliding reflection',
+    tags: ['button', 'glass', 'reflection', 'shine'],
+    bgConfig: 'bg-white/10',
+    get preview() {
+      return `<button class="group relative overflow-hidden rounded-lg border border-white/20 bg-white/10 px-8 py-3 font-semibold text-white backdrop-blur-lg transition-all hover:bg-white/20">
+  <div class="absolute top-0 left-[-100%] h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 transition-transform duration-1000 group-hover:translate-x-[400%]" />
+  <span class="relative">Glass Shine</span>
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="group relative overflow-hidden rounded-lg border border-white/20 bg-white/10 px-8 py-3 font-semibold text-white backdrop-blur-lg transition-all hover:bg-white/20">
+  <div class="absolute top-0 left-[-100%] h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 transition-transform duration-1000 group-hover:translate-x-[400%]" />
+  <span class="relative">Glass Shine</span>
+</button>`,
+        react: `import React from 'react';
+
+const GlassShineButton = () => {
+  return (
+    <button className="group relative overflow-hidden rounded-lg border border-white/20 bg-white/10 px-8 py-3 font-semibold text-white backdrop-blur-lg transition-all hover:bg-white/20">
+      <div className="absolute top-0 left-[-100%] h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 transition-transform duration-1000 group-hover:translate-x-[400%]" />
+      <span className="relative">Glass Shine</span>
+    </button>
+  );
+};
+export default GlassShineButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-magnetic-hover',
+    name: 'Magnetic Cursor',
+    category: 'button',
+    description: 'Button follows cursor slightly (Simulated with CSS translate)',
+    tags: ['button', 'magnetic', 'hover', 'interaction'],
+    bgConfig: 'bg-violet-600',
+    get preview() {
+      return `<button class="group relative rounded-full bg-violet-600 px-8 py-3 text-white transition-transform duration-100 ease-linear hover:-translate-y-1 hover:translate-x-1 hover:shadow-xl active:scale-95">
+  <span class="relative z-10 font-bold">Magnetic</span>
+  <div class="absolute inset-0 z-0 rounded-full bg-violet-600 blur-lg transition-opacity opacity-0 group-hover:opacity-50"></div>
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="group relative rounded-full bg-violet-600 px-8 py-3 text-white transition-transform duration-100 ease-linear hover:-translate-y-1 hover:translate-x-1 hover:shadow-xl active:scale-95">
+  <span class="relative z-10 font-bold">Magnetic</span>
+  <div class="absolute inset-0 z-0 rounded-full bg-violet-600 blur-lg transition-opacity opacity-0 group-hover:opacity-50"></div>
+</button>`,
+        react: `import React, { useRef, useState } from 'react';
+
+const MagneticButton = () => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const ref = useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (!ref.current) return;
+    const { clientX, clientY } = e;
+    const { left, top, width, height } = ref.current.getBoundingClientRect();
+    const x = (clientX - (left + width / 2)) * 0.3; // magnetic strength
+    const y = (clientY - (top + height / 2)) * 0.3;
+    setPosition({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    setPosition({ x: 0, y: 0 });
+  };
+
+  return (
+    <button
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ transform: \`translate(\${position.x}px, \${position.y}px)\` }}
+      className="relative rounded-full bg-violet-600 px-8 py-3 text-white shadow-lg transition-transform duration-100 ease-out active:scale-95"
+    >
+      <span className="font-bold">Magnetic</span>
+    </button>
+  );
+};
+export default MagneticButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-gradient-rotate-border',
+    name: 'Rotating Gradient Border',
+    category: 'button',
+    description: 'Gradient border spins continuously',
+    tags: ['button', 'gradient', 'border', 'spin'],
+    bgConfig: 'bg-black',
+    get preview() {
+      return `<button class="relative inline-flex h-12 overflow-hidden rounded-full p-px focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+  <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"></span>
+  <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+    Border Spin
+  </span>
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="relative inline-flex h-12 overflow-hidden rounded-full p-px">
+  <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"></span>
+  <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+    Border Spin
+  </span>
+</button>`,
+        react: `import React from 'react';
+
+const RotatingBorderButton = () => {
+  return (
+    <button className="relative inline-flex h-12 overflow-hidden rounded-full p-px focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+      <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+      <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+        Border Spin
+      </span>
+    </button>
+  );
+};
+export default RotatingBorderButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-ghost-reveal',
+    name: 'Ghost Reveal',
+    category: 'button',
+    description: 'Transparent button fills with color from center',
+    tags: ['button', 'ghost', 'fill', 'hover'],
+    bgConfig: 'bg-transparent',
+    get preview() {
+      return `<button class="group relative rounded-lg border-2 border-fuchsia-600 bg-transparent px-8 py-3 font-bold text-fuchsia-600 transition-colors hover:text-white overflow-hidden">
+  <span class="relative z-10">Ghost Fill</span>
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div class="h-0 w-0 rounded-full bg-fuchsia-600 transition-all duration-300 group-hover:h-96 group-hover:w-96 opacity-100"></div>
+  </div>
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="group relative rounded-lg border-2 border-fuchsia-600 bg-transparent px-8 py-3 font-bold text-fuchsia-600 transition-colors hover:text-white overflow-hidden">
+  <span class="relative z-10">Ghost Fill</span>
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div class="h-0 w-0 rounded-full bg-fuchsia-600 transition-all duration-300 group-hover:h-96 group-hover:w-96"></div>
+  </div>
+</button>`,
+        react: `import React from 'react';
+
+const GhostButton = () => {
+  return (
+    <button className="group relative rounded-lg border-2 border-fuchsia-600 bg-transparent px-8 py-3 font-bold text-fuchsia-600 transition-colors hover:text-white overflow-hidden">
+      <span className="relative z-10">Ghost Fill</span>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="h-0 w-0 rounded-full bg-fuchsia-600 transition-all duration-300 group-hover:h-96 group-hover:w-96" />
+      </div>
+    </button>
+  );
+};
+export default GhostButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-social-expand',
+    name: 'Social Expand',
+    category: 'button',
+    description: 'Button expands to show social links',
+    tags: ['button', 'social', 'expand', 'share'],
+    bgConfig: 'bg-blue-600',
+    get preview() {
+      return `<div class="flex items-center gap-2 group">
+  <button class="flex h-12 w-12 items-center rounded-full bg-blue-600 text-white transition-all duration-300 group-hover:w-48 overflow-hidden">
+    <div class="flex h-12 w-12 shrink-0 items-center justify-center">
+       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+    </div>
+    <span class="opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap delay-100 pl-2">Share This</span>
+  </button>
+</div>`;
+    },
+    get code() {
+      return {
+        html: `<div class="flex items-center gap-2 group">
+  <button class="flex h-12 w-12 items-center rounded-full bg-blue-600 text-white transition-all duration-300 group-hover:w-48 overflow-hidden">
+    <div class="flex h-12 w-12 shrink-0 items-center justify-center">
+      <!-- Icon -->
+    </div>
+    <span class="opacity-0 group-hover:opacity-100 transition-opacity pl-2 whitespace-nowrap">Share This</span>
+  </button>
+</div>`,
+        react: `import React from 'react';
+import { Share2 } from 'lucide-react';
+
+const SocialExpandButton = () => {
+  return (
+    <div className="flex items-center gap-2 group">
+      <button className="flex h-12 w-12 items-center rounded-full bg-blue-600 text-white transition-all duration-300 group-hover:w-48 overflow-hidden">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center">
+          <Share2 size={20} />
+        </div>
+        <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75 font-medium whitespace-nowrap pl-2">Share This</span>
+      </button>
+    </div>
+  );
+};
+export default SocialExpandButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-blob-morph',
+    name: 'Blob Morph',
+    category: 'button',
+    description: 'Button shape morphs like a blob on hover',
+    tags: ['button', 'blob', 'morph', 'organic'],
+    bgConfig: 'bg-orange-500',
+    get preview() {
+      return `<button class="h-16 w-40 rounded-[30%_70%_70%_30%/30%_30%_70%_70%] bg-orange-500 text-white font-bold transition-all duration-500 hover:rounded-[70%_30%_30%_70%/70%_70%_30%_30%] hover:scale-110 active:scale-95 shadow-xl">
+  Morph
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="h-16 w-40 rounded-[30%_70%_70%_30%/30%_30%_70%_70%] bg-orange-500 text-white font-bold transition-all duration-500 hover:rounded-[70%_30%_30%_70%/70%_70%_30%_30%] hover:scale-110 active:scale-95 shadow-xl">
+  Morph
+</button>`,
+        react: `import React from 'react';
+
+const BlobButton = () => {
+  return (
+    <button className="h-16 w-40 rounded-[30%_70%_70%_30%/30%_30%_70%_70%] bg-orange-500 text-white font-bold transition-all duration-500 hover:rounded-[70%_30%_30%_70%/70%_70%_30%_30%] hover:scale-110 active:scale-95 shadow-xl">
+      Morph
+    </button>
+  );
+};
+export default BlobButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-confetti-pop',
+    name: 'Confetti Pop',
+    category: 'button',
+    description: 'Particle effect on hover/active',
+    tags: ['button', 'confetti', 'pop', 'celebrate'],
+    bgConfig: 'bg-yellow-400',
+    get preview() {
+      return `<button class="group relative rounded-full bg-yellow-400 px-8 py-3 font-bold text-yellow-900 transition-transform active:scale-90">
+  <span class="relative z-10">Celebrate!</span>
+  <div class="absolute -top-4 -left-4 h-2 w-2 rounded-full bg-red-500 opacity-0 transition-all group-hover:top-[-20px] group-hover:left-[-20px] group-hover:opacity-100 group-hover:animate-ping"></div>
+  <div class="absolute -top-4 -right-4 h-2 w-2 rounded-full bg-blue-500 opacity-0 transition-all group-hover:top-[-20px] group-hover:right-[-20px] group-hover:opacity-100 group-hover:animate-ping delay-75"></div>
+  <div class="absolute -bottom-4 -left-4 h-2 w-2 rounded-full bg-green-500 opacity-0 transition-all group-hover:bottom-[-20px] group-hover:left-[-20px] group-hover:opacity-100 group-hover:animate-ping delay-150"></div>
+  <div class="absolute -bottom-4 -right-4 h-2 w-2 rounded-full bg-purple-500 opacity-0 transition-all group-hover:bottom-[-20px] group-hover:right-[-20px] group-hover:opacity-100 group-hover:animate-ping delay-200"></div>
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="group relative rounded-full bg-yellow-400 px-8 py-3 font-bold text-yellow-900 transition-transform active:scale-90">
+  <span class="relative z-10">Celebrate!</span>
+  <div class="absolute inset-0 z-0">
+    <div class="absolute top-1/2 left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500 opacity-0 group-active:animate-ping"></div>
+  </div>
+</button>`,
+        react: `import React from 'react';
+
+const ConfettiButton = () => {
+  return (
+    <button className="group relative rounded-full bg-yellow-400 px-8 py-3 font-bold text-yellow-900 transition-transform active:scale-90">
+      <span className="relative z-10">Celebrate!</span>
+      <div className="absolute -top-4 -left-4 h-2 w-2 rounded-full bg-red-500 opacity-0 transition-all group-hover:top-[-20px] group-hover:left-[-20px] group-hover:opacity-100 group-hover:animate-ping"></div>
+      <div class="absolute -top-4 -right-4 h-2 w-2 rounded-full bg-blue-500 opacity-0 transition-all group-hover:top-[-20px] group-hover:right-[-20px] group-hover:opacity-100 group-hover:animate-ping delay-75"></div>
+      <div class="absolute -bottom-4 -left-4 h-2 w-2 rounded-full bg-green-500 opacity-0 transition-all group-hover:bottom-[-20px] group-hover:left-[-20px] group-hover:opacity-100 group-hover:animate-ping delay-150"></div>
+      <div class="absolute -bottom-4 -right-4 h-2 w-2 rounded-full bg-purple-500 opacity-0 transition-all group-hover:bottom-[-20px] group-hover:right-[-20px] group-hover:opacity-100 group-hover:animate-ping delay-200"></div>
+    </button>
+  );
+};
+export default ConfettiButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-spotlight-reveal',
+    name: 'Spotlight Reveal',
+    category: 'button',
+    description: 'Hover to reveal hidden text like a spotlight',
+    tags: ['button', 'spotlight', 'reveal', 'hover'],
+    bgConfig: 'bg-black',
+    get preview() {
+      return `<button class="group relative overflow-hidden rounded-lg bg-black px-8 py-3 font-mono text-white transition-all">
+  <span class="absolute inset-0 bg-white/20 translate-x-[-100%] transition-transform duration-300 group-hover:translate-x-0"></span>
+  <span class="relative z-10 group-hover:text-black transition-colors duration-300">Hover Me</span>
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="group relative overflow-hidden rounded-lg bg-black px-8 py-3 font-mono text-white transition-all">
+  <span class="absolute inset-0 bg-white/20 translate-x-[-100%] transition-transform duration-300 group-hover:translate-x-0"></span>
+  <span class="relative z-10 group-hover:text-black transition-colors duration-300">Hover Me</span>
+</button>`,
+        react: `import React from 'react';
+
+const SpotlightButton = () => {
+  return (
+    <button className="group relative overflow-hidden rounded-lg bg-black px-8 py-3 font-mono text-white transition-all">
+      <span className="absolute inset-0 bg-white translate-x-[-100%] transition-transform duration-300 group-hover:translate-x-0" />
+      <span className="relative z-10 group-hover:text-black transition-colors duration-300">Hover Me</span>
+    </button>
+  );
+};
+export default SpotlightButton;`
+      };
+    }
+  },
+  {
+    id: 'btn-v2-paper-fold',
+    name: 'Paper Fold',
+    category: 'button',
+    description: 'Corner folds down on hover',
+    tags: ['button', 'paper', 'fold', 'creative'],
+    bgConfig: 'bg-stone-200',
+    get preview() {
+      return `<button class="relative h-12 w-32 bg-stone-200 text-stone-800 font-bold shadow-md transition-all hover:-translate-y-1 hover:shadow-lg">
+  <span class="relative z-10">Fold</span>
+  <div class="absolute top-0 right-0 h-4 w-4 bg-stone-300 transition-all duration-300 origin-bottom-left group-hover:rotate-90 group-hover:shadow-sm"></div>
+  <div class="absolute top-0 right-0 h-0 w-0 border-t-[16px] border-l-[16px] border-t-white border-l-transparent drop-shadow-sm transition-all duration-300"></div>
+</button>`;
+    },
+    get code() {
+      return {
+        html: `<button class="group relative h-12 w-32 bg-stone-200 text-stone-800 font-bold shadow-md transition-all hover:-translate-y-1 hover:shadow-lg">
+  <span class="relative z-10">Fold</span>
+  <div class="absolute top-0 right-0 h-0 w-0 border-t-[20px] border-l-[20px] border-t-white/50 border-l-transparent transition-all duration-300 group-hover:border-t-white group-hover:border-l-stone-400 group-hover:scale-110"></div>
+</button>`,
+        react: `import React from 'react';
+
+const PaperFoldButton = () => {
+  return (
+    <button className="group relative h-12 w-32 bg-stone-200 text-stone-800 font-bold shadow-md transition-all hover:-translate-y-1 hover:shadow-lg flex items-center justify-center">
+      <span className="relative z-10">Fold</span>
+      <div className="absolute top-0 right-0 h-0 w-0 border-t-[20px] border-l-[20px] border-t-white border-l-transparent transition-all duration-300 group-hover:border-stone-400 group-hover:translate-x-1 group-hover:-translate-y-1 shadow-sm" />
+    </button>
+  );
+};
+export default PaperFoldButton;`
+      };
+    }
+  }
 ];

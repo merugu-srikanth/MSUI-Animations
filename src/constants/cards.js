@@ -1,5 +1,5 @@
 import React from 'react';
-import { RefreshCw, Zap, Code2, Terminal, Waves, Droplets, Fish, Wind, Sun, Thermometer, Mountain, Flame, Atom, Cpu, MemoryStick, Network, X, Minus, Plus, ShoppingBag } from 'lucide-react';
+import { RefreshCw, Zap, Code2, Terminal, Waves, Droplets, Fish, Wind, Sun, Thermometer, Mountain, Flame, Atom, Cpu, MemoryStick, Network, X, Minus, Plus, ShoppingBag, Github, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, ExternalLink, Heart, MessageCircle, User, Settings, MoreVertical, Share2, Globe, Briefcase, Camera, Music, Video, Star, Coffee, ArrowRight } from 'lucide-react';
 
 export const CARDS = [
   {
@@ -1292,6 +1292,730 @@ const LiquidMetalCard = () => (
   </div>
 );
 export default LiquidMetalCard;`
+    }
+  }
+  ,
+  {
+    id: 'profile-glass-float',
+    name: 'Glass Float Profile',
+    category: 'card',
+    description: 'Glassmorphism profile with floating elements and gradient border.',
+    tags: ['profile', 'glass', 'float', 'gradient'],
+    preview: `<div class="group relative w-full h-[400px] max-w-sm mx-auto overflow-hidden rounded-2xl bg-slate-900">
+      <div class="absolute inset-0 bg-blue-500/20 blur-3xl opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-md border border-white/20 rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-xl transition-transform duration-500 group-hover:scale-[1.02]">
+        <div class="relative w-28 h-28 mb-6">
+          <div class="absolute inset-0 bg-gradient-to-tr from-cyan-400 to-purple-500 rounded-full animate-spin-slow blur-md opacity-70"></div>
+          <div class="absolute inset-1 bg-slate-900 rounded-full flex items-center justify-center border border-white/10 z-10 overflow-hidden">
+             <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Profile" class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute bottom-0 right-0 w-8 h-8 bg-green-500 border-4 border-slate-900 rounded-full z-20"></div>
+        </div>
+        
+        <h3 class="text-2xl font-bold text-white mb-2 tracking-wide">Alice Freeman</h3>
+        <p class="text-cyan-300 text-sm font-medium mb-6 uppercase tracking-wider">Visual Designer</p>
+        
+        <div class="flex gap-4 w-full justify-center mb-8">
+           <button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/50 transition-all duration-300 group-hover:-translate-y-1"><i class="fab fa-twitter"></i></button>
+           <button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-purple-500/20 hover:text-purple-400 hover:border-purple-500/50 transition-all duration-300 group-hover:-translate-y-2"><i class="fab fa-dribbble"></i></button>
+           <button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-blue-500/20 hover:text-blue-400 hover:border-blue-500/50 transition-all duration-300 group-hover:-translate-y-1"><i class="fab fa-linkedin-in"></i></button>
+        </div>
+
+        <button class="px-8 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold text-sm shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300">
+          View Portfolio
+        </button>
+      </div>
+    </div>`,
+    code: {
+      html: `<div class="group relative w-full h-[400px] max-w-sm mx-auto overflow-hidden rounded-2xl bg-slate-900">
+  <div class="absolute inset-0 bg-blue-500/20 blur-3xl opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
+  <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-md border border-white/20 rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-xl transition-transform duration-500 group-hover:scale-[1.02]">
+    <div class="relative w-28 h-28 mb-6">
+      <div class="absolute inset-0 bg-gradient-to-tr from-cyan-400 to-purple-500 rounded-full animate-pulse blur-md opacity-70"></div>
+      <div class="absolute inset-1 bg-slate-900 rounded-full flex items-center justify-center border border-white/10 z-10 overflow-hidden">
+         <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Profile" class="w-full h-full object-cover" />
+      </div>
+    </div>
+    <h3 class="text-2xl font-bold text-white mb-2">Alice Freeman</h3>
+    <p class="text-cyan-300 text-sm font-medium mb-6 uppercase tracking-wider">Visual Designer</p>
+    <!-- Social Buttons & Action -->
+  </div>
+</div>`,
+      react: `import React from 'react';
+import { Twitter, Dribbble, Linkedin } from 'lucide-react';
+
+const GlassFloatProfile = () => {
+  return (
+    <div className="group relative w-full h-[400px] max-w-sm mx-auto overflow-hidden rounded-2xl bg-slate-900">
+      <div className="absolute inset-0 bg-blue-500/20 blur-3xl opacity-30 group-hover:opacity-60 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-md border border-white/20 rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-xl transition-transform duration-500 group-hover:scale-[1.02]">
+        
+        <div className="relative w-28 h-28 mb-6">
+          <div className="absolute inset-0 bg-gradient-to-tr from-cyan-400 to-purple-500 rounded-full animate-spin-slow blur-md opacity-70" style={{ animationDuration: '3s' }} />
+          <div className="absolute inset-1 bg-slate-900 rounded-full flex items-center justify-center border border-white/10 z-10 overflow-hidden">
+             <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Profile" className="w-full h-full object-cover" />
+          </div>
+          <div className="absolute bottom-0 right-0 w-8 h-8 bg-green-500 border-4 border-slate-900 rounded-full z-20" />
+        </div>
+        
+        <h3 className="text-2xl font-bold text-white mb-2 tracking-wide">Alice Freeman</h3>
+        <p className="text-cyan-300 text-sm font-medium mb-6 uppercase tracking-wider">Visual Designer</p>
+        
+        <div className="flex gap-4 w-full justify-center mb-8">
+           <button className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/50 transition-all duration-300 group-hover:-translate-y-1">
+             <Twitter size={18} />
+           </button>
+           <button className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-purple-500/20 hover:text-purple-400 hover:border-purple-500/50 transition-all duration-300 group-hover:-translate-y-2">
+             <Dribbble size={18} />
+           </button>
+           <button className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-blue-500/20 hover:text-blue-400 hover:border-blue-500/50 transition-all duration-300 group-hover:-translate-y-1">
+             <Linkedin size={18} />
+           </button>
+        </div>
+
+        <button className="px-8 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold text-sm shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300">
+          View Portfolio
+        </button>
+      </div>
+    </div>
+  );
+};
+export default GlassFloatProfile;`
+    }
+  },
+
+  {
+    id: 'profile-slide-up',
+    name: 'Slide Up Reveal',
+    category: 'card',
+    description: 'Minimal card that reveals detailed contact information on hover.',
+    tags: ['profile', 'minimal', 'hover', 'reveal'],
+    preview: `<div class="relative w-full max-w-sm h-80 rounded-2xl overflow-hidden group cursor-pointer shadow-2xl">
+      <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:blur-[2px]" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+      
+      <div class="absolute bottom-6 left-6 right-6 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+        <h3 class="text-2xl font-bold text-white mb-1 drop-shadow-lg">Mark Driftwood</h3>
+        <p class="text-gray-300 text-sm mb-4 opacity-100 group-hover:opacity-100 transition-opacity duration-500 delay-100">Portrait Photographer</p>
+        
+        <div class="space-y-3 h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 overflow-hidden transition-all duration-500 delay-100">
+          <div class="flex items-center gap-3 text-white/80 text-sm">
+            <i class="fas fa-map-marker-alt text-orange-400"></i> New York, USA
+          </div>
+          <div class="flex items-center gap-3 text-white/80 text-sm">
+             <i class="fas fa-envelope text-orange-400"></i> mark.d@studio.com
+          </div>
+          <div class="pt-4 flex gap-4">
+            <button class="flex-1 py-2 bg-orange-500 rounded-lg text-white font-semibold text-sm hover:bg-orange-600 transition-colors">Follow</button>
+            <button class="flex-1 py-2 bg-white/10 backdrop-blur-md rounded-lg text-white font-semibold text-sm hover:bg-white/20 transition-colors">Message</button>
+          </div>
+        </div>
+      </div>
+    </div>`,
+    code: {
+      html: `<div class="relative w-full max-w-sm h-80 rounded-2xl overflow-hidden group cursor-pointer shadow-2xl">
+  <img src="..." class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+  <div class="absolute bottom-6 left-6 right-6 ...">
+     <!-- Content slides up here -->
+  </div>
+</div>`,
+      react: `import React from 'react';
+import { MapPin, Mail } from 'lucide-react';
+
+const SlideUpProfile = () => {
+  return (
+    <div className="relative w-full max-w-sm h-80 rounded-2xl overflow-hidden group cursor-pointer shadow-2xl">
+      <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Profile" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:blur-[2px]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+      
+      <div className="absolute bottom-6 left-6 right-6 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+        <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-lg">Mark Driftwood</h3>
+        <p className="text-gray-300 text-sm mb-4">Portrait Photographer</p>
+        
+        <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-out">
+          <div className="overflow-hidden space-y-3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
+            <div className="flex items-center gap-3 text-white/80 text-sm">
+              <MapPin size={16} className="text-orange-400" /> New York, USA
+            </div>
+            <div className="flex items-center gap-3 text-white/80 text-sm">
+               <Mail size={16} className="text-orange-400" /> mark.d@studio.com
+            </div>
+            <div className="pt-4 flex gap-4">
+              <button className="flex-1 py-2 bg-orange-500 rounded-lg text-white font-semibold text-sm hover:bg-orange-600 transition-colors">Follow</button>
+              <button className="flex-1 py-2 bg-white/10 backdrop-blur-md rounded-lg text-white font-semibold text-sm hover:bg-white/20 transition-colors">Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default SlideUpProfile;`
+    }
+  },
+
+  {
+    id: 'profile-3d-flip-social',
+    name: '3D Flip Social',
+    category: 'card',
+    description: 'Card flips 180 degrees to reveal social links and bio.',
+    tags: ['profile', '3d', 'flip', 'animation'],
+    preview: `<div class="group h-80 w-64 [perspective:1000px]">
+      <div class="relative h-full w-full rounded-2xl shadow-xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+        <!-- Front -->
+        <div class="absolute inset-0 h-full w-full rounded-2xl bg-white [backface-visibility:hidden] overflow-hidden border border-gray-100">
+           <div class="h-32 bg-blue-500"></div>
+           <div class="flex flex-col items-center -mt-12">
+             <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" class="w-24 h-24 rounded-full border-4 border-white shadow-md object-cover" />
+             <h3 class="mt-4 text-xl font-bold text-gray-800">Sarah Johnson</h3>
+             <p class="text-gray-500 text-sm">Project Manager</p>
+             <p class="mt-4 px-6 text-center text-gray-400 text-xs">Hover to see more details & social connections.</p>
+           </div>
+        </div>
+        <!-- Back -->
+        <div class="absolute inset-0 h-full w-full rounded-2xl bg-gray-900 px-8 py-8 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col items-center justify-center">
+           <h3 class="text-xl font-bold text-white mb-2">About Sarah</h3>
+           <p class="text-sm text-gray-400 mb-6">Passionate about agile methodologies and team efficiency.</p>
+           <div class="flex gap-4">
+              <a href="#" class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white hover:scale-110 transition-transform"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center text-white hover:scale-110 transition-transform"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center text-white hover:scale-110 transition-transform"><i class="fab fa-instagram"></i></a>
+           </div>
+        </div>
+      </div>
+    </div>`,
+    code: {
+      html: `<div class="group h-80 w-64 [perspective:1000px]">
+  <div class="relative h-full w-full rounded-2xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+    <!-- Front Content (hidden on flip) -->
+    <div class="absolute inset-0 ... [backface-visibility:hidden]">...</div>
+    <!-- Back Content (visible on flip) -->
+    <div class="absolute inset-0 ... [transform:rotateY(180deg)] [backface-visibility:hidden]">...</div>
+  </div>
+</div>`,
+      react: `import React from 'react';
+import { Linkedin, Twitter, Instagram } from 'lucide-react';
+
+const FlipProfile = () => {
+  return (
+    <div className="group h-80 w-64 [perspective:1000px]">
+      <div className="relative h-full w-full rounded-2xl shadow-xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+        {/* Front */}
+        <div className="absolute inset-0 h-full w-full rounded-2xl bg-white [backface-visibility:hidden] overflow-hidden border border-gray-100 flex flex-col">
+           <div className="h-32 bg-indigo-500"></div>
+           <div className="flex flex-col items-center -mt-12">
+             <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Profile" className="w-24 h-24 rounded-full border-4 border-white shadow-md object-cover" />
+             <h3 className="mt-4 text-xl font-bold text-gray-800">Sarah Johnson</h3>
+             <p className="text-gray-500 text-sm">Project Manager</p>
+             <p className="mt-4 px-6 text-center text-gray-400 text-xs">Hover to see more details & social connections.</p>
+           </div>
+        </div>
+        {/* Back */}
+        <div className="absolute inset-0 h-full w-full rounded-2xl bg-gray-900 px-6 py-8 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col items-center justify-center">
+           <h3 className="text-xl font-bold text-white mb-2">About Sarah</h3>
+           <p className="text-sm text-gray-400 mb-6">Passionate about agile methodologies and team efficiency. Driving digital transformation.</p>
+           <div className="flex gap-4">
+              <a href="#" className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white hover:scale-110 transition-transform"><Linkedin size={18} /></a>
+              <a href="#" className="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center text-white hover:scale-110 transition-transform"><Twitter size={18} /></a>
+              <a href="#" className="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center text-white hover:scale-110 transition-transform"><Instagram size={18} /></a>
+           </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default FlipProfile;`
+    }
+  },
+
+  {
+    id: 'profile-expand-horizontal',
+    name: 'Horizontal Expand',
+    category: 'card',
+    description: 'Card expands horizontally on hover to show more information.',
+    tags: ['profile', 'expand', 'animation'],
+    preview: `<div class="group relative w-20 hover:w-80 h-80 bg-zinc-800 rounded-3xl overflow-hidden transition-all duration-500 ease-in-out shadow-2xl flex flex-col items-center justify-start pt-6">
+      <div class="w-12 h-12 rounded-full border-2 border-emerald-500 p-0.5 shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:border-4">
+         <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" class="w-full h-full rounded-full object-cover">
+      </div>
+      
+      <div class="mt-8 flex flex-col items-center w-full px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 absolute top-20">
+         <h3 class="text-xl font-bold text-white whitespace-nowrap">Julian Reed</h3>
+         <p class="text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-4 whitespace-nowrap">Full Stack Dev</p>
+         
+         <div class="w-full space-y-2 mt-2">
+            <div class="flex items-center gap-3 p-2 rounded-lg bg-zinc-700/50 text-gray-300 hover:bg-zinc-700 cursor-pointer text-sm">
+               <i class="fas fa-code text-emerald-500"></i> Code Review
+            </div>
+            <div class="flex items-center gap-3 p-2 rounded-lg bg-zinc-700/50 text-gray-300 hover:bg-zinc-700 cursor-pointer text-sm">
+               <i class="fas fa-terminal text-emerald-500"></i> DevOps
+            </div>
+            <div class="flex items-center gap-3 p-2 rounded-lg bg-zinc-700/50 text-gray-300 hover:bg-zinc-700 cursor-pointer text-sm">
+               <i class="fas fa-rocket text-emerald-500"></i> Deploy
+            </div>
+         </div>
+      </div>
+
+      <div class="absolute bottom-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200">
+         <button class="px-6 py-2 bg-emerald-500 text-white font-bold rounded-full text-sm hover:bg-emerald-400 whitespace-nowrap">Hire Me</button>
+      </div>
+    </div>`,
+    code: {
+      html: `<div class="group relative w-20 hover:w-80 h-80 bg-zinc-800 rounded-3xl overflow-hidden transition-all duration-500 ease-in-out shadow-2xl">
+   <!-- Icon only initially -->
+</div>`,
+      react: `import React from 'react';
+import { Code2, Terminal, Rocket } from 'lucide-react';
+
+const ExpandProfile = () => {
+  return (
+    <div className="group relative w-20 hover:w-80 h-80 bg-zinc-800 rounded-3xl overflow-hidden transition-all duration-500 ease-in-out shadow-2xl flex flex-col items-center justify-start pt-6 border border-zinc-700">
+      <div className="w-12 h-12 rounded-full border-2 border-emerald-500 p-0.5 shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:border-4 z-10 bg-zinc-800">
+         <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Profile" className="w-full h-full rounded-full object-cover" />
+      </div>
+      
+      <div className="mt-8 flex flex-col items-center w-full px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 absolute top-20">
+         <h3 className="text-xl font-bold text-white whitespace-nowrap">Julian Reed</h3>
+         <p className="text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-4 whitespace-nowrap">Full Stack Dev</p>
+         
+         <div className="w-full space-y-2 mt-2">
+            <div className="flex items-center gap-3 p-2 rounded-lg bg-zinc-700/50 text-gray-300 hover:bg-zinc-700 cursor-pointer text-sm transition-colors">
+               <Code2 size={16} className="text-emerald-500" /> <span>Code Review</span>
+            </div>
+            <div className="flex items-center gap-3 p-2 rounded-lg bg-zinc-700/50 text-gray-300 hover:bg-zinc-700 cursor-pointer text-sm transition-colors">
+               <Terminal size={16} className="text-emerald-500" /> <span>System Arch</span>
+            </div>
+            <div className="flex items-center gap-3 p-2 rounded-lg bg-zinc-700/50 text-gray-300 hover:bg-zinc-700 cursor-pointer text-sm transition-colors">
+               <Rocket size={16} className="text-emerald-500" /> <span>Deployment</span>
+            </div>
+         </div>
+      </div>
+
+      <div className="absolute bottom-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200 w-full px-6">
+         <button className="w-full py-2 bg-emerald-500 text-white font-bold rounded-xl text-sm hover:bg-emerald-400 whitespace-nowrap shadow-lg shadow-emerald-500/20">Hire Me</button>
+      </div>
+    </div>
+  );
+};
+export default ExpandProfile;`
+    }
+  },
+
+  {
+    id: 'profile-morphing-shape',
+    name: 'Morphing Shape',
+    category: 'card',
+    description: 'Circular profile that morphs into a full card on interaction.',
+    tags: ['profile', 'morph', 'animation', 'creative'],
+    preview: `<div class="group relative w-64 h-64 mx-auto">
+      <div class="absolute inset-0 bg-gradient-to-br from-rose-500 to-orange-500 rounded-full transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] group-hover:rounded-2xl group-hover:w-72 group-hover:h-80 group-hover:-translate-x-4"></div>
+      <div class="absolute inset-1 bg-white rounded-full transition-all duration-500 group-hover:rounded-xl group-hover:w-[17.5rem] group-hover:h-[19.5rem] group-hover:-translate-x-[0.9rem] overflow-hidden flex flex-col items-center p-6 text-center">
+        
+        <div class="w-full h-full flex flex-col items-center justify-center group-hover:justify-start transition-all duration-500">
+           <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" class="w-32 h-32 rounded-full object-cover transition-all duration-500 group-hover:w-20 group-hover:h-20 group-hover:mb-4 group-hover:border-2 group-hover:border-rose-500" />
+           
+           <h3 class="text-2xl font-bold text-gray-800 opacity-0 group-hover:opacity-100 absolute bottom-32 transition-all duration-300 delay-100">Anna Lee</h3>
+           <p class="text-rose-500 font-medium opacity-0 group-hover:opacity-100 absolute bottom-24 transition-all duration-300 delay-150">Creative Director</p>
+           
+           <div class="absolute bottom-6 opacity-0 group-hover:opacity-100 transition-all duration-300 delay-200">
+             <div class="flex gap-4 mb-4">
+                <span class="p-2 bg-rose-50 text-rose-500 rounded-lg hover:bg-rose-100 cursor-pointer"><i class="fab fa-instagram"></i></span>
+                <span class="p-2 bg-orange-50 text-orange-500 rounded-lg hover:bg-orange-100 cursor-pointer"><i class="fab fa-behance"></i></span>
+             </div>
+           </div>
+        </div>
+      </div>
+    </div>`,
+    code: {
+      html: `<div class="group relative w-64 h-64 mx-auto">
+   <div class="background-morph ..."></div>
+   <div class="content-morph ..."></div>
+</div>`,
+      react: `import React from 'react';
+import { Camera, Heart, Coffee } from 'lucide-react';
+
+const MorphProfile = () => {
+  return (
+    <div className="h-96 flex items-center justify-center">
+    <div className="group relative w-48 h-48 cursor-pointer">
+      <div className="absolute inset-0 bg-gradient-to-br from-rose-500 to-orange-500 rounded-full transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] group-hover:rounded-2xl group-hover:w-72 group-hover:h-80 group-hover:-translate-x-12 group-hover:-translate-y-16 shadow-xl"></div>
+      <div className="absolute inset-1 bg-white rounded-full transition-all duration-500 group-hover:rounded-xl group-hover:w-[17.5rem] group-hover:h-[19.5rem] group-hover:-translate-x-[2.8rem] group-hover:-translate-y-[3.8rem] overflow-hidden flex flex-col items-center">
+        
+        <div className="relative w-full h-full flex flex-col items-center pt-16 group-hover:pt-8 transition-all duration-500">
+           <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Profile" className="w-full h-full object-cover absolute inset-0 group-hover:w-24 group-hover:h-24 group-hover:relative group-hover:rounded-full group-hover:border-4 group-hover:border-rose-100 transition-all duration-500 z-10" />
+           
+           <div className="opacity-0 group-hover:opacity-100 flex flex-col items-center transition-all duration-300 delay-100 mt-4">
+               <h3 className="text-xl font-bold text-gray-800">Anna Lee</h3>
+               <p className="text-rose-500 text-sm font-medium mb-4">Creative Director</p>
+               
+               <p className="text-center text-gray-500 text-sm px-6 mb-6 line-clamp-2">Creating visual stories that matter. Love coffee & photography.</p>
+               
+               <div class="flex gap-4">
+                  <button class="p-2.5 bg-rose-50 text-rose-500 rounded-xl hover:bg-rose-500 hover:text-white transition-colors"><Camera size={18} /></button>
+                  <button class="p-2.5 bg-rose-50 text-rose-500 rounded-xl hover:bg-rose-500 hover:text-white transition-colors"><Heart size={18} /></button>
+                  <button class="p-2.5 bg-rose-50 text-rose-500 rounded-xl hover:bg-rose-500 hover:text-white transition-colors"><Coffee size={18} /></button>
+               </div>
+           </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  );
+};
+export default MorphProfile;`
+    }
+  }
+  ,
+  {
+    id: 'profile-cyber-glitch',
+    name: 'Cyber Glitch Profile',
+    category: 'card',
+    description: 'Cyberpunk aesthetic with glitch hover effects and neon colors.',
+    tags: ['profile', 'cyberpunk', 'glitch', 'neon'],
+    preview: `<div class="group relative w-72 h-96 bg-black border border-cyan-500/50 clip-path-polygon-[0_0,100%_0,100%_85%,85%_100%,0_100%] overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,#00ffea_2px,#00ffea_4px)] before:opacity-0 group-hover:before:opacity-10 before:mix-blend-overlay transition-all duration-300">
+      
+      <div class="absolute inset-0 bg-cyan-900/20"></div>
+      
+      <div class="relative z-10 p-6 flex flex-col items-center h-full">
+         <div class="w-full flex justify-between text-cyan-500 font-mono text-xs mb-8 opacity-70">
+            <span>ID: 8492</span>
+            <span>SYS: ONLINE</span>
+         </div>
+         
+         <div class="relative w-24 h-24 mb-6 group-hover:animate-pulse">
+            <div class="absolute inset-0 border-2 border-cyan-500 rounded-lg translate-x-1 translate-y-1 opacity-50 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform"></div>
+            <div class="absolute inset-0 border-2 border-fuchsia-500 rounded-lg -translate-x-1 -translate-y-1 opacity-50 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-transform"></div>
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" class="relative w-full h-full object-cover rounded-lg border border-cyan-400 grayscale group-hover:grayscale-0 transition-all duration-300" />
+         </div>
+         
+         <h3 class="text-2xl font-bold text-white font-mono group-hover:text-cyan-400 transition-colors" data-text="JAX_V">JAX_V</h3>
+         <p class="text-fuchsia-400 text-xs font-mono mb-8 tracking-widest">NETRUNNER</p>
+         
+         <div class="w-full space-y-3 mt-auto mb-4">
+            <div class="w-full h-8 bg-cyan-900/30 border border-cyan-500/30 skew-x-12 flex items-center px-4 group-hover:bg-cyan-500 group-hover:text-black transition-all cursor-pointer">
+               <span class="-skew-x-12 font-mono text-xs font-bold">CONNECT</span>
+            </div>
+             <div class="w-full h-8 bg-fuchsia-900/30 border border-fuchsia-500/30 skew-x-12 flex items-center px-4 group-hover:bg-fuchsia-500 group-hover:text-black transition-all cursor-pointer">
+               <span class="-skew-x-12 font-mono text-xs font-bold">DATA_LINK</span>
+            </div>
+         </div>
+      </div>
+      
+      <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50"></div>
+    </div>`,
+    code: {
+      html: `<div class="card-glitch ...">   <!-- Cyberpunk styling --> </div>`,
+      react: `import React from 'react';
+
+const GlitchProfile = () => {
+  return (
+    <div className="group relative w-72 h-96 bg-black border border-cyan-500/50 overflow-hidden before:absolute before:inset-0 before:bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,#00ffea_2px,#00ffea_4px)] before:opacity-0 group-hover:before:opacity-10 before:mix-blend-overlay transition-all duration-300" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%)' }}>
+      
+      <div className="absolute inset-0 bg-cyan-900/20"></div>
+      
+      <div className="relative z-10 p-6 flex flex-col items-center h-full">
+         <div className="w-full flex justify-between text-cyan-500 font-mono text-xs mb-8 opacity-70">
+            <span>ID: 8492</span>
+            <span>SYS: ONLINE</span>
+         </div>
+         
+         <div className="relative w-24 h-24 mb-6 group-hover:animate-pulse">
+            <div className="absolute inset-0 border-2 border-cyan-500 rounded-lg translate-x-1 translate-y-1 opacity-50 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform"></div>
+            <div className="absolute inset-0 border-2 border-fuchsia-500 rounded-lg -translate-x-1 -translate-y-1 opacity-50 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-transform"></div>
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Profile" className="relative w-full h-full object-cover rounded-lg border border-cyan-400 grayscale group-hover:grayscale-0 transition-all duration-300" />
+         </div>
+         
+         <h3 className="text-2xl font-bold text-white font-mono group-hover:text-cyan-400 transition-colors tracking-tighter">JAX_V</h3>
+         <p className="text-fuchsia-400 text-xs font-mono mb-8 tracking-widest">NETRUNNER</p>
+         
+         <div className="w-full space-y-3 mt-auto mb-4">
+            <button className="w-full h-8 bg-cyan-900/30 border border-cyan-500/30 skew-x-12 flex items-center justify-center group-hover:bg-cyan-500 group-hover:text-black transition-all cursor-pointer">
+               <span className="-skew-x-12 font-mono text-xs font-bold">CONNECT</span>
+            </button>
+             <button className="w-full h-8 bg-fuchsia-900/30 border border-fuchsia-500/30 skew-x-12 flex items-center justify-center group-hover:bg-fuchsia-500 group-hover:text-black transition-all cursor-pointer">
+               <span className="-skew-x-12 font-mono text-xs font-bold">DATA_LINK</span>
+            </button>
+         </div>
+      </div>
+      
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50"></div>
+    </div>
+  );
+};
+export default GlitchProfile;`
+    }
+  },
+
+  {
+    id: 'profile-neu-soft',
+    name: 'Neumorphism Soft UI',
+    category: 'card',
+    description: 'Soft UI design with pressed state interactions.',
+    tags: ['profile', 'neumorphism', 'soft-ui', 'clean'],
+    preview: `<div class="w-72 bg-gray-200 rounded-2xl p-8 shadow-[10px_10px_20px_#bebebe,-10px_-10px_20px_#ffffff] text-center flex flex-col items-center">
+      <div class="w-24 h-24 rounded-full bg-gray-200 p-1 shadow-[5px_5px_10px_#bebebe,-5px_-5px_10px_#ffffff] mb-6">
+         <img src="https://images.unsplash.com/photo-1494790108755-2616b786d4d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" class="w-full h-full rounded-full object-cover border-4 border-gray-200" />
+      </div>
+      
+      <h3 class="text-xl font-bold text-gray-700">Emily Stone</h3>
+      <p class="text-gray-500 text-sm mb-8">UX Researcher</p>
+      
+      <div class="flex gap-6 mb-8">
+         <button class="w-12 h-12 rounded-full bg-gray-200 shadow-[5px_5px_10px_#bebebe,-5px_-5px_10px_#ffffff] flex items-center justify-center text-gray-600 hover:text-blue-500 active:shadow-[inset_5px_5px_10px_#bebebe,inset_-5px_-5px_10px_#ffffff] transition-all">
+           <i class="fab fa-twitter"></i>
+         </button>
+         <button class="w-12 h-12 rounded-full bg-gray-200 shadow-[5px_5px_10px_#bebebe,-5px_-5px_10px_#ffffff] flex items-center justify-center text-gray-600 hover:text-pink-500 active:shadow-[inset_5px_5px_10px_#bebebe,inset_-5px_-5px_10px_#ffffff] transition-all">
+           <i class="fab fa-dribbble"></i>
+         </button>
+      </div>
+
+      <button class="px-8 py-3 rounded-full bg-gray-200 text-gray-700 font-bold shadow-[5px_5px_10px_#bebebe,-5px_-5px_10px_#ffffff] active:shadow-[inset_5px_5px_10px_#bebebe,inset_-5px_-5px_10px_#ffffff] transition-all hover:text-blue-500">
+         Follow Me
+      </button>
+    </div>`,
+    code: {
+      html: `<div class="w-72 bg-gray-200 rounded-2xl p-8 shadow-neu">...</div>`,
+      react: `import React from 'react';
+import { Twitter, Dribbble } from 'lucide-react';
+
+const NeuProfile = () => {
+  return (
+    <div className="w-72 bg-gray-200 rounded-2xl p-8 shadow-[10px_10px_20px_#bebebe,-10px_-10px_20px_#ffffff] text-center flex flex-col items-center">
+      <div className="w-24 h-24 rounded-full bg-gray-200 p-1 shadow-[5px_5px_10px_#bebebe,-5px_-5px_10px_#ffffff] mb-6">
+         <img src="https://images.unsplash.com/photo-1494790108755-2616b786d4d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Profile" className="w-full h-full rounded-full object-cover border-4 border-gray-200" />
+      </div>
+      
+      <h3 className="text-xl font-bold text-gray-700">Emily Stone</h3>
+      <p className="text-gray-500 text-sm mb-8">UX Researcher</p>
+      
+      <div className="flex gap-6 mb-8">
+         <button className="w-12 h-12 rounded-full bg-gray-200 shadow-[5px_5px_10px_#bebebe,-5px_-5px_10px_#ffffff] flex items-center justify-center text-gray-600 hover:text-blue-500 active:shadow-[inset_5px_5px_10px_#bebebe,inset_-5px_-5px_10px_#ffffff] transition-all">
+           <Twitter size={20} />
+         </button>
+         <button className="w-12 h-12 rounded-full bg-gray-200 shadow-[5px_5px_10px_#bebebe,-5px_-5px_10px_#ffffff] flex items-center justify-center text-gray-600 hover:text-pink-500 active:shadow-[inset_5px_5px_10px_#bebebe,inset_-5px_-5px_10px_#ffffff] transition-all">
+           <Dribbble size={20} />
+         </button>
+      </div>
+
+      <button className="px-8 py-3 rounded-full bg-gray-200 text-gray-700 font-bold shadow-[5px_5px_10px_#bebebe,-5px_-5px_10px_#ffffff] active:shadow-[inset_5px_5px_10px_#bebebe,inset_-5px_-5px_10px_#ffffff] transition-all hover:text-blue-500">
+         Follow Me
+      </button>
+    </div>
+  );
+};
+export default NeuProfile;`
+    }
+  },
+
+  {
+    id: 'profile-stack-swipe',
+    name: 'Stack Swipe',
+    category: 'card',
+    description: 'Stacked cards effect that spreads on hover.',
+    tags: ['profile', 'stack', 'animation', 'colors'],
+    preview: `<div class="group relative w-64 h-80 cursor-pointer">
+      <!-- Background Cards -->
+      <div class="absolute inset-0 bg-yellow-400 rounded-2xl transform rotate-6 scale-90 transition-transform duration-300 group-hover:rotate-12 group-hover:translate-x-4 opacity-80"></div>
+      <div class="absolute inset-0 bg-rose-400 rounded-2xl transform -rotate-3 scale-95 transition-transform duration-300 group-hover:-rotate-6 group-hover:-translate-x-4 opacity-90"></div>
+      
+      <!-- Main Card -->
+      <div class="absolute inset-0 bg-white rounded-2xl shadow-xl flex flex-col items-center justify-center p-6 transform transition-transform duration-300 group-hover:-translate-y-2 border border-gray-100">
+         <div class="w-20 h-20 rounded-2xl bg-indigo-100 flex items-center justify-center text-3xl mb-4 overflow-hidden">
+            👨‍💻
+         </div>
+         <h3 class="font-bold text-lg text-gray-800">Dev Stack</h3>
+         <p class="text-xs text-gray-400 mb-6 font-mono">@dev_stack_99</p>
+         
+         <div class="w-full bg-gray-50 rounded-lg p-3 mb-2 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-500"><i class="fab fa-react"></i></div>
+            <div class="text-xs">
+               <p class="font-bold text-gray-700">React JS</p>
+               <p class="text-gray-400">Expert</p>
+            </div>
+         </div>
+      </div>
+    </div>`,
+    code: {
+      html: `<div class="group relative w-64 h-80 cursor-pointer">
+      <div class="absolute inset-0 bg-yellow-400 rounded-2xl transform rotate-6 scale-90 group-hover:rotate-12 ..."></div>
+      <div class="absolute inset-0 bg-rose-400 rounded-2xl transform -rotate-3 scale-95 group-hover:-rotate-6 ..."></div>
+      <div class="absolute inset-0 bg-white rounded-2xl shadow-xl ..."></div>
+</div>`,
+      react: `import React from 'react';
+import { Atom } from 'lucide-react';
+
+const StackProfile = () => {
+  return (
+    <div className="group relative w-64 h-80 cursor-pointer mt-4">
+      {/* Background Cards */}
+      <div className="absolute inset-0 bg-yellow-400 rounded-2xl transform rotate-6 scale-90 transition-transform duration-300 group-hover:rotate-12 group-hover:translate-x-4 opacity-80"></div>
+      <div className="absolute inset-0 bg-rose-400 rounded-2xl transform -rotate-3 scale-95 transition-transform duration-300 group-hover:-rotate-6 group-hover:-translate-x-4 opacity-90"></div>
+      
+      {/* Main Card */}
+      <div className="absolute inset-0 bg-white rounded-2xl shadow-xl flex flex-col items-center justify-center p-6 transform transition-transform duration-300 group-hover:-translate-y-2 border border-gray-100">
+         <div class="w-20 h-20 rounded-2xl bg-indigo-100 flex items-center justify-center text-3xl mb-4 overflow-hidden">
+            👨‍💻
+         </div>
+         <h3 className="font-bold text-lg text-gray-800">Dev Stack</h3>
+         <p className="text-xs text-gray-400 mb-6 font-mono">@dev_stack_99</p>
+         
+         <div className="w-full bg-gray-50 rounded-lg p-3 mb-2 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-500"><Atom size={16} /></div>
+            <div className="text-xs">
+               <p className="font-bold text-gray-700">React JS</p>
+               <p className="text-gray-400">Expert</p>
+            </div>
+         </div>
+         <div className="w-full bg-gray-50 rounded-lg p-3 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-500"><span className="font-bold">JS</span></div>
+            <div className="text-xs">
+               <p className="font-bold text-gray-700">Node JS</p>
+               <p className="text-gray-400">Advanced</p>
+            </div>
+         </div>
+      </div>
+    </div>
+  );
+};
+export default StackProfile;`
+    }
+  },
+
+  {
+    id: 'profile-hover-tilt',
+    name: 'Tilt Perspective',
+    category: 'card',
+    description: 'Skewed perspective card using standard CSS transforms.',
+    tags: ['profile', 'tilt', 'perspective', 'creative'],
+    preview: `<div class="group relative w-72 h-96 bg-gray-900 rounded-xl overflow-hidden shadow-2xl transition-all duration-500 group-hover:[transform:perspective(1000px)_rotateY(-10deg)_rotateX(5deg)]">
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
+      <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100" />
+      
+      <div class="absolute top-4 right-4 z-20 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+         <span class="text-xs text-white font-bold">PRO</span>
+      </div>
+
+      <div class="absolute bottom-0 left-0 w-full p-6 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+         <h2 class="text-3xl font-bold text-white mb-1">Lucas M.</h2>
+         <p class="text-gray-300 text-sm mb-4">Art Director</p>
+         <div class="h-1 w-12 bg-orange-500 mb-4 group-hover:w-full transition-all duration-500"></div>
+         <p class="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Specializing in brand identity and motion design.</p>
+      </div>
+    </div>`,
+    code: {
+      html: `<div class="group relative w-72 h-96 bg-gray-900 rounded-xl ... group-hover:[transform:perspective(1000px)_rotateY(-10deg)_rotateX(5deg)]">
+   <!-- Content -->
+</div>`,
+      react: `import React from 'react';
+
+const TiltProfile = () => {
+  return (
+    <div className="group relative w-72 h-96 bg-gray-900 rounded-xl overflow-hidden shadow-2xl transition-all duration-500 group-hover:[transform:perspective(1000px)_rotateY(-10deg)_rotateX(5deg)] cursor-pointer">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
+      <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Profile" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-110 group-hover:scale-100" />
+      
+      <div className="absolute top-4 right-4 z-20 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+         <span className="text-xs text-white font-bold">PRO</span>
+      </div>
+
+      <div className="absolute bottom-0 left-0 w-full p-6 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+         <h2 className="text-3xl font-bold text-white mb-1">Lucas M.</h2>
+         <p className="text-gray-300 text-sm mb-4">Art Director</p>
+         <div className="h-1 w-12 bg-orange-500 mb-4 group-hover:w-full transition-all duration-500"></div>
+         <p className="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">Specializing in brand identity and motion design.</p>
+      </div>
+    </div>
+  );
+};
+export default TiltProfile;`
+    }
+  },
+
+  {
+    id: 'profile-glow-border',
+    name: 'Glowing Gradient Border',
+    category: 'card',
+    description: 'Dark card with a moving gradient border using CSS animations.',
+    tags: ['profile', 'glow', 'border', 'dark'],
+    preview: `<div class="relative w-72 h-[420px] rounded-xl bg-slate-900 overflow-hidden flex flex-col items-center justify-center group">
+      <!-- Animated Border Background -->
+      <div class="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0_340deg,cyan_360deg)] animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      
+      <!-- Inner Card -->
+      <div class="absolute inset-[2px] bg-slate-950 rounded-xl p-6 flex flex-col items-center z-10">
+         <div class="w-24 h-24 rounded-full border-2 border-slate-700 p-1 mb-4 group-hover:border-cyan-500/50 transition-colors duration-500">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" class="w-full h-full rounded-full object-cover" />
+         </div>
+         
+         <h3 class="text-xl font-bold text-white mb-1">David Chen</h3>
+         <p class="text-cyan-500 text-xs font-semibold uppercase tracking-wider mb-6">Software Engineer</p>
+         
+         <div class="w-full space-y-3">
+             <div class="flex justify-between items-center text-sm border-b border-slate-800 pb-2">
+                <span class="text-gray-400">Projects</span>
+                <span class="text-white font-bold">124</span>
+             </div>
+             <div class="flex justify-between items-center text-sm border-b border-slate-800 pb-2">
+                <span class="text-gray-400">Rating</span>
+                <span class="text-white font-bold">4.9/5</span>
+             </div>
+              <div class="flex justify-between items-center text-sm border-b border-slate-800 pb-2">
+                <span class="text-gray-400">Response</span>
+                <span class="text-white font-bold">1 hr</span>
+             </div>
+         </div>
+         
+         <button class="mt-auto w-full py-3 bg-cyan-600/10 border border-cyan-500/20 text-cyan-400 rounded-lg text-sm font-semibold hover:bg-cyan-500 hover:text-black transition-all">
+            View Profile
+         </button>
+      </div>
+    </div>`,
+    code: {
+      html: `<div class="relative w-72 h-[420px] rounded-xl bg-slate-900 overflow-hidden flex flex-col items-center justify-center group">
+      <div class="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0_340deg,cyan_360deg)] animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div class="absolute inset-[2px] bg-slate-950 rounded-xl p-6 z-10">...</div>
+</div>`,
+      react: `import React from 'react';
+
+const GlowBorderProfile = () => {
+  return (
+    <div className="relative w-72 h-[420px] rounded-xl bg-slate-900 overflow-hidden flex flex-col items-center justify-center group">
+      {/* Animated Border Background */}
+      <div className="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0_340deg,cyan_360deg)] animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      
+      {/* Inner Card */}
+      <div className="absolute inset-[2px] bg-slate-950 rounded-xl p-6 flex flex-col items-center z-10">
+         <div className="w-24 h-24 rounded-full border-2 border-slate-700 p-1 mb-4 group-hover:border-cyan-500/50 transition-colors duration-500">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Profile" className="w-full h-full rounded-full object-cover" />
+         </div>
+         
+         <h3 className="text-xl font-bold text-white mb-1">David Chen</h3>
+         <p className="text-cyan-500 text-xs font-semibold uppercase tracking-wider mb-6">Software Engineer</p>
+         
+         <div className="w-full space-y-3">
+             <div className="flex justify-between items-center text-sm border-b border-slate-800 pb-2">
+                <span className="text-gray-400">Projects</span>
+                <span className="text-white font-bold">124</span>
+             </div>
+             <div className="flex justify-between items-center text-sm border-b border-slate-800 pb-2">
+                <span className="text-gray-400">Rating</span>
+                <span className="text-white font-bold">4.9/5</span>
+             </div>
+              <div className="flex justify-between items-center text-sm border-b border-slate-800 pb-2">
+                <span className="text-gray-400">Response</span>
+                <span className="text-white font-bold">1 hr</span>
+             </div>
+         </div>
+         
+         <button className="mt-auto w-full py-3 bg-cyan-600/10 border border-cyan-500/20 text-cyan-400 rounded-lg text-sm font-semibold hover:bg-cyan-500 hover:text-black transition-all">
+            View Profile
+         </button>
+      </div>
+    </div>
+  );
+};
+export default GlowBorderProfile;`
     }
   }
 ];
